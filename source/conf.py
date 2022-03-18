@@ -43,10 +43,11 @@ exclude_patterns   = []
 #######################################################
 
 html_theme         = "sphinxawesome_theme"
-# html_logo          = "path/to/my/logo.png"
+html_logo          = "/home/wilfried/bin/SOMptimised/logo/logo.png"
 
 html_theme_options = {'extra_header_links' : {
-                      "GitHub": "/https://github.com/WilfriedMercier/SOMptimised"
+                      "API": "/SOMptimised//API/index",
+                      "Tutorial": "/SOMptimised/tutorial/index"
                      },
     }
 
