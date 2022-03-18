@@ -29,13 +29,20 @@
 <svg aria-hidden="true" class="fill-current stroke-current h-8 w-8" stroke-width="0.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg>
 </button>
 <input aria-label="Search the docs" class="pr-2 bg-transparent text-inherit focus:outline-none w-0 md:w-auto focus:w-full transition-all duration-100" data-search-target="searchInput" id="search-input" name="q" placeholder="Search the docs" type="search"/>
-</form><div class="shrink-0"><a class="h-14 sm:h-18 inline-block leading-14 sm:leading-18 text-gray-100 bg-transparent tracking-wide font-medium hover:text-brand focus:bg-gray-700 focus:outline-none hover:no-underline focus:text-brand px-4" href="../https%3A//github.com/WilfriedMercier/SOMptimised.html">GitHub</a></div></div>
+</form><div class="shrink-0"><a class="h-14 sm:h-18 inline-block leading-14 sm:leading-18 text-gray-100 bg-transparent tracking-wide font-medium hover:text-brand focus:bg-gray-700 focus:outline-none hover:no-underline focus:text-brand px-4" href="/https%3A//github.com/WilfriedMercier/SOMptimised.html">GitHub</a></div></div>
 </div>
 </header>
 <aside class="grid-area-sidebar h-full fixed xl:relative inset-y-0 left-0 z-20 xl:z-0 print:hidden overflow-y-auto transition-all transform transform-gpu -translate-x-full opacity-0 duration-300 xl:translate-x-0 xl:opacity-100" data-sidebar-target="sidebar">
 <nav class="h-full overflow-y-auto bg-white text-gray-600 pt-8 flex flex-col" role="navigation">
 <div class="nav-toc flex-1 pl-6"><ul class="current">
-<li class="toctree-l1 current expanded"><div class="nav-link"><a class="current reference internal" data-action="click-&gt;sidebar#close" href="#">Tutorial/Example</a></div></li>
+<li class="toctree-l1 current expanded"><div class="nav-link"><svg class="expand" data-action="click-&gt;sidebar#expand keydown-&gt;sidebar#expandKeyPressed" tabindex="0" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path></svg><a class="current reference internal" data-action="click-&gt;sidebar#close" href="#">Tutorial/Example</a></div><ul>
+<li class="toctree-l2"><div class="nav-link"><a class="reference internal" data-action="click-&gt;sidebar#close" href="#preparing-the-data">Preparing the data</a></div></li>
+<li class="toctree-l2"><div class="nav-link"><a class="reference internal" data-action="click-&gt;sidebar#close" href="#train-the-som-to-predict-the-iris-class">Train the SOM to predict the iris class</a></div></li>
+<li class="toctree-l2"><div class="nav-link"><a class="reference internal" data-action="click-&gt;sidebar#close" href="#predict-sepal-width">Predict sepal width</a></div></li>
+<li class="toctree-l2"><div class="nav-link"><a class="reference internal" data-action="click-&gt;sidebar#close" href="#set-and-get-extra-parameters">Set and get extra parameters</a></div></li>
+<li class="toctree-l2"><div class="nav-link"><a class="reference internal" data-action="click-&gt;sidebar#close" href="#save-and-load-som">Save and load SOM</a></div></li>
+</ul>
+</li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">―――――――――――――――</span></p>
 <ul>
@@ -57,11 +64,351 @@
 </nav>
 <article class="flex-1" role="main">
 <section id="tutorial-example">
-<h1>Tutorial/Example<a aria-label="Click to copy this link" class="headerlink tooltipped tooltipped-ne tooltipped tooltipped-ne tooltipped tooltipped-ne" data-action="click-&gt;clipboard#copyHeaderLink" data-controller="clipboard" href="#tutorial-example">¶</a></h1>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>No tutorial yet</p>
+<h1>Tutorial/Example<a aria-label="Click to copy this link" class="headerlink tooltipped tooltipped-ne" data-action="click-&gt;clipboard#copyHeaderLink" data-controller="clipboard" href="#tutorial-example">¶</a></h1>
+<section id="preparing-the-data">
+<h2>Preparing the data<a aria-label="Click to copy this link" class="headerlink tooltipped tooltipped-ne" data-action="click-&gt;clipboard#copyHeaderLink" data-controller="clipboard" href="#preparing-the-data">¶</a></h2>
+<p>This SOM implementation requires the data to be given as a 2-dimensional numpy array where the first dimension corresponds to the observations or data points that you have and the second dimension corresponds to the features for each observation.</p>
+<p>Let us run the SOM on the <a class="reference external" href="https://en.wikipedia.org/wiki/Iris_flower_data_set" rel="nofollow noopener">iris dataset<svg aria-hidden="true" class="external-link-icon" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 19H5V5h7V3H5a2 2 0 00-2 2v14a2 2 0 002 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"></path></svg></a>. To do so we will use <a class="reference external" href="https://pandas.pydata.org/" rel="nofollow noopener">pandas<svg aria-hidden="true" class="external-link-icon" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 19H5V5h7V3H5a2 2 0 00-2 2v14a2 2 0 002 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"></path></svg></a> to load the dataset contained in the csv file</p>
+<p class="caption">Code </p>
+<div class="code-wrapper" data-controller="code">
+<div class="code-header">
+<span class="code-lang">python</span></div>
+<div class="highlight"><pre><code><span class="kn">import</span> <span class="nn">pandas</span>
+
+<span class="n">table</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'examples/iris_dataset/iris_dataset.csv'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">head</span><span class="p">(),</span> <span class="n">end</span><span class="o">=</span><span class="s1">'</span><span class="se">\n\n</span><span class="s1">'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+</code></pre></div></div>
+<p class="caption">Results</p>
+<div class="code-wrapper" data-controller="code">
+<div class="code-header">
+<span class="code-lang">none</span></div>
+<div class="highlight"><pre><code>   sepal length (cm)  sepal width (cm)  petal length (cm)  petal width (cm)       target
+0                5.1               3.5                1.4               0.2  Iris-setosa
+1                4.9               3.0                1.4               0.2  Iris-setosa
+2                4.7               3.2                1.3               0.2  Iris-setosa
+3                4.6               3.1                1.5               0.2  Iris-setosa
+4                5.0               3.6                1.4               0.2  Iris-setosa
+
+&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 150 entries, 0 to 149
+Data columns (total 5 columns):
+ #   Column             Non-Null Count  Dtype  
+---  ------             --------------  -----  
+ 0   sepal length (cm)  150 non-null    float64
+ 1   sepal width (cm)   150 non-null    float64
+ 2   petal length (cm)  150 non-null    float64
+ 3   petal width (cm)   150 non-null    float64
+ 4   target             150 non-null    object 
+dtypes: float64(4), object(1)
+memory usage: 6.0+ KB
+None
+</code></pre></div></div>
+<p>Each line represents an observation and in this case we have 4 features: sepal length, sepal width, petal length and petal width. Let us train the SOM on three features</p>
+<div class="code-wrapper" data-controller="code">
+<div class="code-header">
+<span class="code-lang">python</span></div>
+<div class="highlight"><pre><code><span class="n">table</span>  <span class="o">=</span> <span class="n">table</span><span class="p">[[</span><span class="s1">'petal length (cm)'</span><span class="p">,</span> <span class="s1">'petal width (cm)'</span><span class="p">,</span> <span class="s1">'sepal length (cm)'</span><span class="p">]]</span>
+<span class="n">target</span> <span class="o">=</span> <span class="n">table</span><span class="p">[</span><span class="s1">'target'</span><span class="p">]</span>
+<span class="n">swidth</span> <span class="o">=</span> <span class="n">table</span><span class="p">[</span><span class="s1">'sepal width (cm)'</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+</code></pre></div></div>
+<p class="caption">Results</p>
+<div class="code-wrapper" data-controller="code">
+<div class="code-header">
+<span class="code-lang">none</span></div>
+<div class="highlight"><pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 150 entries, 0 to 149
+Data columns (total 3 columns):
+ #   Column             Non-Null Count  Dtype  
+---  ------             --------------  -----  
+ 0   petal length (cm)  150 non-null    float64
+ 1   petal width (cm)   150 non-null    float64
+ 2   sepal length (cm)  150 non-null    float64
+dtypes: float64(3)
+memory usage: 3.6 KB
+None
+</code></pre></div></div>
+<p>where we have also extracted the target class for each observation to compare at the end and the sepal width to predict for the next section. We convert the data into a numpy array since this is the required format for the SOM to run and we check it has the correct shape (150, 3)</p>
+<div class="code-wrapper" data-controller="code">
+<div class="code-header">
+<span class="code-lang">python</span></div>
+<div class="highlight"><pre><code><span class="n">data</span>  <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">[:</span><span class="mi">5</span><span class="p">])</span>
+</code></pre></div></div>
+<p class="caption">Results</p>
+<div class="code-wrapper" data-controller="code">
+<div class="code-header">
+<span class="code-lang">none</span></div>
+<div class="highlight"><pre><code>(150, 3)
+[[1.4 0.2 5.1]
+ [1.4 0.2 4.9]
+ [1.3 0.2 4.7]
+ [1.5 0.2 4.6]
+ [1.4 0.2 5. ]]
+</code></pre></div></div>
+<p>Finally, let us keep the last 10 observations apart to test the SOM</p>
+<div class="code-wrapper" data-controller="code">
+<div class="code-header">
+<span class="code-lang">python</span></div>
+<div class="highlight"><pre><code><span class="n">data_train</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:</span><span class="o">-</span><span class="mi">10</span><span class="p">]</span>
+<span class="n">data_test</span>  <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">:]</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data_train</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_test</span><span class="p">))</span>
+</code></pre></div></div>
+<p class="caption">Results</p>
+<div class="code-wrapper" data-controller="code">
+<div class="code-header">
+<span class="code-lang">none</span></div>
+<div class="highlight"><pre><code>145 5
+</code></pre></div></div>
+</section>
+<section id="train-the-som-to-predict-the-iris-class">
+<h2>Train the SOM to predict the iris class<a aria-label="Click to copy this link" class="headerlink tooltipped tooltipped-ne" data-action="click-&gt;clipboard#copyHeaderLink" data-controller="clipboard" href="#train-the-som-to-predict-the-iris-class">¶</a></h2>
+<p>We will use the SOM to predict the iris class of the test set. We can see by eye than there must be something like three different classes in the iris dataset so we will use a small SOM of dimensions (1, 3) so that each neuron will predict a given class.</p>
+<p>First let us create a SOM object with the right properties</p>
+<div class="code-wrapper" data-controller="code">
+<div class="code-header">
+<span class="code-lang">python</span></div>
+<div class="highlight"><pre><code><span class="kn">from</span> <span class="nn">SOMptimised</span> <span class="kn">import</span> <span class="n">SOM</span>
+
+<span class="n">nf</span>  <span class="o">=</span> <span class="n">data_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># Number of features</span>
+<span class="n">som</span> <span class="o">=</span> <span class="n">SOM</span><span class="p">(</span><span class="n">m</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="n">nf</span><span class="p">,</span> <span class="n">lr</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mf">1e4</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</code></pre></div></div>
+<p>The various parameters appearing when creating the <a class="reference internal" href="../API/som.html#SOMptimised.som.SOM" title="SOMptimised.som.SOM"><code class="xref py py-class docutils literal notranslate">SOM</code></a> object are:</p>
+<ul class="simple">
+<li><p><strong>m</strong> and <strong>n</strong>: the vertical and horizontal dimensions of the SOM, respectively</p></li>
+<li><p><strong>dim</strong>: the number of features in the data</p></li>
+<li><p><strong>lr</strong>: the initial learning rate</p></li>
+<li><p><strong>sigma</strong>: the neighboorhood radius which defines the pull strength of a bmu with respect to its neighboors. The larger <strong>sigma</strong> the more aggressive the SOM.</p></li>
+<li><p><strong>max_iter</strong>: the maximum number of iterations. The learning will continue until the number of iterations becomes equal to <code class="code highlight python docutils literal notranslate"><span class="nb">min</span><span class="p">(</span><span class="n">max_iter</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">*</span><span class="n">epochs</span><span class="p">)</span></code> where <code class="code highlight python docutils literal notranslate"><span class="n">epochs</span></code> is the number of epochs used during the fit.</p></li>
+<li><p><strong>random_state</strong>: if not <code class="code highlight python docutils literal notranslate"><span class="kc">None</span></code>, must be an integer. This defines the random_state used to generate random initial values for the weights before starting the fit. Setting a value can be useful for debugging.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In this implementation the learning rate decreases linearly with iterations, whereas in other implementations it decreases exponentially. Thus there is no decay rate associated here.</p>
+<p>Also note that contrary to other implementations, the neighboorhood radius does not decreases with iterations. Thus, there is not decay rate associated as well.</p>
 </div>
+<p>Training the som is quite straightforward. This can be done the following way</p>
+<div class="code-wrapper" data-controller="code">
+<div class="code-header">
+<span class="code-lang">python</span></div>
+<div class="highlight"><pre><code><span class="n">som</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data_train</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div></div>
+<p>We can now predict the class for the test set</p>
+<div class="code-wrapper" data-controller="code">
+<div class="code-header">
+<span class="code-lang">python</span></div>
+<div class="highlight"><pre><code><span class="n">pred_test</span> <span class="o">=</span> <span class="n">som</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">data_test</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pred_test</span><span class="p">)</span>
+</code></pre></div></div>
+<p class="caption">Results</p>
+<div class="code-wrapper" data-controller="code">
+<div class="code-header">
+<span class="code-lang">none</span></div>
+<div class="highlight"><pre><code>[0 0 0 0 0]
+</code></pre></div></div>
+<p>Similarly we can extract the predictions the SOM made on the training dataset</p>
+<div class="code-wrapper" data-controller="code">
+<div class="code-header">
+<span class="code-lang">python</span></div>
+<div class="highlight"><pre><code><span class="n">pred_train</span> <span class="o">=</span> <span class="n">som</span><span class="o">.</span><span class="n">train_bmus_</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pred_train</span><span class="p">)</span>
+</code></pre></div></div>
+<p class="caption">Results</p>
+<div class="code-wrapper" data-controller="code">
+<div class="code-header">
+<span class="code-lang">none</span></div>
+<div class="highlight"><pre><code>[2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+ 2 2 2 2 2 2 2 2 2 2 2 2 2 0 0 0 1 0 0 0 1 0 1 1 1 1 0 1 0 0 1 0 1 0 1 0 0
+ 0 0 0 0 0 1 1 1 1 0 1 0 0 0 1 1 1 0 1 1 1 1 1 0 1 1 0 0 0 0 0 0 1 0 0 0 0
+ 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]
+</code></pre></div></div>
+<p>The SOM does not directly give us the predicted class but rather the closest neuron in the SOM for each data point. Because there are only three neurons, we can neverthelss associate them to a class.</p>
+<p>Let us plot the training (small points) and test (large points) datasets colour coded by their best-matching unit which will act as a class</p>
+<div class="code-wrapper" data-controller="code">
+<div class="code-header">
+<span class="code-lang">python</span></div>
+<div class="highlight"><pre><code><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span>   <span class="k">as</span>     <span class="nn">plt</span>
+<span class="kn">from</span>   <span class="nn">matplotlib.colors</span>   <span class="kn">import</span> <span class="n">TwoSlopeNorm</span>
+<span class="kn">from</span>   <span class="nn">matplotlib.gridspec</span> <span class="kn">import</span> <span class="n">GridSpec</span>
+<span class="kn">from</span>   <span class="nn">matplotlib</span>          <span class="kn">import</span> <span class="n">rc</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>           <span class="k">as</span>    <span class="nn">mpl</span>
+
+<span class="n">norm</span> <span class="o">=</span> <span class="n">TwoSlopeNorm</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">rc</span><span class="p">(</span><span class="s1">'font'</span><span class="p">,</span> <span class="o">**</span><span class="p">{</span><span class="s1">'family'</span><span class="p">:</span> <span class="s1">'serif'</span><span class="p">,</span> <span class="s1">'serif'</span><span class="p">:</span> <span class="p">[</span><span class="s1">'Times'</span><span class="p">]})</span>
+<span class="n">rc</span><span class="p">(</span><span class="s1">'text'</span><span class="p">,</span> <span class="n">usetex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">'text.latex.preamble'</span><span class="p">]</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">'\usepackage</span><span class="si">{newtxmath}</span><span class="s1">'</span>
+
+<span class="n">f</span>   <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">))</span>
+<span class="n">gs</span>  <span class="o">=</span> <span class="n">GridSpec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="p">[</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">]:</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_ticks_position</span><span class="p">(</span><span class="s1">'both'</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_ticks_position</span><span class="p">(</span><span class="s1">'both'</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">'x'</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">'both'</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="s1">'in'</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">'y'</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">'both'</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="s1">'in'</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">'Petal width (cm)'</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+
+<span class="n">ax1</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data_train</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">data_train</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">pred_train</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">'bwr'</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s1">'k'</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">'o'</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data_test</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span>  <span class="n">data_test</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span>  <span class="n">c</span><span class="o">=</span><span class="n">pred_test</span><span class="p">,</span>  <span class="n">cmap</span><span class="o">=</span><span class="s1">'bwr'</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s1">'k'</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">'o'</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">'Petal length (cm)'</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+
+<span class="n">target</span>                              <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+<span class="n">target</span><span class="p">[</span><span class="n">target</span> <span class="o">==</span> <span class="s1">'Iris-setosa'</span><span class="p">]</span>     <span class="o">=</span> <span class="mi">0</span>
+<span class="n">target</span><span class="p">[</span><span class="n">target</span> <span class="o">==</span> <span class="s1">'Iris-versicolor'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">target</span><span class="p">[</span><span class="n">target</span> <span class="o">==</span> <span class="s1">'Iris-virginica'</span><span class="p">]</span>  <span class="o">=</span> <span class="mi">2</span>
+
+<span class="n">ax2</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data_train</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">data_train</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">target</span><span class="p">[:</span><span class="o">-</span><span class="mi">10</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">'bwr'</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s1">'k'</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">'o'</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data_test</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span>  <span class="n">data_test</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span>  <span class="n">c</span><span class="o">=</span><span class="n">target</span><span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">:],</span>  <span class="n">cmap</span><span class="o">=</span><span class="s1">'bwr'</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s1">'k'</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">'o'</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([</span><span class="mf">0.2</span><span class="p">])</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">([])</span>
+
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">'SOM clustering'</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">'IRIS dataset'</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></div>
+<p>(<a class="reference external" href="../tutorial/index-1.py" rel="nofollow noopener">Source code<svg aria-hidden="true" class="external-link-icon" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 19H5V5h7V3H5a2 2 0 00-2 2v14a2 2 0 002 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"></path></svg></a>, <a class="reference external" href="../tutorial/index-1.png" rel="nofollow noopener">png<svg aria-hidden="true" class="external-link-icon" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 19H5V5h7V3H5a2 2 0 00-2 2v14a2 2 0 002 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"></path></svg></a>, <a class="reference external" href="../tutorial/index-1.hires.png" rel="nofollow noopener">hires.png<svg aria-hidden="true" class="external-link-icon" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 19H5V5h7V3H5a2 2 0 00-2 2v14a2 2 0 002 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"></path></svg></a>, <a class="reference external" href="../tutorial/index-1.pdf" rel="nofollow noopener">pdf<svg aria-hidden="true" class="external-link-icon" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 19H5V5h7V3H5a2 2 0 00-2 2v14a2 2 0 002 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"></path></svg></a>)</p>
+<figure class="align-default">
+<img alt="../_images/index-1.png" class="plot-directive" src="../_images/index-1.png"/>
+</figure>
+<p>Colors do not match between subfigures, they are just here to show clustering.</p>
+</section>
+<section id="predict-sepal-width">
+<h2>Predict sepal width<a aria-label="Click to copy this link" class="headerlink tooltipped tooltipped-ne" data-action="click-&gt;clipboard#copyHeaderLink" data-controller="clipboard" href="#predict-sepal-width">¶</a></h2>
+<p>We can also use the SOM to predict additional features of the test dataset. To do so, we first need to assign new features to the neurons of the SOM.</p>
+<p>Let us predict the sepal width of the test dataset using our SOM. To do so we will train a new SOM with more neurons to have finer predictions</p>
+<div class="code-wrapper" data-controller="code">
+<div class="code-header">
+<span class="code-lang">python</span></div>
+<div class="highlight"><pre><code><span class="kn">import</span> <span class="nn">pandas</span>
+<span class="kn">from</span>   <span class="nn">SOMptimised</span> <span class="kn">import</span> <span class="n">SOM</span>
+<span class="kn">import</span> <span class="nn">numpy</span>       <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Extract data</span>
+<span class="n">table</span>        <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'examples/iris_dataset/iris_dataset.csv'</span><span class="p">)</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">frac</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">swidth</span>       <span class="o">=</span> <span class="n">table</span><span class="p">[</span><span class="s1">'sepal width (cm)'</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+<span class="n">data</span>         <span class="o">=</span> <span class="n">table</span><span class="p">[[</span><span class="s1">'petal length (cm)'</span><span class="p">,</span> <span class="s1">'petal width (cm)'</span><span class="p">,</span> <span class="s1">'sepal length (cm)'</span><span class="p">]]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+
+<span class="n">data_train</span>   <span class="o">=</span> <span class="n">data</span><span class="p">[:</span><span class="o">-</span><span class="mi">10</span><span class="p">]</span>
+<span class="n">data_test</span>    <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">:]</span>
+<span class="n">swidth_train</span> <span class="o">=</span> <span class="n">swidth</span><span class="p">[:</span><span class="o">-</span><span class="mi">10</span><span class="p">]</span>
+<span class="n">swidth_test</span>  <span class="o">=</span> <span class="n">swidth</span><span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">:]</span>
+
+<span class="c1"># Fit SOM</span>
+<span class="n">m</span>   <span class="o">=</span> <span class="mi">5</span>
+<span class="n">n</span>   <span class="o">=</span> <span class="mi">5</span>
+<span class="n">nf</span>  <span class="o">=</span> <span class="n">data_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># Number of features</span>
+<span class="n">som</span> <span class="o">=</span> <span class="n">SOM</span><span class="p">(</span><span class="n">m</span><span class="o">=</span><span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="n">nf</span><span class="p">,</span> <span class="n">lr</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mf">1e4</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">som</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data_train</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">pred_train</span> <span class="o">=</span> <span class="n">som</span><span class="o">.</span><span class="n">train_bmus_</span>
+<span class="n">pred_test</span>  <span class="o">=</span> <span class="n">som</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">data_test</span><span class="p">)</span>
+</code></pre></div></div>
+<p>Here we used a 5*5 SOM to fit the data. A larger SOM might give more precise results but some neurons might never map to any data point though.</p>
+<p>We also extract the sepal width column of the train and test datasets. The sepal width for the test dataset will be used to compare with the predicition from the SOM. That of the train dataset will be used to assign a sepal width for each neuron in the SOM.</p>
+<p>To compute a sepal width estimate for each neuron, we can loop through them and find all data points whose best-matching unit is that neuron. The sepal width of the neuron can then be computed as the median value of the sepal width of all these data points</p>
+<div class="code-wrapper" data-controller="code">
+<div class="code-header">
+<span class="code-lang">python</span></div>
+<div class="highlight"><pre><code><span class="c1"># Compute median sepal width and uncertainty for all neurons</span>
+<span class="n">swidth_med</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">swidth_std</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="o">*</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">tmp</span>    <span class="o">=</span> <span class="n">swidth_train</span><span class="p">[</span><span class="n">pred_train</span> <span class="o">==</span> <span class="n">i</span><span class="p">]</span>
+
+    <span class="n">swidth_med</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nanmedian</span><span class="p">(</span><span class="n">tmp</span><span class="p">))</span>
+    <span class="n">swidth_std</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nanstd</span><span class="p">(</span><span class="n">tmp</span><span class="p">))</span>
+</code></pre></div></div>
+<p>In the code above, we also computed an estimate of the uncertainty on the sepal width as the standard deviation. Lets us predict the sepal width of the test set using the SOM</p>
+<div class="code-wrapper" data-controller="code">
+<div class="code-header">
+<span class="code-lang">python</span></div>
+<div class="highlight"><pre><code><span class="c1"># Predict sepal width for test set</span>
+<span class="n">swidth_test_pred</span>     <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">swidth_med</span><span class="p">)[</span><span class="n">pred_test</span><span class="p">]</span>
+<span class="n">swidth_test_pred_std</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">swidth_std</span><span class="p">)[</span><span class="n">pred_test</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Predicted     Real'</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">pred</span><span class="p">,</span> <span class="n">err</span><span class="p">,</span> <span class="n">true</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">swidth_test_pred</span><span class="p">,</span> <span class="n">swidth_test_pred_std</span><span class="p">,</span> <span class="n">swidth_test</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">pred</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1"> +- </span><span class="si">{</span><span class="n">err</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">    </span><span class="si">{</span><span class="n">true</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+</code></pre></div></div>
+<p class="caption">Results</p>
+<div class="code-wrapper" data-controller="code">
+<div class="code-header">
+<span class="code-lang">none</span></div>
+<div class="highlight"><pre><code>Predicted     Real
+2.7 +- 0.2    2.5
+3.2 +- 0.2    3.3
+2.9 +- 0.3    2.8
+3.0 +- 0.4    2.8
+3.0 +- 0.4    3.0
+2.2 +- 0.0    2.8
+3.1 +- 0.1    2.8
+3.9 +- 0.3    3.4
+2.7 +- 0.2    3.0
+3.2 +- 0.3    3.1
+</code></pre></div></div>
+<p>Depending on the parameters of the SOM and the initialisation of the weights, it is not possible to predict a sepal width for all the data points in the test dataset.</p>
+</section>
+<section id="set-and-get-extra-parameters">
+<h2>Set and get extra parameters<a aria-label="Click to copy this link" class="headerlink tooltipped tooltipped-ne" data-action="click-&gt;clipboard#copyHeaderLink" data-controller="clipboard" href="#set-and-get-extra-parameters">¶</a></h2>
+<p>In the previous section we computed an additional parameter for each neuron in the SOM: the petal width. Rather than keeping such parameters in separate variables, we can integrate them into the SOM to easily access them</p>
+<div class="code-wrapper" data-controller="code">
+<div class="code-header">
+<span class="code-lang">python</span></div>
+<div class="highlight"><pre><code><span class="n">som</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s1">'petal width'</span><span class="p">,</span> <span class="n">swidth_med</span><span class="p">)</span>
+<span class="n">som</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s1">'petal width uncertainty'</span><span class="p">,</span> <span class="n">swidth_std</span><span class="p">)</span>
+</code></pre></div></div>
+<p>To retrieve later on an extra parameter (e.g. petal width), then one can do</p>
+<div class="code-wrapper" data-controller="code">
+<div class="code-header">
+<span class="code-lang">python</span></div>
+<div class="highlight"><pre><code><span class="n">pwidth</span> <span class="o">=</span> <span class="n">som</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'petal width'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pdwidth</span><span class="p">)</span>
+</code></pre></div></div>
+<p class="caption">Results</p>
+<div class="code-wrapper" data-controller="code">
+<div class="code-header">
+<span class="code-lang">none</span></div>
+<div class="highlight"><pre><code>[2.75, 2.9, 2.75, 2.35, nan, 2.8, 2.7, 3.2, 2.5, 2.8, 2.55, 2.9, 3.0, 3.0, 3.0, 3.4, nan, 2.9, nan, 2.3499999999999996, 3.2, 3.7, nan, nan, nan]
+</code></pre></div></div>
+</section>
+<section id="save-and-load-som">
+<h2>Save and load SOM<a aria-label="Click to copy this link" class="headerlink tooltipped tooltipped-ne" data-action="click-&gt;clipboard#copyHeaderLink" data-controller="clipboard" href="#save-and-load-som">¶</a></h2>
+<p>A last feature of this SOM implementation is that the it can be saved at any moment and loaded back again. This is easily done using the <a class="reference internal" href="../API/som.html#SOMptimised.som.SOM.write" title="SOMptimised.som.SOM.write"><code class="xref py py-meth docutils literal notranslate">write()</code></a> method</p>
+<div class="code-wrapper" data-controller="code">
+<div class="code-header">
+<span class="code-lang">python</span></div>
+<div class="highlight"><pre><code><span class="n">som</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">'som_save'</span><span class="p">)</span>
+</code></pre></div></div>
+<p>The SOM can be loaded back at any time later on using the <a class="reference internal" href="../API/som.html#SOMptimised.som.SOM.read" title="SOMptimised.som.SOM.read"><code class="xref py py-meth docutils literal notranslate">read()</code></a> method</p>
+<div class="code-wrapper" data-controller="code">
+<div class="code-header">
+<span class="code-lang">python</span></div>
+<div class="highlight"><pre><code><span class="n">newsom</span> <span class="o">=</span> <span class="n">SOM</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">'som_save'</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">som</span><span class="o">.</span><span class="n">train_bmus_</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">newsom</span><span class="o">.</span><span class="n">train_bmus_</span><span class="p">)</span>
+</code></pre></div></div>
+<p class="caption">Results</p>
+<div class="code-wrapper" data-controller="code">
+<div class="code-header">
+<span class="code-lang">none</span></div>
+<div class="highlight"><pre><code>[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ 0 0 0 0 0 0 0 0 0 0 0 0 0 2 2 2 1 2 2 2 1 2 1 1 1 1 2 1 2 2 1 2 1 2 1 2 2
+ 2 2 2 2 2 1 1 1 1 2 2 2 2 2 1 1 1 2 1 1 1 1 1 2 1 1 2 2 2 2 2 2 1 2 2 2 2
+ 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2]
+[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ 0 0 0 0 0 0 0 0 0 0 0 0 0 2 2 2 1 2 2 2 1 2 1 1 1 1 2 1 2 2 1 2 1 2 1 2 2
+ 2 2 2 2 2 1 1 1 1 2 2 2 2 2 1 1 1 2 1 1 1 1 1 2 1 1 2 2 2 2 2 2 1 2 2 2 2
+ 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2]
+</code></pre></div></div>
+</section>
 </section>
 </article>
 <footer>

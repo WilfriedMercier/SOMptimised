@@ -5,7 +5,8 @@
 <head>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta charset="utf-8"/>
-<title>Overview: module code | SOMptimised 1.0 documentation</title>
+<meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<title>Save and load SOM | SOMptimised 1.0 documentation</title>
 <link href="../_static/pygments.css" rel="stylesheet"/>
 <link href="../_static/theme.313ea551d1799b2102b1.css" rel="stylesheet"/>
 <link href="../_static/plot_directive.css" rel="stylesheet"/>
@@ -14,7 +15,7 @@
 </head>
 <body class="antialiased text-gray">
 <div class="h-screen xl:grid xl:grid-layout" data-action="keydown@window-&gt;search#focus" data-controller="sidebar search" id="page">
-<a class="block text-xl bg-white py-4 z-20 absolute top-0 h-18 inset-x-0 text-center transform -translate-y-full focus:translate-y-0 focus:outline-none transition-transform duration-75" href="#overview-module-code" title="Skip navigation links">Skip to content</a>
+<a class="block text-xl bg-white py-4 z-20 absolute top-0 h-18 inset-x-0 text-center transform -translate-y-full focus:translate-y-0 focus:outline-none transition-transform duration-75" href="#save-and-load-som" title="Skip navigation links">Skip to content</a>
 <header class="grid-area-header z-10 h-14 sm:h-18">
 <div class="bg-gray-dark shadow-md flex items-center h-full xl:px-2 relative"><div class="flex items-center">
 <button class="xl:hidden h-14 w-14 sm:h-18 sm:w-18 leading-14 sm:leading-18 text-gray-100 hover:bg-gray-700 hover:text-brand focus:outline-none focus:bg-gray-700 focus:text-brand" data-action="sidebar#open" data-sidebar-target="hamburger">
@@ -32,12 +33,15 @@
 <aside class="grid-area-sidebar h-full fixed xl:relative inset-y-0 left-0 z-20 xl:z-0 print:hidden overflow-y-auto transition-all transform transform-gpu -translate-x-full opacity-0 duration-300 xl:translate-x-0 xl:opacity-100" data-sidebar-target="sidebar">
 <nav class="h-full overflow-y-auto bg-white text-gray-600 pt-8 flex flex-col" role="navigation">
 <div class="nav-toc flex-1 pl-6"><ul>
-<li class="toctree-l1"><div class="nav-link"><svg class="expand" data-action="click-&gt;sidebar#expand keydown-&gt;sidebar#expandKeyPressed" tabindex="0" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path></svg><a class="reference internal" data-action="click-&gt;sidebar#close" href="../tutorial/index.html">Tutorial/Example</a></div><ul>
-<li class="toctree-l2"><div class="nav-link"><a class="reference internal" data-action="click-&gt;sidebar#close" href="../tutorial/index.html#preparing-the-data">Preparing the data</a></div></li>
-<li class="toctree-l2"><div class="nav-link"><a class="reference internal" data-action="click-&gt;sidebar#close" href="../tutorial/index.html#train-the-som-to-predict-the-iris-class">Train the SOM to predict the iris class</a></div></li>
-<li class="toctree-l2"><div class="nav-link"><a class="reference internal" data-action="click-&gt;sidebar#close" href="../tutorial/index.html#predict-sepal-width">Predict sepal width</a></div></li>
-<li class="toctree-l2"><div class="nav-link"><a class="reference internal" data-action="click-&gt;sidebar#close" href="../tutorial/index.html#set-and-get-extra-parameters">Set and get extra parameters</a></div></li>
-<li class="toctree-l2"><div class="nav-link"><a class="reference internal" data-action="click-&gt;sidebar#close" href="../tutorial/index.html#save-and-load-som">Save and load SOM</a></div></li>
+<li class="toctree-l1"><div class="nav-link"><svg class="expand" data-action="click-&gt;sidebar#expand keydown-&gt;sidebar#expandKeyPressed" tabindex="0" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path></svg><a class="reference internal" data-action="click-&gt;sidebar#close" href="index.html">Tutorial/Example</a></div><ul>
+<li class="toctree-l2"><div class="nav-link"><svg class="expand" data-action="click-&gt;sidebar#expand keydown-&gt;sidebar#expandKeyPressed" tabindex="0" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path></svg><a class="reference internal" data-action="click-&gt;sidebar#close" href="index.html#running-a-som">1. Running a SOM</a></div><ul>
+<li class="toctree-l3"><div class="nav-link"><a class="reference internal" data-action="click-&gt;sidebar#close" href="index.html#preparing-the-data">Preparing the data</a></div></li>
+<li class="toctree-l3"><div class="nav-link"><a class="reference internal" data-action="click-&gt;sidebar#close" href="index.html#train-the-som-to-predict-the-iris-class">Train the SOM to predict the iris class</a></div></li>
+<li class="toctree-l3"><div class="nav-link"><a class="reference internal" data-action="click-&gt;sidebar#close" href="index.html#predict-sepal-width">Predict sepal width</a></div></li>
+<li class="toctree-l3"><div class="nav-link"><a class="reference internal" data-action="click-&gt;sidebar#close" href="index.html#set-and-get-extra-parameters">Set and get extra parameters</a></div></li>
+<li class="toctree-l3"><div class="nav-link"><a class="reference internal" data-action="click-&gt;sidebar#close" href="index.html#save-and-load-som">Save and load SOM</a></div></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -57,12 +61,40 @@
 </aside>
 <main class="px-10 xl:ml-fluid grid-area-main overflow-y-auto flex flex-col h-full mx-0 md:mx-auto xl:mr-0" data-action="scroll-&gt;scroll#showButton" data-controller="scroll"><nav aria-label="breadcrumbs" class="print:hidden mt-12 text-sm text-gray-light" role="navigation">
 <a class="text-gray-light text-sm hover:text-gray-dark font-medium focus:text-gray-dark" href="../index.html">SOMptimised 1.0 documentation</a>
-<span class="mr-1">/</span><span aria-current="page">Overview: module code</span>
+<span class="mr-1">/</span><span aria-current="page">Save and load SOM</span>
 </nav>
 <article class="flex-1" role="main">
-<h1>All modules for which code is available</h1>
-<ul><li><a href="SOMptimised/som.html">SOMptimised.som</a></li>
-</ul>
+<section id="save-and-load-som">
+<h1>Save and load SOM<a aria-label="Click to copy this link" class="headerlink tooltipped tooltipped-ne tooltipped tooltipped-ne" data-action="click-&gt;clipboard#copyHeaderLink" data-controller="clipboard" href="#save-and-load-som">¶</a></h1>
+<p>A last feature of this SOM implementation is that the it can be saved at any moment and loaded back again. This is easily done using the <a class="reference internal" href="../API/som.html#SOMptimised.som.SOM.write" title="SOMptimised.som.SOM.write"><code class="xref py py-meth docutils literal notranslate">write()</code></a> method</p>
+<div class="code-wrapper" data-controller="code">
+<div class="code-header">
+<span class="code-lang">python</span></div>
+<div class="highlight"><pre><code><span class="n">som</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">'som_save'</span><span class="p">)</span>
+</code></pre></div></div>
+<p>The SOM can be loaded back at any time later on using the <a class="reference internal" href="../API/som.html#SOMptimised.som.SOM.read" title="SOMptimised.som.SOM.read"><code class="xref py py-meth docutils literal notranslate">read()</code></a> method</p>
+<div class="code-wrapper" data-controller="code">
+<div class="code-header">
+<span class="code-lang">python</span></div>
+<div class="highlight"><pre><code><span class="n">newsom</span> <span class="o">=</span> <span class="n">SOM</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">'som_save'</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">som</span><span class="o">.</span><span class="n">train_bmus_</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">newsom</span><span class="o">.</span><span class="n">train_bmus_</span><span class="p">)</span>
+</code></pre></div></div>
+<p class="caption">Results</p>
+<div class="code-wrapper" data-controller="code">
+<div class="code-header">
+<span class="code-lang">none</span></div>
+<div class="highlight"><pre><code>[2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+ 2 2 2 2 2 2 2 2 2 2 2 2 2 0 0 0 1 0 0 0 1 0 1 1 0 1 0 1 0 0 1 0 1 0 1 0 0
+ 0 0 0 0 0 1 1 1 1 0 0 0 0 0 1 1 0 0 1 1 1 1 1 0 1 1 0 0 0 0 0 0 0 0 0 0 0
+ 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]
+[2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+ 2 2 2 2 2 2 2 2 2 2 2 2 2 0 0 0 1 0 0 0 1 0 1 1 0 1 0 1 0 0 1 0 1 0 1 0 0
+ 0 0 0 0 0 1 1 1 1 0 0 0 0 0 1 1 0 0 1 1 1 1 1 0 1 1 0 0 0 0 0 0 0 0 0 0 0
+ 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]
+</code></pre></div></div>
+</section>
 </article>
 <footer>
 <div class="mt-20 mb-4 text-sm text-gray-700">© 2022, Wilfried Mercier Made with <a href="https://www.sphinx-doc.org">Sphinx 4.4.0</a></div>
