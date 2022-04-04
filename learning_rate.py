@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
+r"""
 .. codeauthor:: Wilfried Mercier - IRAP <wilfried.mercier@irap.omp.eu>
 
 Strategies for the learning rate evolution which can be used in the SOM.
@@ -21,7 +21,7 @@ from   typing import Union, Any
 import numpy  as     np
 
 class LearningStrategy(ABC):
-   '''
+   r'''
    .. codeauthor:: Wilfried Mercier - IRAP <wilfried.mercier@irap.omp.eu>
    
    Abstract class for learning rate strategies.
@@ -29,7 +29,7 @@ class LearningStrategy(ABC):
    
    @abstractmethod
    def __call__(self, step: int, *args, **kwargs) -> float:
-      '''
+      r'''
       .. codeauthor:: Wilfried Mercier - IRAP <wilfried.mercier@irap.omp.eu>
       
       Provide the learning rate at the given step.
@@ -44,7 +44,7 @@ class LearningStrategy(ABC):
       return
       
 class LinearLearningStrategy(LearningStrategy):
-   '''
+   r'''
    .. codeauthor:: Wilfried Mercier - IRAP <wilfried.mercier@irap.omp.eu>
    
    Class implementing a linear learning rate strategy given by
@@ -61,19 +61,18 @@ class LinearLearningStrategy(LearningStrategy):
    :type ntot: :python:`int`
    '''
    
-   def __init__(self, lr: Union[int, float]=1, ntot: int=1, **kwargs) -> None:
-      '''Init method.'''
+   def __init__(self, lr: Union[int, float]=1, **kwargs) -> None:
+      r'''Init method.'''
       
       self._check_lr(lr)
-      self._check_ntot(ntot)
       
       super().__init__(**kwargs)
          
       self._initial_lr = lr
-      self._ntot       = ntot
+      self._ntot       = None
       
    def __call__(self, step: int) -> float:
-      '''
+      r'''
       .. codeauthor:: Wilfried Mercier - IRAP <wilfried.mercier@irap.omp.eu>
       
       Provide the learning rate at the given step.
@@ -85,6 +84,9 @@ class LinearLearningStrategy(LearningStrategy):
       :rtype: :python:`float`
       '''
       
+      if self._ntot is None:
+         raise ValueError('ntot must be set before the learning rate can be computed.')
+      
       if step < 0 or step > self.ntot:
          raise ValueError('step must be between 0 and ntot.')
       
@@ -95,7 +97,7 @@ class LinearLearningStrategy(LearningStrategy):
    ####################################
    
    def _check_lr(self, lr: Any, *args, **kwargs) -> None:
-      '''
+      r'''
       .. codeauthor:: Wilfried Mercier - IRAP <wilfried.mercier@irap.omp.eu>
       
       Check if a value is acceptable for the learning rate.
@@ -114,31 +116,13 @@ class LinearLearningStrategy(LearningStrategy):
          
       return
    
-   def _check_ntot(self, ntot: Any, *args, **kwargs) -> None:
-      '''
-      .. codeauthor:: Wilfried Mercier - IRAP <wilfried.mercier@irap.omp.eu>
-      
-      Cherck if a value is acceptable for the total number of iterations
-      
-      :raises TypeError: if **ntot** is not an :python:`int`
-      :raises ValueError: if :python:`ntot < 1`
-      '''
-      
-      if not isinstance(ntot, int):
-         raise TypeError(f'ntot has type {type(ntot)} but it must be an int.')
-         
-      if ntot < 1:
-         raise ValueError('number of iterations must at least be equal to 1.')
-         
-      return
-   
    #########################################
    #          Setters and getters          #
    #########################################
    
    @property
    def initial_lr(self, *args, **kwargs) -> Union[int, float]:
-      '''
+      r'''
       .. codeauthor:: Wilfried Mercier - IRAP <wilfried.mercier@irap.omp.eu>
       
       Provide the value of the initial learning rate.
@@ -151,7 +135,7 @@ class LinearLearningStrategy(LearningStrategy):
    
    @initial_lr.setter
    def initial_lr(self, value: Union[int, float], *args, **kwargs) -> None:
-      '''
+      r'''
       .. codeauthor:: Wilfried Mercier - IRAP <wilfried.mercier@irap.omp.eu>
       
       Set the value of the initial learning rate.
@@ -166,7 +150,7 @@ class LinearLearningStrategy(LearningStrategy):
    
    @property
    def ntot(self, *args, **kwargs) -> int:
-      '''
+      r'''
       .. codeauthor:: Wilfried Mercier - IRAP <wilfried.mercier@irap.omp.eu>
       
       Provide the value of the total number of iterations.
@@ -179,7 +163,7 @@ class LinearLearningStrategy(LearningStrategy):
    
    @ntot.setter
    def ntot(self, value: int, *args, **kwargs) -> None:
-      '''
+      r'''
       .. codeauthor:: Wilfried Mercier - IRAP <wilfried.mercier@irap.omp.eu>
       
       Set the value of the total number of iterations.
@@ -193,7 +177,7 @@ class LinearLearningStrategy(LearningStrategy):
       return
       
 class ExponentialLearningStrategy(LearningStrategy):
-   '''
+   r'''
    .. codeauthor:: Wilfried Mercier - IRAP <wilfried.mercier@irap.omp.eu>
    
    Class implementing an exponential learning rate strategy given by
@@ -211,7 +195,7 @@ class ExponentialLearningStrategy(LearningStrategy):
    '''
    
    def __init__(self, lr: Union[int, float]=1, tau: Union[int, float]=1, **kwargs) -> None:
-      '''Init method.'''
+      r'''Init method.'''
       
       self._check_lr_tau(lr)
       self._check_lr_tau(tau)
@@ -222,7 +206,7 @@ class ExponentialLearningStrategy(LearningStrategy):
       self._tau        = tau
       
    def __call__(self, step: int, *args, **kwargs) -> float:
-      '''
+      r'''
       .. codeauthor:: Wilfried Mercier - IRAP <wilfried.mercier@irap.omp.eu>
       
       Provide the learning rate at the given step.
@@ -241,7 +225,7 @@ class ExponentialLearningStrategy(LearningStrategy):
    ####################################
    
    def _check_lr_tau(self, value: Any, *args, **kwargs) -> None:
-      '''
+      r'''
       .. codeauthor:: Wilfried Mercier - IRAP <wilfried.mercier@irap.omp.eu>
       
       Check if a value is acceptable for the learning rate and the decay time scale.
@@ -266,7 +250,7 @@ class ExponentialLearningStrategy(LearningStrategy):
    
    @property
    def initial_lr(self, *args, **kwargs) -> Union[int, float]:
-      '''
+      r'''
       .. codeauthor:: Wilfried Mercier - IRAP <wilfried.mercier@irap.omp.eu>
       
       Provide the value of the initial learning rate.
@@ -279,7 +263,7 @@ class ExponentialLearningStrategy(LearningStrategy):
    
    @initial_lr.setter
    def initial_lr(self, value: Union[int, float], *args, **kwargs) -> None:
-      '''
+      r'''
       .. codeauthor:: Wilfried Mercier - IRAP <wilfried.mercier@irap.omp.eu>
       
       Set the value of the initial learning rate.
@@ -294,7 +278,7 @@ class ExponentialLearningStrategy(LearningStrategy):
    
    @property
    def tau(self, *args, **kwargs) -> Union[int, float]:
-      '''
+      r'''
       .. codeauthor:: Wilfried Mercier - IRAP <wilfried.mercier@irap.omp.eu>
       
       Provide the value of the decay time scale.
@@ -307,7 +291,7 @@ class ExponentialLearningStrategy(LearningStrategy):
    
    @tau.setter
    def tau(self, value: Union[int, float], *args, **kwargs) -> None:
-      '''
+      r'''
       .. codeauthor:: Wilfried Mercier - IRAP <wilfried.mercier@irap.omp.eu>
       
       Set the value of the decay time scale.
@@ -319,3 +303,6 @@ class ExponentialLearningStrategy(LearningStrategy):
       self._check_lr_tau(value)
       self._tau = value
       return
+   
+test = LinearLearningStrategy(lr=1)
+print('_ntot' in test.__dict__)

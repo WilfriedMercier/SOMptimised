@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
+r"""
 .. codeauthor:: Wilfried Mercier - IRAP <wilfried.mercier@irap.omp.eu>
 
 Classes defining the behaviour of the BMU neighbourhood.
@@ -20,8 +20,8 @@ from   abc    import ABC, abstractmethod
 from   typing import Union, Any
 import numpy  as     np
 
-class NeighbourhoodRadiusStrategy(ABC):
-   '''
+class NeighbourhoodStrategy(ABC):
+   r'''
    .. codeauthor:: Wilfried Mercier - IRAP <wilfried.mercier@irap.omp.eu>
    
    Protocol class for strategies implementing neighbourhood radii strategies.
@@ -29,7 +29,7 @@ class NeighbourhoodRadiusStrategy(ABC):
    
    @abstractmethod
    def __call__(self, step: int, *args, **kwargs) -> float:
-      '''
+      r'''
       .. codeauthor:: Wilfried Mercier - IRAP <wilfried.mercier@irap.omp.eu>
       
       Provide the neighbourhood radius at the given step.
@@ -43,8 +43,8 @@ class NeighbourhoodRadiusStrategy(ABC):
       
       return
       
-class ConstantRadiusStrategy(NeighbourhoodRadiusStrategy):
-   '''
+class ConstantRadiusStrategy(NeighbourhoodStrategy):
+   r'''
    .. codeauthor:: Wilfried Mercier - IRAP <wilfried.mercier@irap.omp.eu>
    
    Class implementing a constant neighbourhood radius strategy.
@@ -54,16 +54,18 @@ class ConstantRadiusStrategy(NeighbourhoodRadiusStrategy):
    '''
    
    def __init__(self, sigma: Union[int, float]=1, **kwargs) -> None:
-      '''Init method.'''
+      r'''Init method.'''
       
       self._check_sigma(sigma)
       
       super().__init__(**kwargs)
       
-      self._sigma = sigma
+      # It is convenient to have the squared version as well because this is what the SOM really uses
+      self._sigma  = sigma
+      self._sigma2 = sigma*sigma
       
-   def __call__(self, step: int, *args, **kwargs) -> float:
-      '''
+   def __call__(self, step: int, squared: bool = False, *args, **kwargs) -> float:
+      r'''
       .. codeauthor:: Wilfried Mercier - IRAP <wilfried.mercier@irap.omp.eu>
       
       Provide the neighbourhood radius at the given time step.
@@ -74,16 +76,22 @@ class ConstantRadiusStrategy(NeighbourhoodRadiusStrategy):
       
       :param step: time step during the learning process
       :type step: :python:`int`
+      
+      :param squared: (**Optional**) whether to provide the raduis squared or not
+      :type squared: :python:`bool`
+      
+      :returns: neighbourhood radius
+      :rtype: :python:`float`
       '''
       
-      return self._sigma
+      return self._sigma2 if squared else self._sigma
       
    ####################################
    #          Check methods           #
    ####################################
    
    def _check_sigma(self, sigma: Any, *args, **kwargs) -> None:
-      '''
+      r'''
       .. codeauthor:: Wilfried Mercier - IRAP <wilfried.mercier@irap.omp.eu>
       
       Check if a value is acceptable for the neighbourhood radius.
@@ -108,7 +116,7 @@ class ConstantRadiusStrategy(NeighbourhoodRadiusStrategy):
       
    @property
    def sigma(self, *args, **kwargs) -> float:
-      '''
+      r'''
       .. codeauthor:: Wilfried Mercier - IRAP <wilfried.mercier@irap.omp.eu>
       
       Provide the value of sigma.
@@ -118,7 +126,7 @@ class ConstantRadiusStrategy(NeighbourhoodRadiusStrategy):
    
    @sigma.setter
    def sigma(self, value: Union[int, float], *args, **kwargs) -> None:
-      '''
+      r'''
       .. codeauthor:: Wilfried Mercier - IRAP <wilfried.mercier@irap.omp.eu>
       
       Set the value of sigma.
@@ -128,7 +136,8 @@ class ConstantRadiusStrategy(NeighbourhoodRadiusStrategy):
       '''
       
       self._check_sigma(value)
-      self._sigma = value
+      self._sigma  = value
+      self._sigma2 = value*value
       return
    
    
@@ -152,30 +161,38 @@ class ExponentialRadiusStrategy:
       
       super().__init__(**kwargs)
       
-      self._sigma = sigma
-      self._tau   = tau
+      # It is convenient to have the squared version as well because this is what the SOM really uses
+      self._sigma  = sigma
+      self._sigma2 = sigma*sigma
+      self._tau    = tau
       
-   def __call__(self, step: int, *args, **kwargs):
-      '''
+   def __call__(self, step: int, squared: bool = False, *args, **kwargs):
+      r'''
       .. codeauthor:: Wilfried Mercier - IRAP <wilfried.mercier@irap.omp.eu>
       
       Provide the neighbourhood radius at the given time step.
       
       :param step: time step during the learning process
       :type step: :python:`int`
+      
+      :param squared: (**Optional**) whether to provide the raduis squared or not
+      :type squared: :python:`bool`
+      
+      :returns: neighbourhood radius
+      :rtype: :python:`float`
       '''
       
       if step < 0:
          raise ValueError('step must be larger than 0.')
       
-      return np.exp(-step/self._tau) * self._sigma
+      return np.exp(-2*step/self._tau) * self._sigma2 if squared else np.exp(-step/self._tau) * self._sigma
       
    ####################################
    #          Check methods           #
    ####################################
    
    def _check_sigma_tau(self, value: Any, *args, **kwargs) -> None:
-      '''
+      r'''
       .. codeauthor:: Wilfried Mercier - IRAP <wilfried.mercier@irap.omp.eu>
       
       Check if a value is acceptable for the neighbourhood radius and decay time scale.
@@ -200,7 +217,7 @@ class ExponentialRadiusStrategy:
       
    @property
    def sigma(self, *args, **kwargs) -> float:
-      '''
+      r'''
       .. codeauthor:: Wilfried Mercier - IRAP <wilfried.mercier@irap.omp.eu>
       
       Provide the value of sigma.
@@ -210,7 +227,7 @@ class ExponentialRadiusStrategy:
    
    @sigma.setter
    def sigma(self, value: Union[int, float], *args, **kwargs) -> None:
-      '''
+      r'''
       .. codeauthor:: Wilfried Mercier - IRAP <wilfried.mercier@irap.omp.eu>
       
       Set the value of sigma.
@@ -220,12 +237,13 @@ class ExponentialRadiusStrategy:
       '''
       
       self._check_sigma_tau(value)
-      self._sigma = value
+      self._sigma  = value
+      self._sigma2 = value*value
       return
       
    @property
    def tau(self, *args, **kwargs) -> float:
-      '''
+      r'''
       .. codeauthor:: Wilfried Mercier - IRAP <wilfried.mercier@irap.omp.eu>
       
       Provide the value of tau.
@@ -235,7 +253,7 @@ class ExponentialRadiusStrategy:
    
    @tau.setter
    def tau(self, value: Union[int, float], *args, **kwargs) -> None:
-      '''
+      r'''
       .. codeauthor:: Wilfried Mercier - IRAP <wilfried.mercier@irap.omp.eu>
       
       Set the value of tau.

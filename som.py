@@ -19,9 +19,25 @@ Most of the code comes from **Riley Smith** implementation found in `sklearn-som
     THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 """
 
+import enum
 import pickle
-import numpy  as     np
-from   typing import Optional
+import numpy          as     np
+from   typing         import Optional
+from   .learning_rate import LearningStrategy, LinearLearningStrategy
+from   .neighbourhood import NeighbourhoodStrategy, ConstantRadiusStrategy
+
+class LoopingStrategy(enum.Enum):
+   r'''
+   .. codeauthor:: Wilfried Mercier - IRAP <wilfried.mercier@irap.omp.eu>
+   
+   Enum encompassing different looping strategies used by the code.
+   '''
+   
+   #: Allows looping along the data set
+   DATA    = enum.auto()
+   
+   #: Allows looping along the SOM neurons
+   NEURONS = enum.auto()
 
 class SOM():
     r"""
@@ -36,16 +52,21 @@ class SOM():
     :param dim: (**Optional**) dimensionality (number of features) of the input space
     :type dim: :python:`int`
     :param lr: (**Optional**) initial step size for updating the SOM weights.
-    :type lr: :python:`float`
+    :type lr: :python:`int` or :python:`float`
     :param sigma: (**Optional**) magnitude of change to each weight. Does not update over training (as does learning rate). Higher values mean more aggressive updates to weights.
-    :type sigma: :python:`float`
-    :param max_iter: (**Optional**) parameter to stop training if you reach this many interation.
+    :type sigma: :python:`int` or :python:`float`
+    :param max_iter: (**Optional**) parameter to stop training if you reach this many interations.
     :type max_iter: :python:`int`
     :param random_state: (**Optional**) integer seed to the random number generator for weight initialization. This will be used to create a new instance of Numpy's default random number generator (it will not call np.random.seed()). Specify an integer for deterministic results.
     :type random_state: :python:`int`
     """
     
-    def __init__(self, m: int = 3, n: int = 3, dim: int = 3, lr: float = 1, sigma: float = 1, max_iter: int = 3000, random_state: Optional[int] = None) -> None:
+    def __init__(self, m: int = 3, n: int = 3, 
+                 dim: int                     = 3, 
+                 lr: LearningStrategy         = LinearLearningStrategy(lr=1), 
+                 sigma: NeighbourhoodStrategy = ConstantRadiusStrategy(sigma=1), 
+                 max_iter: int                = 3000, 
+                 random_state: Optional[int]  = None) -> None:
         r"""
         .. codeauthor:: Riley Smith
         
@@ -59,10 +80,8 @@ class SOM():
         self.n            = n
         self.dim          = dim
         self.shape        = (m, n)
-        self.initial_lr   = lr
         self.lr           = lr
         self.sigma        = sigma
-        self.sigma2       = sigma*sigma
         self.max_iter     = max_iter
         
         # Physical parameters associated to each cell in the SOM
@@ -117,7 +136,7 @@ class SOM():
         
         return np.argmin(distance)
 
-    def step(self, x: np.ndarray) -> None:
+    def step(self, x: np.ndarray, counter: int) -> None:
         r"""
         .. codeauthor:: Riley Smith
         
@@ -127,6 +146,7 @@ class SOM():
         
         :param x: input vector (1D)
         :type x: `ndarray`_
+        :param counter: global counter used to compute the neighbourhood radius and the learning rate
         """
 
         # Get index of best matching unit
@@ -139,9 +159,17 @@ class SOM():
         diff             = self._locations - bmu_location
         bmu_distance     = np.sum(diff*diff, axis=1)
         
+        # Compute learning rate
+        lr               = self.lr(counter)
+        
+        # Compute neighbourhood radius squared
+        sigma2           = self.sigma(counter, squared=True)
+        
         # Compute update on neighborhood
-        neighborhood     = np.exp(-bmu_distance / (self.sigma2))
-        local_step       = self.lr * neighborhood
+        neighbourhood    = np.exp(-bmu_distance / sigma2)
+        
+        # Compute local step
+        local_step       = lr * neighbourhood
 
         # Stack local step to be proper shape for update
         local_multiplier = np.array([local_step]).T
@@ -218,6 +246,10 @@ class SOM():
         global_iter_counter          = 0
         n_samples                    = X.shape[0]
         total_iterations             = np.minimum(epochs * n_samples, self.max_iter)
+        
+        # Set the _ntot attribute if the learning rate strategy requires it
+        if '_ntot' in self.lr.__dict__:
+           self.lr.ntot              = total_iterations
 
         for epoch in range(epochs):
             
@@ -240,11 +272,10 @@ class SOM():
                 
                 # Do one step of training
                 inp                  = X[idx]
-                self.step(inp)
+                self.step(inp, global_iter_counter)
                 
                 # Update learning rate
                 global_iter_counter += 1
-                self.lr              = (1 - (global_iter_counter / total_iterations)) * self.initial_lr
 
         # Store bmus of train set
         self._train_bmus             = self._find_bmus_byweight(X)
@@ -330,7 +361,7 @@ class SOM():
         # Output indices set to 0 by default
         indices           = np.zeros(len(X), dtype=int)
         
-        # Compute first distance
+        # First, compute distance
         diff              = X - self.weights[0]
         dist              = np.sum(diff*diff, axis=1)
         
