@@ -116,6 +116,26 @@ class LinearLearningStrategy(LearningStrategy):
          
       return
    
+   def _check_ntot(self, ntot: Any, *args, **kwargs) -> None:
+      r'''
+      .. codeauthor:: Wilfried Mercier - IRAP <wilfried.mercier@irap.omp.eu>
+      
+      Check if a value is acceptable for the total number of iterations.
+      
+      :param ntot: value to check
+      
+      :raises TypeError: if **ntot** is neither :python:`int`, nor :python:`float`
+      :raises ValueError: if :python:`ntot < 0`
+      '''
+      
+      if not isinstance(ntot, (int, float)):
+         raise TypeError(f'ntot has type {type(ntot)} but it must be an int or a float.')
+         
+      if ntot < 0:
+         raise ValueError('total number of iterations must be positive.')
+         
+      return
+   
    #########################################
    #          Setters and getters          #
    #########################################
@@ -173,7 +193,7 @@ class LinearLearningStrategy(LearningStrategy):
       '''
       
       self._check_ntot(value)
-      self._ntot = value
+      self._ntot = int(value)
       return
       
 class ExponentialLearningStrategy(LearningStrategy):
@@ -303,6 +323,3 @@ class ExponentialLearningStrategy(LearningStrategy):
       self._check_lr_tau(value)
       self._tau = value
       return
-   
-test = LinearLearningStrategy(lr=1)
-print('_ntot' in test.__dict__)

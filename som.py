@@ -19,25 +19,11 @@ Most of the code comes from **Riley Smith** implementation found in `sklearn-som
     THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 """
 
-import enum
 import pickle
 import numpy          as     np
-from   typing         import Optional
+from   typing         import Optional, Union
 from   .learning_rate import LearningStrategy, LinearLearningStrategy
 from   .neighbourhood import NeighbourhoodStrategy, ConstantRadiusStrategy
-
-class LoopingStrategy(enum.Enum):
-   r'''
-   .. codeauthor:: Wilfried Mercier - IRAP <wilfried.mercier@irap.omp.eu>
-   
-   Enum encompassing different looping strategies used by the code.
-   '''
-   
-   #: Allows looping along the data set
-   DATA    = enum.auto()
-   
-   #: Allows looping along the SOM neurons
-   NEURONS = enum.auto()
 
 class SOM():
     r"""
@@ -52,20 +38,24 @@ class SOM():
     :param dim: (**Optional**) dimensionality (number of features) of the input space
     :type dim: :python:`int`
     :param lr: (**Optional**) initial step size for updating the SOM weights.
-    :type lr: :python:`int` or :python:`float`
+    :type lr: :py:class:`~.LearningStrategy`
     :param sigma: (**Optional**) magnitude of change to each weight. Does not update over training (as does learning rate). Higher values mean more aggressive updates to weights.
-    :type sigma: :python:`int` or :python:`float`
+    :type sigma: :py:class:`~.NeighbourhoodStrategy`
     :param max_iter: (**Optional**) parameter to stop training if you reach this many interations.
-    :type max_iter: :python:`int`
+    :type max_iter: :python:`int` or :python:`float`
+    :param looping: (**Optional**) looping strategy
+    :type looping: :py:class:`~.LoopingStrategy`
     :param random_state: (**Optional**) integer seed to the random number generator for weight initialization. This will be used to create a new instance of Numpy's default random number generator (it will not call np.random.seed()). Specify an integer for deterministic results.
     :type random_state: :python:`int`
     """
     
-    def __init__(self, m: int = 3, n: int = 3, 
+    def __init__(self, 
+                 m: int                       = 3, 
+                 n: int                       = 3, 
                  dim: int                     = 3, 
                  lr: LearningStrategy         = LinearLearningStrategy(lr=1), 
                  sigma: NeighbourhoodStrategy = ConstantRadiusStrategy(sigma=1), 
-                 max_iter: int                = 3000, 
+                 max_iter: Union[int, float]  = 3000,
                  random_state: Optional[int]  = None) -> None:
         r"""
         .. codeauthor:: Riley Smith
@@ -75,14 +65,30 @@ class SOM():
         Init method.
         """
         
+        # Check types
+        if not isinstance(lr, LearningStrategy):
+           raise TypeError(f'learning strategy lr has type {type(lr)} but it must be a LearningStrategy object.')
+           
+        if not isinstance(sigma, NeighbourhoodStrategy):
+           raise TypeError(f'neighbourhood radius sigma has type {type(sigma)} but it must be a NeighbourhoodStrategy object.')
+           
+        for var, name in zip((m, n, dim), ('m', 'n', 'dim')):
+           if not isinstance(var, int):
+              raise TypeError(f'parameter {name} has type {type(var)} but it must be an int.')
+              
+        if not isinstance(max_iter, (int, float)):
+           raise TypeError(f'max_iter has type {type(max_iter)} but it must be an int or float.')
+              
+        if random_state is not None and not isinstance(random_state, int):
+           raise TypeError(f'parameter random_state has type {type(random_state)} but it must be an int.')
+        
         # Initialize descriptive features of SOM
         self.m            = m
         self.n            = n
         self.dim          = dim
-        self.shape        = (m, n)
         self.lr           = lr
         self.sigma        = sigma
-        self.max_iter     = max_iter
+        self.max_iter     = int(max_iter)
         
         # Physical parameters associated to each cell in the SOM
         self.phys         = {}
@@ -135,6 +141,26 @@ class SOM():
         distance = np.sum(diff*diff, axis=1)
         
         return np.argmin(distance)
+     
+    def _find_bmd(self, X: np.ndarray, index: int) -> int:
+        r"""
+        .. codeauthor:: Wilfried Mercier - IRAP <wilfried.mercier@irap.omp.eu>.
+        
+        Find the index of the best matching data for the neuron x.
+        
+        :param X: input data (2D)
+        :type X: `ndarray`_
+        :param index: neuron index
+        :type index: :python:`int`
+        
+        :returns: index of the best matching data
+        :rtype: :python:`int`
+        """
+        
+        diff     = self.weights[index, :] - X
+        distance = np.sum(diff*diff, axis=1)
+        
+        return np.argmin(distance)
 
     def step(self, x: np.ndarray, counter: int) -> None:
         r"""
@@ -178,7 +204,7 @@ class SOM():
         self.weights    += local_multiplier * (x - self.weights)
         
         return
-
+     
     def _compute_point_inertia(self, x: np.ndarray) -> float:
         """
         .. codeauthor:: Riley Smith
@@ -249,7 +275,7 @@ class SOM():
         
         # Set the _ntot attribute if the learning rate strategy requires it
         if '_ntot' in self.lr.__dict__:
-           self.lr.ntot              = total_iterations
+           self.lr.ntot              = int(total_iterations)
 
         for epoch in range(epochs):
             
@@ -260,20 +286,23 @@ class SOM():
             if shuffle:
                 rng                  = np.random.default_rng(self.random_state)
                 indices              = rng.permutation(n_samples)
+                   
             else:
-                indices              = np.arange(n_samples)
+               indices               = np.arange(n_samples)
 
-            # Train
+            ##########################
+            #        Training        #
+            ##########################
+            
             for idx in indices:
                 
                 # Break if past max number of iterations
                 if global_iter_counter > self.max_iter:
                     break
-                
-                # Do one step of training
+               
                 inp                  = X[idx]
                 self.step(inp, global_iter_counter)
-                
+                  
                 # Update learning rate
                 global_iter_counter += 1
 

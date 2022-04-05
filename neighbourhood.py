@@ -141,7 +141,7 @@ class ConstantRadiusStrategy(NeighbourhoodStrategy):
       return
    
    
-class ExponentialRadiusStrategy:
+class ExponentialRadiusStrategy(NeighbourhoodStrategy):
    r'''
    .. codeauthor:: Wilfried Mercier - IRAP <wilfried.mercier@irap.omp.eu>
    
