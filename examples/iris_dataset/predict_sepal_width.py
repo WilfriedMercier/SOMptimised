@@ -8,7 +8,7 @@ Predict the sepal width of the test set using the SOM.
 
 .. The MIT License (MIT)
 
-    Copyright © 2022 <copyright holders>
+    Copyright © 2022 <Wilfried Mercier>
 
     Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
@@ -18,7 +18,7 @@ Predict the sepal width of the test set using the SOM.
 '''
 
 import pandas
-from   SOMptimised import SOM
+from   SOMptimised import SOM, LinearLearningStrategy, ConstantRadiusStrategy, euclidianMetric
 import numpy       as np
 
 # Extract data
@@ -31,12 +31,17 @@ data_test    = data[-10:]
 swidth_train = swidth[:-10]
 swidth_test  = swidth[-10:]
 
+# Define SOM parameters
+lr           = LinearLearningStrategy(lr=1)
+sigma        = ConstantRadiusStrategy(sigma=1)
+metric       = euclidianMetric
+
 # Fit SOM
 m   = 5
 n   = 5
 nf  = data_train.shape[1] # Number of features
-som = SOM(m=m, n=n, dim=nf, lr=1, sigma=1, max_iter=1e4, random_state=None)
-som.fit(data_train, epochs=1, shuffle=True)
+som = SOM(m=m, n=n, dim=nf, lr=lr, sigma=sigma, metric=metric, max_iter=1e4, random_state=None)
+som.fit(data_train, epochs=1, shuffle=True, n_jobs=1)
 
 pred_train = som.train_bmus_
 pred_test  = som.predict(data_test)

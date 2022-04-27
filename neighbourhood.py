@@ -7,7 +7,7 @@ Classes defining the behaviour of the BMU neighbourhood.
 
 .. The MIT License (MIT)
 
-    Copyright © 2022 <copyright holders>
+    Copyright © 2022 <Wilfried Mercier>
 
     Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
@@ -24,7 +24,7 @@ class NeighbourhoodStrategy(ABC):
    r'''
    .. codeauthor:: Wilfried Mercier - IRAP <wilfried.mercier@irap.omp.eu>
    
-   Protocol class for strategies implementing neighbourhood radii strategies.
+   Abstract class for strategies implementing neighbourhood radii strategies.
    '''
    
    @abstractmethod
@@ -53,7 +53,7 @@ class ConstantRadiusStrategy(NeighbourhoodStrategy):
    :type sigma: :python:`int` or :python:`float`
    '''
    
-   def __init__(self, sigma: Union[int, float]=1, **kwargs) -> None:
+   def __init__(self, sigma: Union[int, float] = 1, **kwargs) -> None:
       r'''Init method.'''
       
       self._check_sigma(sigma)
@@ -153,7 +153,7 @@ class ExponentialRadiusStrategy(NeighbourhoodStrategy):
    :type tau: :python:`int` or :python:`float`
    '''
    
-   def __init__(self, sigma: Union[int, float]=1, tau: Union[int, float]=1, **kwargs):
+   def __init__(self, sigma: Union[int, float] = 1, tau: Union[int, float] = 1, **kwargs):
       r'''Init method.'''
       
       self._check_sigma_tau(sigma)

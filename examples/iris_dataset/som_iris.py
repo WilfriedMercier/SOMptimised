@@ -8,7 +8,7 @@ Run the SOM on the iris dataset.
 
 .. The MIT License (MIT)
 
-    Copyright © 2022 <copyright holders>
+    Copyright © 2022 <Wilfried Mercier>
 
     Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
@@ -17,38 +17,44 @@ Run the SOM on the iris dataset.
     THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 '''
 
-import matplotlib.pyplot   as     plt
-from   matplotlib.colors   import TwoSlopeNorm
-from   matplotlib.gridspec import GridSpec
-from   matplotlib          import rc
-import matplotlib          as     mpl
+import matplotlib.pyplot     as     plt
+from   matplotlib.colors     import TwoSlopeNorm
+from   matplotlib.gridspec   import GridSpec
+from   matplotlib            import rc
 import pandas
-from   SOMptimised         import SOM
+from   sklearn.preprocessing import StandardScaler
+
+from   SOMptimised           import SOM, LinearLearningStrategy, ConstantRadiusStrategy, euclidianMetric
 
 # Extract data
 table      = pandas.read_csv('iris_dataset.csv').sample(frac=1)
 target     = table['target']
 table      = table[['petal length (cm)', 'petal width (cm)', 'sepal length (cm)']]
 
-data       = table.to_numpy()
+# Normalising data
+scaler     = StandardScaler()
+data       = scaler.fit_transform(table.to_numpy())
 
 data_train = data[:-10]
 data_test  = data[-10:]
 
 # Fit SOM
-nf  = data_train.shape[1] # Number of features
-som = SOM(m=1, n=3, dim=nf, lr=1, sigma=1, max_iter=1e4, random_state=None)
-som.fit(data_train, epochs=1, shuffle=True)
+lr         = LinearLearningStrategy(lr=1)
+sigma      = ConstantRadiusStrategy(sigma=1)
+metric     = euclidianMetric
+nf         = data_train.shape[1] # Number of features
+
+som        = SOM(m=1, n=3, dim=nf, lr=lr, sigma=sigma, metric=metric, max_iter=1e4, random_state=0)
+som.fit(data_train, epochs=1, shuffle=False, n_jobs=1)
 
 pred_train = som.train_bmus_
 pred_test  = som.predict(data_test)
 
-# PLotting
+# Plotting
 norm = TwoSlopeNorm(1, vmin=0, vmax=2)
 
 rc('font', **{'family': 'serif', 'serif': ['Times']})
 rc('text', usetex=True)
-mpl.rcParams['text.latex.preamble'] = r'\usepackage{newtxmath}'
 
 f   = plt.figure(figsize=(10, 4.5))
 gs  = GridSpec(1, 2, wspace=0)
@@ -65,6 +71,8 @@ for ax in [ax1, ax2]:
 ax1.scatter(data_train[:, 1], data_train[:, 0], c=pred_train, cmap='bwr', ec='k', norm=norm, marker='o', s=30)
 ax1.scatter(data_test[:, 1],  data_test[:, 0],  c=pred_test,  cmap='bwr', ec='k', marker='o', norm=norm, s=60)
 ax1.set_ylabel('Petal length (cm)', size=16)
+
+ax1.plot(som.weights[:, 1], som.weights[:, 0], marker='*', color='orange', ms=10, linestyle='None')
 
 target = target.to_numpy()
 target[target == 'Iris-setosa'] = 0
