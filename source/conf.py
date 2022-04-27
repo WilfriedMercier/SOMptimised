@@ -43,7 +43,7 @@ exclude_patterns   = []
 #######################################################
 
 html_theme         = "sphinxawesome_theme"
-html_logo          = "/home/wilfried/bin/SOMptimised/logo/logo.png"
+html_logo          = "../logo/logo.png"
 
 html_theme_options = {'extra_header_links' : {
                       "API": "/SOMptimised//API/index",
@@ -64,5 +64,7 @@ rst_prolog = """
 .. _numpy: https://numpy.org/
 .. _ndarray: https://numpy.org/doc/stable/reference/generated/numpy.array.html
 .. _float64: https://numpy.org/doc/stable/user/basics.types.html
+.. _pickle.dump: https://docs.python.org/3/library/pickle.html#pickle.dump
+.. _pickle.load: https://docs.python.org/3/library/pickle.html#pickle.load
 """
 

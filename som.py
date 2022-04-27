@@ -148,8 +148,8 @@ class SOM():
         :param metric: (**Optional**) metric to use. If None, the metric provided at init is used.
         :type metric: :python:`callable`
         
-        :param *args: additional arguments to pass to the metric. This must be a tuple or list of 1D `ndarray`_ with the same shape as **x**. See the metric specific signature to know which parameters to pass.
-        :param /**kwargs: additional keyword arguments to pass to the metric. See the metric specific signature to know which parameters to pass.
+        :param \*args: additional arguments to pass to the metric. This must be a tuple or list of 1D `ndarray`_ with the same shape as **x**. See the metric specific signature to know which parameters to pass.
+        :param \**kwargs: additional keyword arguments to pass to the metric. See the metric specific signature to know which parameters to pass.
         
         :returns: index of the best matching unit
         :rtype: :python:`int`
@@ -157,9 +157,6 @@ class SOM():
         
         metric   = metric if metric is not None else self.metric
         distance = metric(x, self.weights, *args, squared=True, axis=1, **kwargs)
-        
-        #diff     = self.weights-x
-        #distance = np.sum(diff*diff, axis=1)
         
         return np.argmin(distance)
 
@@ -176,8 +173,8 @@ class SOM():
         :param counter: global counter used to compute the neighbourhood radius and the learning rate
         :type counter: :python:`int`
            
-        :param *args: additional arguments to pass to the metric. This must be a tuple or list of 1D `ndarray`_ with the same shape as **x**. See the metric specific signature to know which parameters to pass.
-        :param /**kwargs: additional keyword arguments to pass to the metric. See the metric specific signature to know which parameters to pass.
+        :param \*args: additional arguments to pass to the metric. This must be a tuple or list of 1D `ndarray`_ with the same shape as **x**. See the metric specific signature to know which parameters to pass.
+        :param \**kwargs: additional keyword arguments to pass to the metric. See the metric specific signature to know which parameters to pass.
         '''
 
         # Get index of best matching unit (we set metric to None to use the one provided in init)
@@ -223,9 +220,9 @@ class SOM():
         .. note::
             
             ** *args ** and ** \**kwargs ** are additional arguments and keyword arguments which can be passed depending on the metric used. In this implementation:
-                  
-                * ** *args ** must always be a collection of `ndarray`_ with shapes similar to that of **X**
-                * ** \**kwargs ** are keyword arguments which have no constraints on their type or shape
+                
+            ** *args ** must always be a collection of `ndarray`_ with shapes similar to that of **X**
+            ** \**kwargs ** are keyword arguments which have no constraints on their type or shape
              
             See the metric specific implementation for more details.
             
@@ -238,8 +235,8 @@ class SOM():
         :type metric: :python:`callable`
         
         
-        :param *args: additional arguments to pass to the metric. These arguments are looped similarly to **X**, so they should be a collection of `ndarray`_ with the same shape. See the metric specific signature to know which parameters to pass.
-        :param /**kwargs: additional keyword arguments to pass to the metric. See the metric specific signature to know which parameters to pass.
+        :param \*args: additional arguments to pass to the metric. These arguments are looped similarly to **X**, so they should be a collection of `ndarray`_ with the same shape. See the metric specific signature to know which parameters to pass.
+        :param \**kwargs: additional keyword arguments to pass to the metric. See the metric specific signature to know which parameters to pass.
         
         :returns: inertia for all the points
         :rtype: `ndarray`_ [:python:`float`]
@@ -247,10 +244,8 @@ class SOM():
         
         metric       = metric if metric is not None else self.metric
         bmus_indices = bmus_indices if bmus_indices is not None else self._find_bmus(X, *args, metric=metric, n_jobs=n_jobs, **kwargs)
-            
-        #diff = X - self.weights[bmus_indices]
         
-        return metric(X, self.weights[bmus_indices], *args, squared=True, axis=1, **kwargs) #np.sum(diff*diff, axis=1)
+        return metric(X, self.weights[bmus_indices], *args, squared=True, axis=1, **kwargs)
 
     def fit(self, X: np.ndarray, *args, epochs: int = 1, shuffle: bool = True, n_jobs: int = 1, **kwargs) -> None:
         r'''
@@ -279,8 +274,8 @@ class SOM():
         :param n_jobs: (**Optional**) number of threads used to find the BMUs at the end of the loop. This parameter is only used when using :py:meth:`~.SOM._find_bmus_bydata` method.
         :type n_jobs: :python:`int`
         
-        :param *args: additional arguments to pass to the metric. These arguments are looped similarly to **X**, so they should be a collection of `ndarray`_ with the same shape. See the metric specific signature to know which parameters to pass.
-        :param /**kwargs: additional keyword arguments to pass to the metric. See the metric specific signature to know which parameters to pass.
+        :param \*args: additional arguments to pass to the metric. These arguments are looped similarly to **X**, so they should be a collection of `ndarray`_ with the same shape. See the metric specific signature to know which parameters to pass.
+        :param \**kwargs: additional keyword arguments to pass to the metric. See the metric specific signature to know which parameters to pass.
         '''
         
         # Count total number of iterations
@@ -367,8 +362,8 @@ class SOM():
         :param n_jobs: (**Optional**) number of threads used to find the BMUs. This parameter is only used when using :py:meth:`~.SOM._find_bmus_bydata` method.
         :type n_jobs: :python:`int`
         
-        :param *args: additional arguments to pass to the metric. These arguments are looped similarly to **X**, so they should be a collection of `ndarray`_ with the same shape. See the metric specific signature to know which parameters to pass.
-        :param /**kwargs: additional keyword arguments to pass to the metric. See the metric specific signature to know which parameters to pass.
+        :param \*args: additional arguments to pass to the metric. These arguments are looped similarly to **X**, so they should be a collection of `ndarray`_ with the same shape. See the metric specific signature to know which parameters to pass.
+        :param \**kwargs: additional keyword arguments to pass to the metric. See the metric specific signature to know which parameters to pass.
 
         :returns: an ndarray of shape (n,). The predicted cluster index for each item in X.
         :rtype: `ndarray`_ [:python:`int`]
@@ -416,8 +411,8 @@ class SOM():
         :param n_jobs: (**Optional**) number of threads used to find the BMUs. This parameter is only used when using :py:meth:`~.SOM._find_bmus_bydata` method.
         :type n_jobs: :python:`int`
         
-        :param *args: additional arguments to pass to the metric. These arguments are looped similarly to **X**, so they should be a collection of `ndarray`_ with the same shape. See the metric specific signature to know which parameters to pass.
-        :param /**kwargs: additional keyword arguments to pass to the metric. See the metric specific signature to know which parameters to pass.
+        :param \*args: additional arguments to pass to the metric. These arguments are looped similarly to **X**, so they should be a collection of `ndarray`_ with the same shape. See the metric specific signature to know which parameters to pass.
+        :param \**kwargs: additional keyword arguments to pass to the metric. See the metric specific signature to know which parameters to pass.
         
         :returns: indices of the best matching units
         :rtype: `ndarray`_ [:python:`int`]
@@ -453,8 +448,8 @@ class SOM():
         :param n_jobs: (**Optional**) number of threads used to find the BMUs
         :type n_jobs: :python:`int`
         
-        :param *args: additional arguments to pass to the metric. These arguments are looped similarly to **X**, so they should be a collection of `ndarray`_ with the same shape. See the metric specific signature to know which parameters to pass.
-        :param /**kwargs: additional keyword arguments to pass to the metric. See the metric specific signature to know which parameters to pass.
+        :param \*args: additional arguments to pass to the metric. These arguments are looped similarly to **X**, so they should be a collection of `ndarray`_ with the same shape. See the metric specific signature to know which parameters to pass.
+        :param \**kwargs: additional keyword arguments to pass to the metric. See the metric specific signature to know which parameters to pass.
         
         :returns: indices of the best matching units
         :rtype: `ndarray`_ [:python:`int`]
@@ -467,10 +462,7 @@ class SOM():
             print(f'{colorama.Fore.ORANGE}Warning:{colorama.Style.RESET_ALL} n_jobs must be between 1 and {N_JOBS_MAX} on your computer. Setting to default value equal to 1...')
             n_jobs  = 1
          
-        comp = joblib.Parallel(n_jobs=n_jobs)(joblib.delayed(self._find_bmu)(X[idx], *[arg[idx] for arg in args], **kwargs) for idx in range(len(X)))
-         
-        return np.array(comp)
-        #return np.array([self._find_bmu(x, *args, metric=metric, **kwargs) for x in X])
+        return joblib.Parallel(n_jobs=n_jobs)(joblib.delayed(self._find_bmu)(X[idx], *[arg[idx] for arg in args], **kwargs) for idx in range(len(X)))
     
     def _find_bmus_byweight(self, X: np.ndarray, *args, metric: Optional[callable] = None, **kwargs) -> np.ndarray:
         r'''
@@ -493,8 +485,8 @@ class SOM():
         :param metric: (**Optional**) metric to use. If None, the metric provided at init is used.
         :type metric: :python:`callable`
         
-        :param *args: additional arguments to pass to the metric. These arguments are looped similarly to **X**, so they should be a collection of `ndarray`_ with the same shape. See the metric specific signature to know which parameters to pass.
-        :param /**kwargs: additional keyword arguments to pass to the metric. See the metric specific signature to know which parameters to pass.
+        :param \*args: additional arguments to pass to the metric. These arguments are looped similarly to **X**, so they should be a collection of `ndarray`_ with the same shape. See the metric specific signature to know which parameters to pass.
+        :param \**kwargs: additional keyword arguments to pass to the metric. See the metric specific signature to know which parameters to pass.
         
         :returns: indices of the best matching units
         :rtype: `ndarray`_ [:python:`int`]
@@ -506,15 +498,11 @@ class SOM():
         indices           = np.zeros(len(X), dtype=int)
         
         # First, compute distance
-        #diff              = X - self.weights[0]
-        #dist              = np.sum(diff*diff, axis=1)
         dist              = metric(X, self.weights[0], *args, squared=True, axis=1, **kwargs)
         
         # Only update weight position if distance is less than the previous one
         for pos, weight in enumerate(self.weights[1:]):
             
-            #diff          = X - weight
-            #tmp           = np.sum(diff*diff, axis=1)
             tmp           = metric(X, weight, *args, squared=True, axis=1, **kwargs)
             mask          = tmp < dist
             indices[mask] = pos+1
@@ -561,8 +549,8 @@ class SOM():
         :param X: data of shape (n, self.dim). The data to fit and then predict.
         :type X: `ndarray`_
         
+        :param \*args: optional arguments for the :py:meth:`~.SOM.fit` method
         :param \**kwargs: optional keyword arguments for the :py:meth:`~.SOM.fit` method
-        :param *args: optional arguments for the :py:meth:`~.SOM.fit` method
 
         :returns: ndarray of shape (n,). The index of the predicted cluster for each item in X (after fitting the SOM to the data in X).
         :rtype: `ndarray`_ [:python:`float`]
@@ -587,8 +575,8 @@ class SOM():
         :param X: data of shape (n, self.dim) where n is the number of samples
         :type X: `ndarray`_
         
+        :param \*args: optional arguments for the :py:meth:`~.SOM.fit` method
         :param \**kwargs: optional keyword arguments for the :py:meth:`~.SOM.fit` method
-        :param *args: optional arguments for the :py:meth:`~.SOM.fit` method
 
         :returns: ndarray of shape (n, self.m*self.n). The Euclidean distance from each item in **X** to each cluster center.
         :rtype: ndarray[:python:`float`]
@@ -613,8 +601,8 @@ class SOM():
         :param fname: output filename
         :type fname: :python:`str`
         
-        :param *args: other arguments passed to pickle.dump
-        :parma \**kwargs: other keyword arguments passed to pickle.dump
+        :param \*args: other arguments passed to `pickle.dump`_
+        :parma \**kwargs: other keyword arguments passed to `pickle.dump`_
         
         :raises TypeError: if **fname** is not of type :python:`str`
         '''
@@ -637,8 +625,8 @@ class SOM():
         :param fname: input file
         :type fname: :python:`str`
         
-        :param *args: other arguments passed to pickle.load
-        :parma \**kwargs: other keyword arguments passed to pickle.load
+        :param \*args: other arguments passed to `pickle.load`_
+        :parma \**kwargs: other keyword arguments passed to `pickle.load`_
         
         :returns: the loaded SOM object
         :rtype: :py:class:`~.SOM`
