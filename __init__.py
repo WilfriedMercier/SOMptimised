@@ -22,4 +22,4 @@ Most of the code comes from Riley Smith implementation found in `sklearn-som <ht
 from .som           import SOM
 from .learning_rate import LinearLearningStrategy, ExponentialLearningStrategy, LearningStrategy
 from .neighbourhood import ConstantRadiusStrategy, ExponentialRadiusStrategy,   NeighbourhoodStrategy
-from .metric        import euclidianMetric,        chi2Metric
+from .metric        import euclidianMetric,        chi2Metric,                  chi2CigaleMetric

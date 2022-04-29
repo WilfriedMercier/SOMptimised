@@ -5,6 +5,38 @@ r"""
 
 Strategies for the learning rate evolution which can be used in the SOM.
 
+How to include a custom learning strategy ?
+-------------------------------------------
+
+To implement a custom learning strategy, please inherit from :py:class:`~.LearningStrategy` and implement your own :python:`LearningStrategy.__init__` and :python:`LearningStrategy.__call__` methods as follows
+
+.. code::
+    
+   class NewLearningStrategy(LearningStrategy):
+        
+      def __init__(self, lr: Union[int, float]=1, **kwargs) -> None:
+      
+         super().__init__(lr)
+         
+         ...
+       
+      def __call__(step, *args, **kwargs) -> float:
+         
+         ...
+          
+         return learning_rate
+
+The :python:`LearningStrategy.__call__` method must always have **step** as its first argument.
+
+.. note::
+   
+   Additional arguments with ***args** and **\**kwargs** can be present in :python:`LearningStrategy.__call__` method but should not be used.
+
+By default, the :python:`super().__init__(lr)` line will initialise the initial learning rate (:python:`self.initial_lr`) and the total number of iterations. (:python:`self.ntot`). Note that the SOM will automatically set :python:`self.ntot` when starting the fitting procedure. So if your strategy requires to know the total number of iterations, you can directly use :python:`self.ntot` without having to set its value by hand as the SOM will do it for you.
+
+API
+---
+
 .. The MIT License (MIT)
 
     Copyright © 2022 <Wilfried Mercier>
@@ -25,7 +57,17 @@ class LearningStrategy(ABC):
    .. codeauthor:: Wilfried Mercier - IRAP <wilfried.mercier@irap.omp.eu>
    
    Abstract class for learning rate strategies.
+   
+   :param lr: (**Optional**) intial learning rate
+   :type lr: :python:`int` or :python:`float`
    '''
+   
+   def __init__(self, lr: Union[int, float] = 1):
+       r'''Init method.'''
+       
+       self._check_lr(lr, name='lr')
+       self._initial_lr = lr
+       self._ntot       = None
    
    @abstractmethod
    def __call__(self, step: int, *args, **kwargs) -> float:
@@ -37,103 +79,10 @@ class LearningStrategy(ABC):
       :param step: time step during the learning process
       :type step: :python:`int`
       
-      :returns: learning rate at the given time step
+      :returns: Learning rate at the given time step
       :rtype: :python:`float`
       '''
       
-      return
-      
-class LinearLearningStrategy(LearningStrategy):
-   r'''
-   .. codeauthor:: Wilfried Mercier - IRAP <wilfried.mercier@irap.omp.eu>
-   
-   Class implementing a linear learning rate strategy given by
-   
-   .. math::
-      
-      \eta \times \left ( 1 - t / t_\rm{tot} \right ),
-   
-   where :math:`\eta` is the initial learning rate, :math:`t` is the time step and :math:`t_'{\rm{tot}}' is the total number of iterations during the learning process.
-   
-   :param lr: (**Optional**) intial learning rate
-   :type lr: :python:`int` or :python:`float`
-   :param ntot: (**Optional**) maximum number of iterations
-   :type ntot: :python:`int`
-   '''
-   
-   def __init__(self, lr: Union[int, float]=1, **kwargs) -> None:
-      r'''Init method.'''
-      
-      self._check_lr(lr)
-      
-      super().__init__(**kwargs)
-         
-      self._initial_lr = lr
-      self._ntot       = None
-      
-   def __call__(self, step: int) -> float:
-      r'''
-      .. codeauthor:: Wilfried Mercier - IRAP <wilfried.mercier@irap.omp.eu>
-      
-      Provide the learning rate at the given step.
-      
-      :param step: iteration step
-      :type step: :python:`int`
-      
-      :returns: learning rate at the given step
-      :rtype: :python:`float`
-      '''
-      
-      if self._ntot is None:
-         raise ValueError('ntot must be set before the learning rate can be computed.')
-      
-      if step < 0 or step > self.ntot:
-         raise ValueError('step must be between 0 and ntot.')
-      
-      return (1 - step/self._ntot) * self._initial_lr
-   
-   ####################################
-   #          Check methods           #
-   ####################################
-   
-   def _check_lr(self, lr: Any, *args, **kwargs) -> None:
-      r'''
-      .. codeauthor:: Wilfried Mercier - IRAP <wilfried.mercier@irap.omp.eu>
-      
-      Check if a value is acceptable for the learning rate.
-      
-      :param lr: value to check
-      
-      :raises TypeError: if **lr** is neither :python:`int`, nor :python:`float`
-      :raises ValueError: if :python:`lr < 0`
-      '''
-      
-      if not isinstance(lr, (int, float)):
-         raise TypeError(f'lr has type {type(lr)} but it must be an int or a float.')
-         
-      if lr < 0:
-         raise ValueError('learning rate must be positive.')
-         
-      return
-   
-   def _check_ntot(self, ntot: Any, *args, **kwargs) -> None:
-      r'''
-      .. codeauthor:: Wilfried Mercier - IRAP <wilfried.mercier@irap.omp.eu>
-      
-      Check if a value is acceptable for the total number of iterations.
-      
-      :param ntot: value to check
-      
-      :raises TypeError: if **ntot** is neither :python:`int`, nor :python:`float`
-      :raises ValueError: if :python:`ntot < 0`
-      '''
-      
-      if not isinstance(ntot, (int, float)):
-         raise TypeError(f'ntot has type {type(ntot)} but it must be an int or a float.')
-         
-      if ntot < 0:
-         raise ValueError('total number of iterations must be positive.')
-         
       return
    
    #########################################
@@ -147,7 +96,7 @@ class LinearLearningStrategy(LearningStrategy):
       
       Provide the value of the initial learning rate.
       
-      :returns: initial learning rate
+      :returns: Initial learning rate
       :rtype: :python:`int` or :python:`float`
       '''
       
@@ -164,7 +113,7 @@ class LinearLearningStrategy(LearningStrategy):
       :type value: :python:`int` or :python:`float`
       '''
       
-      self._check_lr(value)
+      self._check_lr(value, name='lr')
       self._initial_lr = value
       return
    
@@ -175,7 +124,7 @@ class LinearLearningStrategy(LearningStrategy):
       
       Provide the value of the total number of iterations.
       
-      :returns: total number of iterations
+      :returns: Total number of iterations
       :rtype: :python:`int`
       '''
       
@@ -192,10 +141,118 @@ class LinearLearningStrategy(LearningStrategy):
       :type value: :python:`int`
       '''
       
-      self._check_ntot(value)
+      # Check for lr is the same as check for ntot
+      self._check_lr(value, name='ntot')
       self._ntot = int(value)
       return
+   
+   #############################
+   #       Check methods       #
+   #############################
+  
+   @staticmethod
+   def _check_int_float(param: Any, name: str, *args, **kwargs) -> None:
+      r'''
+      .. codeauthor:: Wilfried Mercier - IRAP <wilfried.mercier@irap.omp.eu>
       
+      Check if a parameter is int or float.
+      
+      :param param: value to check
+      :param name: name of the parameter
+      :type: :python:`str`
+      
+      :raises TypeError: if :python:`not isinstance(param, (int, float))`
+      '''
+      
+      if not isinstance(param, (int, float)):
+         raise TypeError(f'{name} has type {type(param)} but it must be an int or a float.')
+   
+      return
+   
+   @staticmethod
+   def _check_negative(param: Any, name: str, *args, **kwargs) -> None:
+      r'''
+      .. codeauthor:: Wilfried Mercier - IRAP <wilfried.mercier@irap.omp.eu>
+      
+      Check if a parameter is negative.
+      
+      :param param: value to check
+      :param name: name of the parameter
+      :type: :python:`str`
+      
+      :raises ValueError: if :python:`lr < 0`
+      '''
+      
+      if param < 0:
+         raise ValueError('{name} must be positive.')
+         
+      return
+   
+   def _check_lr(self, value, name='lr', **kwargs) -> None:
+      r'''
+      .. codeauthor:: Wilfried Mercier - IRAP <wilfried.mercier@irap.omp.eu>
+      
+      Check if a value is acceptable for the learning rate, that is, either a positive int or a positive float.
+      
+      :param value: value to check
+      
+      :param name: (**Optional**) name of the parameter
+      :type: :python:`str`
+      
+      :raises TypeError: if :python:`not isinstance(value, (int, float))`
+      :raises ValueError: if :python:`lr < 0`
+      '''
+      
+      self._check_int_float(value, name, **kwargs)
+      self._check_negative( value, name, **kwargs)
+      return
+        
+      
+class LinearLearningStrategy(LearningStrategy):
+   r'''
+   .. codeauthor:: Wilfried Mercier - IRAP <wilfried.mercier@irap.omp.eu>
+   
+   Class implementing a linear learning rate strategy given by
+   
+   .. math::
+      
+      \eta \times \left ( 1 - t / t_\rm{tot} \right ),
+   
+   where :math:`\eta` is the initial learning rate, :math:`t` is the time step and :math:`t_{\rm{tot}}` is the total number of iterations during the learning process.
+   
+   :param lr: (**Optional**) intial learning rate
+   :type lr: :python:`int` or :python:`float`
+   :param ntot: (**Optional**) maximum number of iterations
+   :type ntot: :python:`int`
+   '''
+   
+   def __init__(self, lr: Union[int, float]=1, **kwargs) -> None:
+      r'''Init method.'''
+      
+      super().__init__(lr)
+      
+   def __call__(self, step: int) -> float:
+      r'''
+      .. codeauthor:: Wilfried Mercier - IRAP <wilfried.mercier@irap.omp.eu>
+      
+      Provide the learning rate at the given step.
+      
+      :param step: iteration step
+      :type step: :python:`int`
+      
+      :returns: Learning rate at the given step
+      :rtype: :python:`float`
+      '''
+      
+      if self._ntot is None:
+         raise ValueError('ntot must be set before the learning rate can be computed.')
+      
+      if step < 0 or step > self.ntot:
+         raise ValueError('step must be between 0 and ntot.')
+      
+      return (1 - step/self._ntot) * self._initial_lr
+      
+
 class ExponentialLearningStrategy(LearningStrategy):
    r'''
    .. codeauthor:: Wilfried Mercier - IRAP <wilfried.mercier@irap.omp.eu>
@@ -206,7 +263,7 @@ class ExponentialLearningStrategy(LearningStrategy):
       
       \eta \times \exp \left \lbrace - t / \tau \right \rbrace,
    
-   where :math:`\eta` is the initial learning rate, :math:`t` is the time step and :math:`\tau' is the decay time scale.
+   where :math:`\eta` is the initial learning rate, :math:`t` is the time step and :math:`\tau` is the decay time scale.
    
    :param lr: (**Optional**) intial learning rate
    :type lr: :python:`float`
@@ -217,13 +274,9 @@ class ExponentialLearningStrategy(LearningStrategy):
    def __init__(self, lr: Union[int, float]=1, tau: Union[int, float]=1, **kwargs) -> None:
       r'''Init method.'''
       
-      self._check_lr_tau(lr)
-      self._check_lr_tau(tau)
+      super().__init__(lr)
       
-      super().__init__(**kwargs)
-         
-      self._initial_lr = lr
-      self._tau        = tau
+      self.tau = tau
       
    def __call__(self, step: int, *args, **kwargs) -> float:
       r'''
@@ -235,66 +288,14 @@ class ExponentialLearningStrategy(LearningStrategy):
       :type step: :python:`int`
       '''
       
-      if step < 0 or step > self.ntot:
-         raise ValueError('step must be between 0 and ntot.')
+      if step < 0:
+         raise ValueError('step must be greater than 0.')
       
       return np.exp(-step/self.tau) * self.initial_lr
       
-   ####################################
-   #          Check methods           #
-   ####################################
-   
-   def _check_lr_tau(self, value: Any, *args, **kwargs) -> None:
-      r'''
-      .. codeauthor:: Wilfried Mercier - IRAP <wilfried.mercier@irap.omp.eu>
-      
-      Check if a value is acceptable for the learning rate and the decay time scale.
-      
-      :param value: value to check
-      
-      :raises TypeError: if **value** is neither :python:`int`, nor :python:`float`
-      :raises ValueError: if :python:`value < 0`
-      '''
-      
-      if not isinstance(value, (int, float)):
-         raise TypeError('lr and tau must be int or float.')
-         
-      if value < 0:
-         raise ValueError('learning rate and decay time scale must be positive.')
-         
-      return
-   
    #########################################
    #          Setters and getters          #
    #########################################
-   
-   @property
-   def initial_lr(self, *args, **kwargs) -> Union[int, float]:
-      r'''
-      .. codeauthor:: Wilfried Mercier - IRAP <wilfried.mercier@irap.omp.eu>
-      
-      Provide the value of the initial learning rate.
-      
-      :returns: initial learning rate
-      :rtype: :python:`int` or :python:`float`
-      '''
-      
-      return self._initial_lr
-   
-   @initial_lr.setter
-   def initial_lr(self, value: Union[int, float], *args, **kwargs) -> None:
-      r'''
-      .. codeauthor:: Wilfried Mercier - IRAP <wilfried.mercier@irap.omp.eu>
-      
-      Set the value of the initial learning rate.
-      
-      :param value: new initial learning rate
-      :type value: :python:`int` or :python:`float`
-      '''
-      
-      self._check_lr_tau(value)
-      self._initial_lr = value
-      return
    
    @property
    def tau(self, *args, **kwargs) -> Union[int, float]:
@@ -303,7 +304,7 @@ class ExponentialLearningStrategy(LearningStrategy):
       
       Provide the value of the decay time scale.
       
-      :returns: decay time scale
+      :returns: Decay time scale
       :rtype: :python:`int` or :python:`float`
       '''
       
@@ -316,10 +317,10 @@ class ExponentialLearningStrategy(LearningStrategy):
       
       Set the value of the decay time scale.
       
-      :param value: new decay time scale
+      :param value: New decay time scale
       :type value: :python:`int` or :python:`float`
       '''
       
-      self._check_lr_tau(value)
+      self._check_lr(value, name='tau')
       self._tau = value
       return

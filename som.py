@@ -39,6 +39,8 @@ class SOM():
     r'''
     .. codeauthor:: Riley Smith
     
+    Modified by Wilfried Mercier - IRAP <wilfried.mercier@irap.omp.eu>.
+    
     The 2-D, rectangular grid self-organizing map class using Numpy.
     
     :param m: (**Optional**) shape along dimension 0 (vertical) of the SOM
@@ -47,14 +49,14 @@ class SOM():
     :type n: :python:`int`
     :param dim: (**Optional**) dimensionality (number of features) of the input space
     :type dim: :python:`int`
-    :param lr: (**Optional**) initial step size for updating the SOM weights.
+    :param lr: (**Optional**) learning strategy used to update the SOM weights
     :type lr: :py:class:`~.LearningStrategy`
-    :param sigma: (**Optional**) magnitude of change to each weight. Does not update over training (as does learning rate). Higher values mean more aggressive updates to weights.
+    :param sigma: (**Optional**) neighbourhood strategy used to compute the step applied to each weight.
     :type sigma: :py:class:`~.NeighbourhoodStrategy`
-    :param max_iter: (**Optional**) parameter to stop training if you reach this many interations.
+    :param max_iter: (**Optional**) parameter to stop training if you reach this many interations
     :type max_iter: :python:`int` or :python:`float`
-    :param looping: (**Optional**) looping strategy
-    :type looping: :py:class:`~.LoopingStrategy`
+    :param metric: (**Optional**) metric used to compute the distance between the train data and the neurons, and between the neurons and the test data
+    :type metric: :python:`callable`
     :param random_state: (**Optional**) integer seed to the random number generator for weight initialization. This will be used to create a new instance of Numpy's default random number generator (it will not call np.random.seed()). Specify an integer for deterministic results.
     :type random_state: :python:`int`
     '''
@@ -191,7 +193,8 @@ class SOM():
         lr               = self.lr(counter)
         
         # Compute neighbourhood radius squared
-        sigma2           = self.sigma(counter, squared=True)
+        sigma2           = self.sigma(counter)
+        sigma2           = sigma2*sigma2
         
         # Compute update on neighborhood
         neighbourhood    = np.exp(-bmu_distance / sigma2)
@@ -219,10 +222,10 @@ class SOM():
         
         .. note::
             
-            ** *args ** and ** \**kwargs ** are additional arguments and keyword arguments which can be passed depending on the metric used. In this implementation:
+            ***args** and **\**kwargs** are additional arguments and keyword arguments which can be passed depending on the metric used. In this implementation:
                 
-            ** *args ** must always be a collection of `ndarray`_ with shapes similar to that of **X**
-            ** \**kwargs ** are keyword arguments which have no constraints on their type or shape
+            - **args** must always be a collection of `ndarray`_ with shapes similar to that of **X**
+            - **\**kwargs** are keyword arguments which have no constraints on their type or shape
              
             See the metric specific implementation for more details.
             
@@ -247,7 +250,7 @@ class SOM():
         
         return metric(X, self.weights[bmus_indices], *args, squared=True, axis=1, **kwargs)
 
-    def fit(self, X: np.ndarray, *args, epochs: int = 1, shuffle: bool = True, n_jobs: int = 1, **kwargs) -> None:
+    def fit(self, X: np.ndarray, *args, epochs: int = 1, shuffle: bool = True, n_jobs: int = 1, unnormalise_weights: bool = False, **kwargs) -> None:
         r'''
         .. codeauthor:: Riley Smith
         
@@ -257,10 +260,10 @@ class SOM():
         
         .. note::
             
-            ** *args ** and ** \**kwargs ** are additional arguments and keyword arguments which can be passed depending on the metric used. In this implementation:
+            ***args** and **\**kwargs** are additional arguments and keyword arguments which can be passed depending on the metric used. In this implementation:
                   
-                * ** *args ** must always be a collection of `ndarray`_ with shapes similar to that of **X**
-                * ** \**kwargs ** are keyword arguments which have no constraints on their type or shape
+            - ***args** must always be a collection of `ndarray`_ with shapes similar to that of **X**
+            - **\**kwargs** are keyword arguments which have no constraints on their type or shape
              
             See the metric specific implementation for more details.
         
@@ -269,10 +272,12 @@ class SOM():
         
         :param epochs: (**Optional**) number of times to loop through the training data when fitting
         :type epochs: :python:`int`
-        :param shuffle: (**Optional**) whether or not to randomize the order of train data when fitting. Can be seeded with np.random.seed() prior to calling fit.
+        :param shuffle: (**Optional**) whether or not to randomize the order of train data when fitting. Can be seeded with np.random.seed() prior to calling :py:meth:`~.SOM.fit` method.
         :type shuffle: :python:`bool`
         :param n_jobs: (**Optional**) number of threads used to find the BMUs at the end of the loop. This parameter is only used when using :py:meth:`~.SOM._find_bmus_bydata` method.
         :type n_jobs: :python:`int`
+        :param unnormalise_weights: whether to unnormalise weights or not
+        :type unnormalise_weights: :python:`bool`
         
         :param \*args: additional arguments to pass to the metric. These arguments are looped similarly to **X**, so they should be a collection of `ndarray`_ with the same shape. See the metric specific signature to know which parameters to pass.
         :param \**kwargs: additional keyword arguments to pass to the metric. See the metric specific signature to know which parameters to pass.
@@ -282,6 +287,10 @@ class SOM():
         global_iter_counter          = 0
         n_samples                    = X.shape[0]
         total_iterations             = np.minimum(epochs * n_samples, self.max_iter)
+        
+        # Unnormalise the weights
+        if unnormalise_weights:
+            self.weights             = self.weights*np.nanstd(X, axis=0) + np.nanmean(X, axis=0)
         
         # Set the _ntot attribute if the learning rate strategy requires it
         if '_ntot' in self.lr.__dict__:
@@ -347,10 +356,10 @@ class SOM():
         
         .. note::
             
-            ** *args ** and ** \**kwargs ** are additional arguments and keyword arguments which can be passed depending on the metric used. In this implementation:
+            ***args** and **\**kwargs** are additional arguments and keyword arguments which can be passed depending on the metric used. In this implementation:
                   
-                * ** *args ** must always be a collection of `ndarray`_ with shapes similar to that of **X**
-                * ** \**kwargs ** are keyword arguments which have no constraints on their type or shape
+            - ***args** must always be a collection of `ndarray`_ with shapes similar to that of **X**
+            - **\**kwargs** are keyword arguments which have no constraints on their type or shape
              
             See the metric specific implementation for more details.
 
@@ -396,10 +405,10 @@ class SOM():
         
         .. note::
             
-            ** *args ** and ** \**kwargs ** are additional arguments and keyword arguments which can be passed depending on the metric used. In this implementation:
+            ***args** and **\**kwargs** are additional arguments and keyword arguments which can be passed depending on the metric used. In this implementation:
                   
-                * ** *args ** must always be a collection of `ndarray`_ with shapes similar to that of **X**
-                * ** \**kwargs ** are keyword arguments which have no constraints on their type or shape
+            - ***args** must always be a collection of `ndarray`_ with shapes similar to that of **X**
+            - **\**kwargs** are keyword arguments which have no constraints on their type or shape
              
             See the metric specific implementation for more details.
         
@@ -433,10 +442,10 @@ class SOM():
         
         .. note::
             
-            ** *args ** and ** \**kwargs ** are additional arguments and keyword arguments which can be passed depending on the metric used. In this implementation:
+            ***args** and **\**kwargs** are additional arguments and keyword arguments which can be passed depending on the metric used. In this implementation:
                   
-                * ** *args ** must always be a collection of `ndarray`_ with shapes similar to that of **X**
-                * ** \**kwargs ** are keyword arguments which have no constraints on their type or shape
+            - ***args** must always be a collection of `ndarray`_ with shapes similar to that of **X**
+            - **\**kwargs** are keyword arguments which have no constraints on their type or shape
              
             See the metric specific implementation for more details.
             
@@ -472,10 +481,10 @@ class SOM():
         
         .. note::
             
-            ** *args ** and ** \**kwargs ** are additional arguments and keyword arguments which can be passed depending on the metric used. In this implementation:
+            ***args** and **\**kwargs** are additional arguments and keyword arguments which can be passed depending on the metric used. In this implementation:
                   
-                * ** *args ** must always be a collection of `ndarray`_ with shapes similar to that of **X**
-                * ** \**kwargs ** are keyword arguments which have no constraints on their type or shape
+            - ***args** must always be a collection of `ndarray`_ with shapes similar to that of **X**
+            - **\**kwargs** are keyword arguments which have no constraints on their type or shape
              
             See the metric specific implementation for more details.
             
@@ -540,7 +549,7 @@ class SOM():
         r'''
         .. codeauthor:: Riley Smith
         
-        Convenience method for calling fit(X) followed by predict(X).
+        Convenience method for calling :py:meth:`~.SOM.fit` followed by :py:meth:`~.SOM.predict`.
         
         .. warning::
            
@@ -566,7 +575,7 @@ class SOM():
         r'''
         .. codeauthor:: Riley Smith
         
-        Convenience method for calling fit(X) followed by transform(X). Unlike in sklearn, this is not implemented more efficiently (the efficiency is the same as calling fit(X) directly followed by transform(X)).
+        Convenience method for calling :py:meth:`~.SOM.fit` followed by :py:meth:`~.SOM.transform`. Unlike in sklearn, this is not implemented more efficiently (the efficiency is the same as calling :py:meth:`~.SOM.fit` directly followed by :py:meth:`~.SOM.transform`).
 
         .. warning::
            
