@@ -22,9 +22,9 @@ Below are listed the dependencies required for the library to run with their lat
 +===========+=========+==============================+============================================+
 | numpy_    | 1.21.2  | :bash:`pip install numpy`    | :bash:`conda install numpy`                |
 +-----------+---------+------------------------------+--------------------------------------------+
-| joblib    | 1.1.0   | :bash:`pip install joblib`   | :bash:`conda install joblib`               |
+| joblib_   | 1.1.0   | :bash:`pip install joblib`   | :bash:`conda install joblib`               |
 +-----------+---------+------------------------------+--------------------------------------------+
-| colorama  | 0.4.4   | :bash:`pip install colorama` | :bash:`conda install -c anaconda colorama` |
+| colorama_ | 0.4.4   | :bash:`pip install colorama` | :bash:`conda install -c anaconda colorama` |
 +-----------+---------+------------------------------+--------------------------------------------+
     
 Tutorial/Example

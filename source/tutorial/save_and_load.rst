@@ -13,13 +13,15 @@ The SOM can be loaded back at any time later on using the :py:meth:`~.SOM.read` 
     
     newsom = SOM.read('som_save')
     
+    print('BMUs for train data:')
     print(som.train_bmus_)
+    print('\nBMUs for train data loaded from file:')
     print(newsom.train_bmus_)
     
 .. execute_code::
     :hide_code:
 
-    from   SOMptimised import SOM
+    from   SOMptimised import SOM, LinearLearningStrategy, ConstantRadiusStrategy, euclidianMetric
     import pandas
     
     table      = pandas.read_csv('examples/iris_dataset/iris_dataset.csv')
@@ -31,13 +33,19 @@ The SOM can be loaded back at any time later on using the :py:meth:`~.SOM.read` 
     data_train = data[:-10]
     data_test  = data[-10:]
     
-    nf  = data_train.shape[1] # Number of features
-    som = SOM(m=1, n=3, dim=nf, lr=1, sigma=1, max_iter=1e4, random_state=None)
-    som.fit(data_train, epochs=1, shuffle=True)
+    lr         = LinearLearningStrategy(lr=1)
+    sigma      = ConstantRadiusStrategy(sigma=0.8)
+    metric     = euclidianMetric
+    nf         = data_train.shape[1] # Number of features
+    
+    som        = SOM(m=1, n=3, dim=nf, lr=lr, sigma=sigma, metric=metric, max_iter=1e4, random_state=0)
+    som.fit(data_train, epochs=1, shuffle=False, n_jobs=1)
     
     som.write('som_save')
     
-    newsom = SOM.read('som_save')
+    newsom     = SOM.read('som_save')
     
+    print('BMUs for train data:')
     print(som.train_bmus_)
+    print('\nBMUs for train data loaded from file:')
     print(newsom.train_bmus_)

@@ -2,7 +2,20 @@ Tutorial/Example
 ================
 
 .. _iris dataset: https://en.wikipedia.org/wiki/Iris_flower_data_set
-.. _pandas: https://pandas.pydata.org/
+
+.. important::
+
+    This example requires pandas_ to be installed. This can be done the following way with pip
+    
+    .. code:: bash
+        
+        pip install pandas
+        
+    or with conda
+    
+    .. code:: bash
+    
+        conda install pandas
 
 Preparing the data
 ##################
@@ -60,12 +73,12 @@ where we have also extracted the target class for each observation to compare at
     print(data.shape)
     print(data[:5])
     
-Finally, let us keep the last 10 observations apart to test the SOM
+Finally, let us keep the last five observations apart to test the SOM
 
 .. code::
 
-    data_train = data[:-10]
-    data_test  = data[-10:]
+    data_train = data[:-5]
+    data_test  = data[-5:]
     print(len(data_train), len(data_test))
 
 .. execute_code::

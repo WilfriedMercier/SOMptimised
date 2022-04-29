@@ -32,7 +32,7 @@ extensions         = ['sphinx.ext.autodoc',
                      ]
 
 # The full version, including alpha/beta/rc tags
-release            = '1.0'
+release            = '1.1'
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path     = ['_templates']
@@ -66,5 +66,9 @@ rst_prolog = """
 .. _float64: https://numpy.org/doc/stable/user/basics.types.html
 .. _pickle.dump: https://docs.python.org/3/library/pickle.html#pickle.dump
 .. _pickle.load: https://docs.python.org/3/library/pickle.html#pickle.load
+.. _Cigale: https://cigale.lam.fr/
+.. _pandas: https://pandas.pydata.org/docs/index.html
+.. _joblib: https://joblib.readthedocs.io/
+.. _colorama: https://pypi.org/project/colorama/
 """
 

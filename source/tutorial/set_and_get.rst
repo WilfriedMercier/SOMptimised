@@ -1,26 +1,32 @@
 Set and get extra parameters
 ############################
 
-In the previous section we computed an additional parameter for each neuron in the SOM: the petal width. Rather than keeping such parameters in separate variables, we can integrate them into the SOM to easily access them
+In the previous section we computed an additional parameter for each neuron in the SOM: the petal width. Rather than keeping such parameters in separate variables, we can integrate them into the SOM to easily access them later on.
+
+This is done with the :py:meth:`~.SOM.set` method
 
 .. code::
 
     som.set('petal width', swidth_med)
     som.set('petal width uncertainty', swidth_std)
     
-To retrieve later on an extra parameter (e.g. petal width), then one can do
+To retrieve later on an extra parameter (e.g. petal width), then one can use the :py:meth:`~.SOM.get` method
 
 .. code::
 
     pwidth = som.get('petal width')
-    print(pdwidth)
+    
+    print('Petal width for the SOM neurons:')
+    print(swidth_med)
+    print('\nPetal width stored in the SOM:')
+    print(pwidth)
     
 .. execute_code::
     :hide_code:
     
     import warnings
     import pandas
-    from   SOMptimised import SOM
+    from   SOMptimised import SOM, LinearLearningStrategy, ConstantRadiusStrategy, euclidianMetric
     import numpy       as np
 
     # Extract data
@@ -34,11 +40,15 @@ To retrieve later on an extra parameter (e.g. petal width), then one can do
     swidth_test  = swidth[-10:]
 
     # Fit SOM
-    m   = 5
-    n   = 5
-    nf  = data_train.shape[1] # Number of features
-    som = SOM(m=m, n=n, dim=nf, lr=1, sigma=1, max_iter=1e4, random_state=None)
-    som.fit(data_train, epochs=1, shuffle=True)
+    m      = 5
+    n      = 5
+    lr     = LinearLearningStrategy(lr=1)
+    sigma  = ConstantRadiusStrategy(sigma=0.8)
+    metric = euclidianMetric
+    nf     = data_train.shape[1] # Number of features
+    
+    som    = SOM(m=m, n=n, dim=nf, lr=lr, sigma=sigma, metric=metric, max_iter=1e4, random_state=0)
+    som.fit(data_train, epochs=1, shuffle=False, n_jobs=1)
 
     pred_train = som.train_bmus_
     pred_test  = som.predict(data_test)
@@ -58,4 +68,8 @@ To retrieve later on an extra parameter (e.g. petal width), then one can do
     som.set('petal width', swidth_med)
     som.set('petal width uncertainty', swidth_std)
     pwidth = som.get('petal width')
+    
+    print('Petal width for the SOM neurons:')
+    print(swidth_med)
+    print('\nPetal width stored in the SOM:')
     print(pwidth)
