@@ -18,7 +18,7 @@ Predict the sepal width of the test set using the SOM.
 '''
 
 import pandas
-from   SOMptimised import SOM, LinearLearningStrategy, ConstantRadiusStrategy, euclidianMetric
+from   SOMptimised_dev import SOM, LinearLearningStrategy, ConstantRadiusStrategy, euclidianMetric
 import numpy       as np
 
 # Extract data
@@ -33,7 +33,7 @@ swidth_test  = swidth[-10:]
 
 # Define SOM parameters
 lr           = LinearLearningStrategy(lr=1)
-sigma        = ConstantRadiusStrategy(sigma=1)
+sigma        = ConstantRadiusStrategy(sigma=0.8)
 metric       = euclidianMetric
 
 # Fit SOM
