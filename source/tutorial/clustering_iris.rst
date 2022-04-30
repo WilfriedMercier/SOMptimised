@@ -220,4 +220,4 @@ By playing with the different parameters of the SOM and the different strategies
     
 .. note::
    
-   Colors do not match between subfigures, they are just here to show clustering.
+   Colours do not match between subfigures, they are just here to show clustering.

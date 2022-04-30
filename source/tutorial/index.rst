@@ -98,5 +98,6 @@ Finally, let us keep the last five observations apart to test the SOM
 
 .. include:: clustering_iris.rst
 .. include:: predict_sepal_width.rst
+.. include:: normalisation.rst
 .. include:: set_and_get.rst
 .. include:: save_and_load.rst
