@@ -7,31 +7,35 @@ First let us create a SOM object with the right properties
 
 .. code::
 
-    from SOMptimised import SOM
+    from SOMptimised import SOM, LinearLearningStrategy, ConstantRadiusStrategy, euclidianMetric
     
-    nf  = data_train.shape[1] # Number of features
-    som = SOM(m=1, n=3, dim=nf, lr=1, sigma=1, max_iter=1e4, random_state=None)
+    lr     = LinearLearningStrategy(lr=1)      # Learning rate strategy 
+    sigma  = ConstantRadiusStrategy(sigma=0.8) # Neighbourhood radius strategy
+    metric = euclidianMetric                   # Metric used to compute BMUs
+    nf     = data_train.shape[1]               # Number of features
+    som    = SOM(m=1, n=3, dim=nf, lr=lr, sigma=sigma, max_iter=1e4, random_state=None)
     
 The various parameters appearing when creating the :py:class:`~.SOM` object are:
 
 * **m** and **n**: the vertical and horizontal dimensions of the SOM, respectively
 * **dim**: the number of features in the data
-* **lr**: the initial learning rate
-* **sigma**: the neighboorhood radius which defines the pull strength of a bmu with respect to its neighboors. The larger **sigma** the more aggressive the SOM.
+* **lr**: the learning rate strategy. Any strategy can be used as long as it inherits from :py:class:`~.LearningStrategy`. Here, we will use a learning rate which linearly decreases with learning steps.
+* **sigma**: the neighboorhood radius strategy. Any strategy can be used as long as it inherits from :py:class:`~.NeighbourhoodStrategy`. Here, we will use a constant neighbourhood radius. The larger the radius the more aggressive the SOM.
+* **metric**: the metric used to compute the distance between the SOM neurons and the training data, and between the test data and the neurons. Any metric can be used. See the :doc:`metric documentation <../API/metric>` for the available metrics and how to implement new ones.
 * **max_iter**: the maximum number of iterations. The learning will continue until the number of iterations becomes equal to :python:`min(max_iter, len(data)*epochs)` where :python:`epochs` is the number of epochs used during the fit.
 * **random_state**: if not :python:`None`, must be an integer. This defines the random_state used to generate random initial values for the weights before starting the fit. Setting a value can be useful for debugging.
 
-.. note::
-
-    In this implementation the learning rate decreases linearly with iterations, whereas in other implementations it decreases exponentially. Thus there is no decay rate associated here.
-    
-    Also note that contrary to other implementations, the neighboorhood radius does not decreases with iterations. Thus, there is not decay rate associated as well.
-    
 Training the som is quite straightforward. This can be done the following way
 
 .. code::
 
-    som.fit(data_train, epochs=1, shuffle=True)
+    som.fit(data_train, epochs=1, shuffle=True, n_jobs=1)
+    
+The parameter **shuffle** means the train data will be shuffled at each new epoch. The parameter **n_jobs** sets the number of threads used on the computer to compute the BMUs at the end of the training. 
+
+.. note::
+
+   Using the maximum number of threads is not necessarily optimal, unless the train data and/or the neurons are very numerous.
     
 We can now predict the class for the test set
 
@@ -43,7 +47,7 @@ We can now predict the class for the test set
 .. execute_code::
     :hide_code:
 
-    from SOMptimised import SOM
+    from   SOMptimised import SOM, LinearLearningStrategy, ConstantRadiusStrategy, euclidianMetric
     import pandas
     
     table  = pandas.read_csv('examples/iris_dataset/iris_dataset.csv')
@@ -55,8 +59,11 @@ We can now predict the class for the test set
     data_train = data[:-5]
     data_test  = data[-5:]
     
-    nf  = data_train.shape[1] # Number of features
-    som = SOM(m=1, n=3, dim=nf, lr=1, sigma=1, max_iter=1e4, random_state=None)
+    lr     = LinearLearningStrategy(lr=1)      # Learning rate strategy 
+    sigma  = ConstantRadiusStrategy(sigma=0.8) # Neighbourhood radius strategy
+    metric = euclidianMetric                   # Metric used to compute BMUs
+    nf     = data_train.shape[1]               # Number of features
+    som    = SOM(m=1, n=3, dim=nf, lr=lr, sigma=sigma, max_iter=1e4, random_state=None)
     som.fit(data_train, epochs=1, shuffle=True)
 
     pred_test = som.predict(data_test)
@@ -72,7 +79,7 @@ Similarly we can extract the predictions the SOM made on the training dataset
 .. execute_code::
     :hide_code:
 
-    from SOMptimised import SOM
+    from   SOMptimised import SOM, LinearLearningStrategy, ConstantRadiusStrategy, euclidianMetric
     import pandas
     
     table  = pandas.read_csv('examples/iris_dataset/iris_dataset.csv')
@@ -84,8 +91,11 @@ Similarly we can extract the predictions the SOM made on the training dataset
     data_train = data[:-5]
     data_test  = data[-5:]
     
-    nf  = data_train.shape[1] # Number of features
-    som = SOM(m=1, n=3, dim=nf, lr=1, sigma=1, max_iter=1e4, random_state=None)
+    lr     = LinearLearningStrategy(lr=1)      # Learning rate strategy 
+    sigma  = ConstantRadiusStrategy(sigma=0.8) # Neighbourhood radius strategy
+    metric = euclidianMetric                   # Metric used to compute BMUs
+    nf     = data_train.shape[1]               # Number of features
+    som    = SOM(m=1, n=3, dim=nf, lr=lr, sigma=sigma, max_iter=1e4, random_state=None)
     som.fit(data_train, epochs=1, shuffle=True)
 
     pred_train = som.train_bmus_
@@ -148,21 +158,24 @@ Let us plot the training (small points) and test (large points) datasets colour 
     from   matplotlib          import rc
     import matplotlib          as     mpl
     
-    from   SOMptimised         import SOM
+    from   SOMptimised         import SOM, LinearLearningStrategy, ConstantRadiusStrategy, euclidianMetric
     import pandas
     
-    table      = pandas.read_csv('../../examples/iris_dataset/iris_dataset.csv')
-    target     = table['target']
-    swidth     = table['sepal width (cm)']
-    table      = table[['petal length (cm)', 'petal width (cm)', 'sepal length (cm)']]
-    data       = table.to_numpy()
+    table  = pandas.read_csv('../../examples/iris_dataset/iris_dataset.csv')
+    target = table['target']
+    swidth = table['sepal width (cm)']
+    table  = table[['petal length (cm)', 'petal width (cm)', 'sepal length (cm)']]
+    data   = table.to_numpy()
     
-    data_train = data[:-10]
-    data_test  = data[-10:]
+    data_train = data[:-5]
+    data_test  = data[-5:]
     
-    nf  = data_train.shape[1] # Number of features
-    som = SOM(m=1, n=3, dim=nf, lr=1, sigma=1, max_iter=1e4, random_state=None)
-    som.fit(data_train, epochs=1, shuffle=True)
+    lr     = LinearLearningStrategy(lr=1)    # Learning rate strategy 
+    sigma  = ConstantRadiusStrategy(sigma=0.8) # Neighbourhood radius strategy
+    metric = euclidianMetric                 # Metric used to compute BMUs
+    nf     = data_train.shape[1]             # Number of features
+    som    = SOM(m=1, n=3, dim=nf, lr=lr, sigma=sigma, max_iter=1e4, random_state=None)
+    som.fit(data_train, epochs=1, shuffle=True, n_jobs=1)
 
     pred_train = som.train_bmus_
     pred_test  = som.predict(data_test)
@@ -171,7 +184,6 @@ Let us plot the training (small points) and test (large points) datasets colour 
     
     rc('font', **{'family': 'serif', 'serif': ['Times']})
     rc('text', usetex=True)
-    mpl.rcParams['text.latex.preamble'] = r'\usepackage{newtxmath}'
     
     f   = plt.figure(figsize=(10, 4.5))
     gs  = GridSpec(1, 2, wspace=0)
@@ -194,8 +206,8 @@ Let us plot the training (small points) and test (large points) datasets colour 
     target[target == 'Iris-versicolor'] = 1
     target[target == 'Iris-virginica']  = 2
     
-    ax2.scatter(data_train[:, 1], data_train[:, 0], c=target[:-10], cmap='bwr', ec='k', norm=norm, marker='o', s=30)
-    ax2.scatter(data_test[:, 1],  data_test[:, 0],  c=target[-10:],  cmap='bwr', ec='k', marker='o', norm=norm, s=60)
+    ax2.scatter(data_train[:, 1], data_train[:, 0], c=target[:-5], cmap='bwr', ec='k', norm=norm, marker='o', s=30)
+    ax2.scatter(data_test[:, 1],  data_test[:, 0],  c=target[-5:],  cmap='bwr', ec='k', marker='o', norm=norm, s=60)
     ax2.set_yticks([0.2])
     ax2.set_yticklabels([])
         
@@ -204,4 +216,8 @@ Let us plot the training (small points) and test (large points) datasets colour 
     
     plt.show()
     
-Colors do not match between subfigures, they are just here to show clustering.
+By playing with the different parameters of the SOM and the different strategies we can achieve better or worse results.
+    
+.. note::
+   
+   Colours do not match between subfigures, they are just here to show clustering.

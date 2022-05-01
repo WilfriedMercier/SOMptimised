@@ -1,96 +1,483 @@
 
 <!DOCTYPE html>
 
-<html lang="en">
-<head>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<meta charset="utf-8"/>
-<meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
-<title>Tutorial/Example | SOMptimised 1.0 documentation</title>
-<link href="../_static/pygments.css" rel="stylesheet"/>
-<link href="../_static/theme.313ea551d1799b2102b1.css" rel="stylesheet"/>
-<link href="../_static/plot_directive.css" rel="stylesheet"/>
-<link href="../search.html" rel="search" title="Search"/>
-<link href="../genindex.html" rel="index" title="Index"/>
-<link href="../API/index.html" rel="next" title="API"/>
-<link href="../index.html" rel="prev" title="Home page"/>
-</head>
-<body class="antialiased text-gray">
-<div class="h-screen xl:grid xl:grid-layout" data-action="keydown@window-&gt;search#focus" data-controller="sidebar search" id="page">
-<a class="block text-xl bg-white py-4 z-20 absolute top-0 h-18 inset-x-0 text-center transform -translate-y-full focus:translate-y-0 focus:outline-none transition-transform duration-75" href="#tutorial-example" title="Skip navigation links">Skip to content</a>
-<header class="grid-area-header z-10 h-14 sm:h-18">
-<div class="bg-gray-dark shadow-md flex items-center h-full xl:px-2 relative"><div class="flex items-center">
-<button class="xl:hidden h-14 w-14 sm:h-18 sm:w-18 leading-14 sm:leading-18 text-gray-100 hover:bg-gray-700 hover:text-brand focus:outline-none focus:bg-gray-700 focus:text-brand" data-action="sidebar#open" data-sidebar-target="hamburger">
-<span class="sr-only">Open navigation menu</span>
-<svg aria-hidden="true" class="fill-current h-8 w-8" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path></svg>
-</button><a aria-label="Back to homepage" class="hover:bg-gray-700 focus:bg-gray-700 focus:outline-none tooltipped tooltipped-sw" href="../index.html"><img alt="Logo" class="h-14 w-14 sm:h-18 sm:w-18 p-3 sm:p-5 inline-block" src="../_static/logo.png"/><span class="hidden lg:inline-block shrink-0 font-medium text-gray-100 mx-5 leading-14 sm:leading-18 tracking-wider">SOMptimised 1.0 documentation</span>
-</a></div><div class="flex justify-end items-center flex-1"><form action="../search.html" class="flex print:hidden justify-between items-center leading-14 sm:leading-18 md:ml-4 bg-gray-dark text-gray-300 focus-within:bg-gray-50 focus-within:text-gray-800 focus-within:absolute focus-within:inset-x-0 focus-within:top-0 md:focus-within:w-full md:focus-within:static" data-action="click-&gt;search#focusSearchInput" id="searchbox" method="get">
-<button aria-label="Get search results" class="text-inherit h-14 w-14 sm:h-18 sm:w-18" tabindex="-1">
-<svg aria-hidden="true" class="fill-current stroke-current h-8 w-8" stroke-width="0.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg>
-</button>
-<input aria-label="Search the docs" class="pr-2 bg-transparent text-inherit focus:outline-none w-0 md:w-auto focus:w-full transition-all duration-100" data-search-target="searchInput" id="search-input" name="q" placeholder="Search the docs" type="search"/>
-</form><div class="shrink-0"><a class="h-14 sm:h-18 inline-block leading-14 sm:leading-18 text-gray-100 bg-transparent tracking-wide font-medium hover:text-brand focus:bg-gray-700 focus:outline-none hover:no-underline focus:text-brand px-4" href="/SOMptimised//API/index.html">API</a><a class="h-14 sm:h-18 inline-block leading-14 sm:leading-18 text-gray-100 bg-gray-700 border-b-4 border-brand tracking-wide font-medium hover:text-brand focus:bg-gray-700 focus:outline-none hover:no-underline focus:text-brand px-4" href="/SOMptimised/tutorial/index.html">Tutorial</a></div></div>
-</div>
-</header>
-<aside class="grid-area-sidebar h-full fixed xl:relative inset-y-0 left-0 z-20 xl:z-0 print:hidden overflow-y-auto transition-all transform transform-gpu -translate-x-full opacity-0 duration-300 xl:translate-x-0 xl:opacity-100" data-sidebar-target="sidebar">
-<nav class="h-full overflow-y-auto bg-white text-gray-600 pt-8 flex flex-col" role="navigation">
-<div class="nav-toc flex-1 pl-6"><ul class="current">
-<li class="toctree-l1 current expanded"><div class="nav-link"><svg class="expand" data-action="click-&gt;sidebar#expand keydown-&gt;sidebar#expandKeyPressed" tabindex="0" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path></svg><a class="current reference internal" data-action="click-&gt;sidebar#close" href="#">Tutorial/Example</a></div><ul>
-<li class="toctree-l2"><div class="nav-link"><a class="reference internal" data-action="click-&gt;sidebar#close" href="#preparing-the-data">Preparing the data</a></div></li>
-<li class="toctree-l2"><div class="nav-link"><a class="reference internal" data-action="click-&gt;sidebar#close" href="#train-the-som-to-predict-the-iris-class">Train the SOM to predict the iris class</a></div></li>
-<li class="toctree-l2"><div class="nav-link"><a class="reference internal" data-action="click-&gt;sidebar#close" href="#predict-sepal-width">Predict sepal width</a></div></li>
-<li class="toctree-l2"><div class="nav-link"><a class="reference internal" data-action="click-&gt;sidebar#close" href="#set-and-get-extra-parameters">Set and get extra parameters</a></div></li>
-<li class="toctree-l2"><div class="nav-link"><a class="reference internal" data-action="click-&gt;sidebar#close" href="#save-and-load-som">Save and load SOM</a></div></li>
-</ul>
-</li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">―――――――――――――――</span></p>
-<ul>
-<li class="toctree-l1"><div class="nav-link"><svg class="expand" data-action="click-&gt;sidebar#expand keydown-&gt;sidebar#expandKeyPressed" tabindex="0" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path></svg><a class="reference internal" data-action="click-&gt;sidebar#close" href="../API/index.html">API</a></div><ul>
-<li class="toctree-l2"><div class="nav-link"><a class="reference internal" data-action="click-&gt;sidebar#close" href="../API/som.html">API for the som module</a></div></li>
-</ul>
-</li>
-</ul>
-</div>
-<button class="text-4xl text-gray-800 p-4 bottom-0 hover:text-brand xl:hidden focus:text-brand self-center" data-action="" title="Close navigation menu">
-<span class="sr-only">Close navigation menu</span>
-<svg aria-hidden="true" class="fill-current stroke-current h-6 w-6" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
-</button>
-</nav>
-</aside>
-<main class="px-10 xl:ml-fluid grid-area-main overflow-y-auto flex flex-col h-full mx-0 md:mx-auto xl:mr-0" data-action="scroll-&gt;scroll#showButton" data-controller="scroll"><nav aria-label="breadcrumbs" class="print:hidden mt-12 text-sm text-gray-light" role="navigation">
-<a class="text-gray-light text-sm hover:text-gray-dark font-medium focus:text-gray-dark" href="../index.html">SOMptimised 1.0 documentation</a>
-<span class="mr-1">/</span><span aria-current="page">Tutorial/Example</span>
-</nav>
-<article class="flex-1" role="main">
-<section id="tutorial-example">
-<h1>Tutorial/Example<a aria-label="Click to copy this link" class="headerlink tooltipped tooltipped-ne" data-action="click-&gt;clipboard#copyHeaderLink" data-controller="clipboard" href="#tutorial-example">¶</a></h1>
-<section id="preparing-the-data">
-<h2>Preparing the data<a aria-label="Click to copy this link" class="headerlink tooltipped tooltipped-ne" data-action="click-&gt;clipboard#copyHeaderLink" data-controller="clipboard" href="#preparing-the-data">¶</a></h2>
-<p>This SOM implementation requires the data to be given as a 2-dimensional numpy array where the first dimension corresponds to the observations or data points that you have and the second dimension corresponds to the features for each observation.</p>
-<p>Let us run the SOM on the <a class="reference external" href="https://en.wikipedia.org/wiki/Iris_flower_data_set" rel="nofollow noopener">iris dataset<svg aria-hidden="true" class="external-link-icon" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 19H5V5h7V3H5a2 2 0 00-2 2v14a2 2 0 002 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"></path></svg></a>. To do so we will use <a class="reference external" href="https://pandas.pydata.org/" rel="nofollow noopener">pandas<svg aria-hidden="true" class="external-link-icon" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 19H5V5h7V3H5a2 2 0 00-2 2v14a2 2 0 002 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"></path></svg></a> to load the dataset contained in the csv file</p>
-<p class="caption">Code </p>
-<div class="code-wrapper" data-controller="code">
-<div class="code-header">
-<span class="code-lang">python</span></div>
-<div class="highlight"><pre><code><span class="kn">import</span> <span class="nn">pandas</span>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-<span class="n">table</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'examples/iris_dataset/iris_dataset.csv'</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">head</span><span class="p">(),</span> <span class="n">end</span><span class="o">=</span><span class="s1">'</span><span class="se">\n\n</span><span class="s1">'</span><span class="p">)</span>
+    <title>Tutorial/Example &#8212; SOMptimised 1.1</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Train the SOM to predict the iris class" href="clustering_iris.html" />
+    <link rel="prev" title="SOMptimised" href="../index.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">SOMptimised 1.1</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    SOMptimised
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="current reference internal" href="#">
+   Tutorial/Example
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="clustering_iris.html">
+     Train the SOM to predict the iris class
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="predict_sepal_width.html">
+     Predict sepal width
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="normalisation.html">
+     Of the importance of normalisation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="set_and_get.html">
+     Set and get extra parameters
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="save_and_load.html">
+     Save and load SOM
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  ―――――――――――――――
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../API/index.html">
+   API
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../API/lr.html">
+     Learning strategy submodule
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../API/metric.html">
+     Metric submodule
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../API/neighbourhood.html">
+     Neighbourhood strategy submodule
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../API/som.html">
+     API for the main som module
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/WilfriedMercier/SOMptimised"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/WilfriedMercier/SOMptimised/issues/new?title=Issue%20on%20page%20%2Ftutorial/index.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/tutorial/index.rst.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.rst</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#preparing-the-data">
+   Preparing the data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#train-the-som-to-predict-the-iris-class">
+   Train the SOM to predict the iris class
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#predict-sepal-width">
+   Predict sepal width
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#of-the-importance-of-normalisation">
+   Of the importance of normalisation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#set-and-get-extra-parameters">
+   Set and get extra parameters
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#save-and-load-som">
+   Save and load SOM
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Tutorial/Example</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#preparing-the-data">
+   Preparing the data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#train-the-som-to-predict-the-iris-class">
+   Train the SOM to predict the iris class
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#predict-sepal-width">
+   Predict sepal width
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#of-the-importance-of-normalisation">
+   Of the importance of normalisation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#set-and-get-extra-parameters">
+   Set and get extra parameters
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#save-and-load-som">
+   Save and load SOM
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section id="tutorial-example">
+<h1>Tutorial/Example<a class="headerlink" href="#tutorial-example" title="Permalink to this headline">#</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>This example requires <a class="reference external" href="https://pandas.pydata.org/docs/index.html">pandas</a> to be installed. This can be done the following way with pip</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install pandas
+</pre></div>
+</div>
+<p>or with conda</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda install pandas
+</pre></div>
+</div>
+</div>
+<section id="preparing-the-data">
+<h2>Preparing the data<a class="headerlink" href="#preparing-the-data" title="Permalink to this headline">#</a></h2>
+<p>This SOM implementation requires the data to be given as a 2-dimensional numpy array where the first dimension corresponds to the observations or data points that you have and the second dimension corresponds to the features for each observation.</p>
+<p>Let us run the SOM on the <a class="reference external" href="https://en.wikipedia.org/wiki/Iris_flower_data_set">iris dataset</a>. To do so we will use <a class="reference external" href="https://pandas.pydata.org/docs/index.html">pandas</a> to load the dataset contained in the csv file</p>
+<p><span class="caption-text">Code </span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span>
+
+<span class="n">table</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;examples/iris_dataset/iris_dataset.csv&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">head</span><span class="p">(),</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
-</code></pre></div></div>
-<p class="caption">Results</p>
-<div class="code-wrapper" data-controller="code">
-<div class="code-header">
-<span class="code-lang">none</span></div>
-<div class="highlight"><pre><code>   sepal length (cm)  sepal width (cm)  petal length (cm)  petal width (cm)       target
+</pre></div>
+</div>
+<p><span class="caption-text">Results</span></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>   sepal length (cm)  sepal width (cm)  petal length (cm)  petal width (cm)       target
 0                5.1               3.5                1.4               0.2  Iris-setosa
 1                4.9               3.0                1.4               0.2  Iris-setosa
 2                4.7               3.2                1.3               0.2  Iris-setosa
 3                4.6               3.1                1.5               0.2  Iris-setosa
 4                5.0               3.6                1.4               0.2  Iris-setosa
 
-&lt;class 'pandas.core.frame.DataFrame'&gt;
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
 RangeIndex: 150 entries, 0 to 149
 Data columns (total 5 columns):
  #   Column             Non-Null Count  Dtype  
@@ -103,21 +490,17 @@ Data columns (total 5 columns):
 dtypes: float64(4), object(1)
 memory usage: 6.0+ KB
 None
-</code></pre></div></div>
+</pre></div>
+</div>
 <p>Each line represents an observation and in this case we have 4 features: sepal length, sepal width, petal length and petal width. Let us train the SOM on three features</p>
-<div class="code-wrapper" data-controller="code">
-<div class="code-header">
-<span class="code-lang">python</span></div>
-<div class="highlight"><pre><code><span class="n">table</span>  <span class="o">=</span> <span class="n">table</span><span class="p">[[</span><span class="s1">'petal length (cm)'</span><span class="p">,</span> <span class="s1">'petal width (cm)'</span><span class="p">,</span> <span class="s1">'sepal length (cm)'</span><span class="p">]]</span>
-<span class="n">target</span> <span class="o">=</span> <span class="n">table</span><span class="p">[</span><span class="s1">'target'</span><span class="p">]</span>
-<span class="n">swidth</span> <span class="o">=</span> <span class="n">table</span><span class="p">[</span><span class="s1">'sepal width (cm)'</span><span class="p">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">table</span>  <span class="o">=</span> <span class="n">table</span><span class="p">[[</span><span class="s1">&#39;petal length (cm)&#39;</span><span class="p">,</span> <span class="s1">&#39;petal width (cm)&#39;</span><span class="p">,</span> <span class="s1">&#39;sepal length (cm)&#39;</span><span class="p">]]</span>
+<span class="n">target</span> <span class="o">=</span> <span class="n">table</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]</span>
+<span class="n">swidth</span> <span class="o">=</span> <span class="n">table</span><span class="p">[</span><span class="s1">&#39;sepal width (cm)&#39;</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
-</code></pre></div></div>
-<p class="caption">Results</p>
-<div class="code-wrapper" data-controller="code">
-<div class="code-header">
-<span class="code-lang">none</span></div>
-<div class="highlight"><pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+</pre></div>
+</div>
+<p><span class="caption-text">Results</span></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
 RangeIndex: 150 entries, 0 to 149
 Data columns (total 3 columns):
  #   Column             Non-Null Count  Dtype  
@@ -128,108 +511,90 @@ Data columns (total 3 columns):
 dtypes: float64(3)
 memory usage: 3.6 KB
 None
-</code></pre></div></div>
+</pre></div>
+</div>
 <p>where we have also extracted the target class for each observation to compare at the end and the sepal width to predict for the next section. We convert the data into a numpy array since this is the required format for the SOM to run and we check it has the correct shape (150, 3)</p>
-<div class="code-wrapper" data-controller="code">
-<div class="code-header">
-<span class="code-lang">python</span></div>
-<div class="highlight"><pre><code><span class="n">data</span>  <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">data</span>  <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">[:</span><span class="mi">5</span><span class="p">])</span>
-</code></pre></div></div>
-<p class="caption">Results</p>
-<div class="code-wrapper" data-controller="code">
-<div class="code-header">
-<span class="code-lang">none</span></div>
-<div class="highlight"><pre><code>(150, 3)
+</pre></div>
+</div>
+<p><span class="caption-text">Results</span></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(150, 3)
 [[1.4 0.2 5.1]
  [1.4 0.2 4.9]
  [1.3 0.2 4.7]
  [1.5 0.2 4.6]
  [1.4 0.2 5. ]]
-</code></pre></div></div>
-<p>Finally, let us keep the last 10 observations apart to test the SOM</p>
-<div class="code-wrapper" data-controller="code">
-<div class="code-header">
-<span class="code-lang">python</span></div>
-<div class="highlight"><pre><code><span class="n">data_train</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:</span><span class="o">-</span><span class="mi">10</span><span class="p">]</span>
-<span class="n">data_test</span>  <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">:]</span>
+</pre></div>
+</div>
+<p>Finally, let us keep the last five observations apart to test the SOM</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">data_train</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:</span><span class="o">-</span><span class="mi">5</span><span class="p">]</span>
+<span class="n">data_test</span>  <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">:]</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data_train</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_test</span><span class="p">))</span>
-</code></pre></div></div>
-<p class="caption">Results</p>
-<div class="code-wrapper" data-controller="code">
-<div class="code-header">
-<span class="code-lang">none</span></div>
-<div class="highlight"><pre><code>145 5
-</code></pre></div></div>
+</pre></div>
+</div>
+<p><span class="caption-text">Results</span></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>145 5
+</pre></div>
+</div>
 </section>
 <section id="train-the-som-to-predict-the-iris-class">
-<h2>Train the SOM to predict the iris class<a aria-label="Click to copy this link" class="headerlink tooltipped tooltipped-ne" data-action="click-&gt;clipboard#copyHeaderLink" data-controller="clipboard" href="#train-the-som-to-predict-the-iris-class">¶</a></h2>
+<h2>Train the SOM to predict the iris class<a class="headerlink" href="#train-the-som-to-predict-the-iris-class" title="Permalink to this headline">#</a></h2>
 <p>We will use the SOM to predict the iris class of the test set. We can see by eye than there must be something like three different classes in the iris dataset so we will use a small SOM of dimensions (1, 3) so that each neuron will predict a given class.</p>
 <p>First let us create a SOM object with the right properties</p>
-<div class="code-wrapper" data-controller="code">
-<div class="code-header">
-<span class="code-lang">python</span></div>
-<div class="highlight"><pre><code><span class="kn">from</span> <span class="nn">SOMptimised</span> <span class="kn">import</span> <span class="n">SOM</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">SOMptimised</span> <span class="kn">import</span> <span class="n">SOM</span><span class="p">,</span> <span class="n">LinearLearningStrategy</span><span class="p">,</span> <span class="n">ConstantRadiusStrategy</span><span class="p">,</span> <span class="n">euclidianMetric</span>
 
-<span class="n">nf</span>  <span class="o">=</span> <span class="n">data_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># Number of features</span>
-<span class="n">som</span> <span class="o">=</span> <span class="n">SOM</span><span class="p">(</span><span class="n">m</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="n">nf</span><span class="p">,</span> <span class="n">lr</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mf">1e4</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
-</code></pre></div></div>
-<p>The various parameters appearing when creating the <a class="reference internal" href="../API/som.html#SOMptimised.som.SOM" title="SOMptimised.som.SOM"><code class="xref py py-class docutils literal notranslate">SOM</code></a> object are:</p>
+<span class="n">lr</span>     <span class="o">=</span> <span class="n">LinearLearningStrategy</span><span class="p">(</span><span class="n">lr</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>      <span class="c1"># Learning rate strategy</span>
+<span class="n">sigma</span>  <span class="o">=</span> <span class="n">ConstantRadiusStrategy</span><span class="p">(</span><span class="n">sigma</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span> <span class="c1"># Neighbourhood radius strategy</span>
+<span class="n">metric</span> <span class="o">=</span> <span class="n">euclidianMetric</span>                   <span class="c1"># Metric used to compute BMUs</span>
+<span class="n">nf</span>     <span class="o">=</span> <span class="n">data_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>               <span class="c1"># Number of features</span>
+<span class="n">som</span>    <span class="o">=</span> <span class="n">SOM</span><span class="p">(</span><span class="n">m</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="n">nf</span><span class="p">,</span> <span class="n">lr</span><span class="o">=</span><span class="n">lr</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mf">1e4</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The various parameters appearing when creating the <a class="reference internal" href="../API/som.html#SOMptimised.som.SOM" title="SOMptimised.som.SOM"><code class="xref py py-class docutils literal notranslate"><span class="pre">SOM</span></code></a> object are:</p>
 <ul class="simple">
 <li><p><strong>m</strong> and <strong>n</strong>: the vertical and horizontal dimensions of the SOM, respectively</p></li>
 <li><p><strong>dim</strong>: the number of features in the data</p></li>
-<li><p><strong>lr</strong>: the initial learning rate</p></li>
-<li><p><strong>sigma</strong>: the neighboorhood radius which defines the pull strength of a bmu with respect to its neighboors. The larger <strong>sigma</strong> the more aggressive the SOM.</p></li>
-<li><p><strong>max_iter</strong>: the maximum number of iterations. The learning will continue until the number of iterations becomes equal to <code class="code highlight python docutils literal notranslate"><span class="nb">min</span><span class="p">(</span><span class="n">max_iter</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">*</span><span class="n">epochs</span><span class="p">)</span></code> where <code class="code highlight python docutils literal notranslate"><span class="n">epochs</span></code> is the number of epochs used during the fit.</p></li>
-<li><p><strong>random_state</strong>: if not <code class="code highlight python docutils literal notranslate"><span class="kc">None</span></code>, must be an integer. This defines the random_state used to generate random initial values for the weights before starting the fit. Setting a value can be useful for debugging.</p></li>
+<li><p><strong>lr</strong>: the learning rate strategy. Any strategy can be used as long as it inherits from <a class="reference internal" href="../API/lr.html#SOMptimised.learning_rate.LearningStrategy" title="SOMptimised.learning_rate.LearningStrategy"><code class="xref py py-class docutils literal notranslate"><span class="pre">LearningStrategy</span></code></a>. Here, we will use a learning rate which linearly decreases with learning steps.</p></li>
+<li><p><strong>sigma</strong>: the neighboorhood radius strategy. Any strategy can be used as long as it inherits from <a class="reference internal" href="../API/neighbourhood.html#SOMptimised.neighbourhood.NeighbourhoodStrategy" title="SOMptimised.neighbourhood.NeighbourhoodStrategy"><code class="xref py py-class docutils literal notranslate"><span class="pre">NeighbourhoodStrategy</span></code></a>. Here, we will use a constant neighbourhood radius. The larger the radius the more aggressive the SOM.</p></li>
+<li><p><strong>metric</strong>: the metric used to compute the distance between the SOM neurons and the training data, and between the test data and the neurons. Any metric can be used. See the <a class="reference internal" href="../API/metric.html"><span class="doc">metric documentation</span></a> for the available metrics and how to implement new ones.</p></li>
+<li><p><strong>max_iter</strong>: the maximum number of iterations. The learning will continue until the number of iterations becomes equal to <code class="code highlight python docutils literal notranslate"><span class="nb"><span class="pre">min</span></span><span class="p"><span class="pre">(</span></span><span class="n"><span class="pre">max_iter</span></span><span class="p"><span class="pre">,</span></span> <span class="nb"><span class="pre">len</span></span><span class="p"><span class="pre">(</span></span><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">)</span></span><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">epochs</span></span><span class="p"><span class="pre">)</span></span></code> where <code class="code highlight python docutils literal notranslate"><span class="n"><span class="pre">epochs</span></span></code> is the number of epochs used during the fit.</p></li>
+<li><p><strong>random_state</strong>: if not <code class="code highlight python docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code>, must be an integer. This defines the random_state used to generate random initial values for the weights before starting the fit. Setting a value can be useful for debugging.</p></li>
 </ul>
+<p>Training the som is quite straightforward. This can be done the following way</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">som</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data_train</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The parameter <strong>shuffle</strong> means the train data will be shuffled at each new epoch. The parameter <strong>n_jobs</strong> sets the number of threads used on the computer to compute the BMUs at the end of the training.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>In this implementation the learning rate decreases linearly with iterations, whereas in other implementations it decreases exponentially. Thus there is no decay rate associated here.</p>
-<p>Also note that contrary to other implementations, the neighboorhood radius does not decreases with iterations. Thus, there is not decay rate associated as well.</p>
+<p>Using the maximum number of threads is not necessarily optimal, unless the train data and/or the neurons are very numerous.</p>
 </div>
-<p>Training the som is quite straightforward. This can be done the following way</p>
-<div class="code-wrapper" data-controller="code">
-<div class="code-header">
-<span class="code-lang">python</span></div>
-<div class="highlight"><pre><code><span class="n">som</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data_train</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</code></pre></div></div>
 <p>We can now predict the class for the test set</p>
-<div class="code-wrapper" data-controller="code">
-<div class="code-header">
-<span class="code-lang">python</span></div>
-<div class="highlight"><pre><code><span class="n">pred_test</span> <span class="o">=</span> <span class="n">som</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">data_test</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pred_test</span> <span class="o">=</span> <span class="n">som</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">data_test</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">pred_test</span><span class="p">)</span>
-</code></pre></div></div>
-<p class="caption">Results</p>
-<div class="code-wrapper" data-controller="code">
-<div class="code-header">
-<span class="code-lang">none</span></div>
-<div class="highlight"><pre><code>[0 0 0 0 0]
-</code></pre></div></div>
+</pre></div>
+</div>
+<p><span class="caption-text">Results</span></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[2 2 2 2 2]
+</pre></div>
+</div>
 <p>Similarly we can extract the predictions the SOM made on the training dataset</p>
-<div class="code-wrapper" data-controller="code">
-<div class="code-header">
-<span class="code-lang">python</span></div>
-<div class="highlight"><pre><code><span class="n">pred_train</span> <span class="o">=</span> <span class="n">som</span><span class="o">.</span><span class="n">train_bmus_</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pred_train</span> <span class="o">=</span> <span class="n">som</span><span class="o">.</span><span class="n">train_bmus_</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">pred_train</span><span class="p">)</span>
-</code></pre></div></div>
-<p class="caption">Results</p>
-<div class="code-wrapper" data-controller="code">
-<div class="code-header">
-<span class="code-lang">none</span></div>
-<div class="highlight"><pre><code>[2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
- 2 2 2 2 2 2 2 2 2 2 2 2 2 0 0 0 1 0 0 0 1 0 1 1 1 1 0 1 0 0 1 0 1 0 1 0 0
- 0 0 0 0 0 1 1 1 1 0 1 0 0 0 1 1 1 0 1 1 1 1 1 0 1 1 0 0 0 0 0 0 1 0 0 0 0
- 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]
-</code></pre></div></div>
+</pre></div>
+</div>
+<p><span class="caption-text">Results</span></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ 0 0 0 0 0 0 0 0 0 0 0 0 0 2 2 2 1 2 1 2 1 2 1 1 1 1 2 1 2 1 1 2 1 2 1 2 2
+ 1 2 2 2 2 1 1 1 1 2 1 2 2 2 1 1 1 2 1 1 1 1 1 1 1 1 2 2 2 2 2 2 1 2 2 2 2
+ 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2]
+</pre></div>
+</div>
 <p>The SOM does not directly give us the predicted class but rather the closest neuron in the SOM for each data point. Because there are only three neurons, we can neverthelss associate them to a class.</p>
 <p>Let us plot the training (small points) and test (large points) datasets colour coded by their best-matching unit which will act as a class</p>
-<div class="code-wrapper" data-controller="code">
-<div class="code-header">
-<span class="code-lang">python</span></div>
-<div class="highlight"><pre><code><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span>   <span class="k">as</span>     <span class="nn">plt</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span>   <span class="k">as</span>     <span class="nn">plt</span>
 <span class="kn">from</span>   <span class="nn">matplotlib.colors</span>   <span class="kn">import</span> <span class="n">TwoSlopeNorm</span>
 <span class="kn">from</span>   <span class="nn">matplotlib.gridspec</span> <span class="kn">import</span> <span class="n">GridSpec</span>
 <span class="kn">from</span>   <span class="nn">matplotlib</span>          <span class="kn">import</span> <span class="n">rc</span>
@@ -237,9 +602,9 @@ None
 
 <span class="n">norm</span> <span class="o">=</span> <span class="n">TwoSlopeNorm</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 
-<span class="n">rc</span><span class="p">(</span><span class="s1">'font'</span><span class="p">,</span> <span class="o">**</span><span class="p">{</span><span class="s1">'family'</span><span class="p">:</span> <span class="s1">'serif'</span><span class="p">,</span> <span class="s1">'serif'</span><span class="p">:</span> <span class="p">[</span><span class="s1">'Times'</span><span class="p">]})</span>
-<span class="n">rc</span><span class="p">(</span><span class="s1">'text'</span><span class="p">,</span> <span class="n">usetex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">'text.latex.preamble'</span><span class="p">]</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">'\usepackage</span><span class="si">{newtxmath}</span><span class="s1">'</span>
+<span class="n">rc</span><span class="p">(</span><span class="s1">&#39;font&#39;</span><span class="p">,</span> <span class="o">**</span><span class="p">{</span><span class="s1">&#39;family&#39;</span><span class="p">:</span> <span class="s1">&#39;serif&#39;</span><span class="p">,</span> <span class="s1">&#39;serif&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Times&#39;</span><span class="p">]})</span>
+<span class="n">rc</span><span class="p">(</span><span class="s1">&#39;text&#39;</span><span class="p">,</span> <span class="n">usetex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;text.latex.preamble&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;\usepackage</span><span class="si">{newtxmath}</span><span class="s1">&#39;</span>
 
 <span class="n">f</span>   <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">))</span>
 <span class="n">gs</span>  <span class="o">=</span> <span class="n">GridSpec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -247,52 +612,54 @@ None
 <span class="n">ax2</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 
 <span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="p">[</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">]:</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_ticks_position</span><span class="p">(</span><span class="s1">'both'</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_ticks_position</span><span class="p">(</span><span class="s1">'both'</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">'x'</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">'both'</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="s1">'in'</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">'y'</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">'both'</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="s1">'in'</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">'Petal width (cm)'</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_ticks_position</span><span class="p">(</span><span class="s1">&#39;both&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_ticks_position</span><span class="p">(</span><span class="s1">&#39;both&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="s1">&#39;in&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="s1">&#39;in&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Petal width (cm)&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
 
-<span class="n">ax1</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data_train</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">data_train</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">pred_train</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">'bwr'</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s1">'k'</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">'o'</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data_test</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span>  <span class="n">data_test</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span>  <span class="n">c</span><span class="o">=</span><span class="n">pred_test</span><span class="p">,</span>  <span class="n">cmap</span><span class="o">=</span><span class="s1">'bwr'</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s1">'k'</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">'o'</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">'Petal length (cm)'</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data_train</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">data_train</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">pred_train</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bwr&#39;</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data_test</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span>  <span class="n">data_test</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span>  <span class="n">c</span><span class="o">=</span><span class="n">pred_test</span><span class="p">,</span>  <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bwr&#39;</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Petal length (cm)&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
 
 <span class="n">target</span>                              <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
-<span class="n">target</span><span class="p">[</span><span class="n">target</span> <span class="o">==</span> <span class="s1">'Iris-setosa'</span><span class="p">]</span>     <span class="o">=</span> <span class="mi">0</span>
-<span class="n">target</span><span class="p">[</span><span class="n">target</span> <span class="o">==</span> <span class="s1">'Iris-versicolor'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">target</span><span class="p">[</span><span class="n">target</span> <span class="o">==</span> <span class="s1">'Iris-virginica'</span><span class="p">]</span>  <span class="o">=</span> <span class="mi">2</span>
+<span class="n">target</span><span class="p">[</span><span class="n">target</span> <span class="o">==</span> <span class="s1">&#39;Iris-setosa&#39;</span><span class="p">]</span>     <span class="o">=</span> <span class="mi">0</span>
+<span class="n">target</span><span class="p">[</span><span class="n">target</span> <span class="o">==</span> <span class="s1">&#39;Iris-versicolor&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">target</span><span class="p">[</span><span class="n">target</span> <span class="o">==</span> <span class="s1">&#39;Iris-virginica&#39;</span><span class="p">]</span>  <span class="o">=</span> <span class="mi">2</span>
 
-<span class="n">ax2</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data_train</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">data_train</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">target</span><span class="p">[:</span><span class="o">-</span><span class="mi">10</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">'bwr'</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s1">'k'</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">'o'</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data_test</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span>  <span class="n">data_test</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span>  <span class="n">c</span><span class="o">=</span><span class="n">target</span><span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">:],</span>  <span class="n">cmap</span><span class="o">=</span><span class="s1">'bwr'</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s1">'k'</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">'o'</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data_train</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">data_train</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">target</span><span class="p">[:</span><span class="o">-</span><span class="mi">10</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bwr&#39;</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data_test</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span>  <span class="n">data_test</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span>  <span class="n">c</span><span class="o">=</span><span class="n">target</span><span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">:],</span>  <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bwr&#39;</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
 <span class="n">ax2</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([</span><span class="mf">0.2</span><span class="p">])</span>
 <span class="n">ax2</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">([])</span>
 
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">'SOM clustering'</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">'IRIS dataset'</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;SOM clustering&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;IRIS dataset&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</code></pre></div></div>
-<p>(<a class="reference external" href="../tutorial/index-1.py" rel="nofollow noopener">Source code<svg aria-hidden="true" class="external-link-icon" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 19H5V5h7V3H5a2 2 0 00-2 2v14a2 2 0 002 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"></path></svg></a>, <a class="reference external" href="../tutorial/index-1.png" rel="nofollow noopener">png<svg aria-hidden="true" class="external-link-icon" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 19H5V5h7V3H5a2 2 0 00-2 2v14a2 2 0 002 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"></path></svg></a>, <a class="reference external" href="../tutorial/index-1.hires.png" rel="nofollow noopener">hires.png<svg aria-hidden="true" class="external-link-icon" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 19H5V5h7V3H5a2 2 0 00-2 2v14a2 2 0 002 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"></path></svg></a>, <a class="reference external" href="../tutorial/index-1.pdf" rel="nofollow noopener">pdf<svg aria-hidden="true" class="external-link-icon" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 19H5V5h7V3H5a2 2 0 00-2 2v14a2 2 0 002 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"></path></svg></a>)</p>
+</pre></div>
+</div>
+<p>(<a class="reference external" href="../tutorial/index-1.py">Source code</a>, <a class="reference external" href="../tutorial/index-1.png">png</a>, <a class="reference external" href="../tutorial/index-1.hires.png">hires.png</a>, <a class="reference external" href="../tutorial/index-1.pdf">pdf</a>)</p>
 <figure class="align-default">
-<img alt="../_images/index-1.png" class="plot-directive" src="../_images/index-1.png"/>
+<img alt="../_images/index-1.png" class="plot-directive" src="../_images/index-1.png" />
 </figure>
-<p>Colors do not match between subfigures, they are just here to show clustering.</p>
+<p>By playing with the different parameters of the SOM and the different strategies we can achieve better or worse results.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Colours do not match between subfigures, they are just here to show clustering.</p>
+</div>
 </section>
 <section id="predict-sepal-width">
-<h2>Predict sepal width<a aria-label="Click to copy this link" class="headerlink tooltipped tooltipped-ne" data-action="click-&gt;clipboard#copyHeaderLink" data-controller="clipboard" href="#predict-sepal-width">¶</a></h2>
+<h2>Predict sepal width<a class="headerlink" href="#predict-sepal-width" title="Permalink to this headline">#</a></h2>
 <p>We can also use the SOM to predict additional features of the test dataset. To do so, we first need to assign new features to the neurons of the SOM.</p>
 <p>Let us predict the sepal width of the test dataset using our SOM. To do so we will train a new SOM with more neurons to have finer predictions</p>
-<div class="code-wrapper" data-controller="code">
-<div class="code-header">
-<span class="code-lang">python</span></div>
-<div class="highlight"><pre><code><span class="kn">import</span> <span class="nn">pandas</span>
-<span class="kn">from</span>   <span class="nn">SOMptimised</span> <span class="kn">import</span> <span class="n">SOM</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span>
+<span class="kn">from</span>   <span class="nn">SOMptimised</span> <span class="kn">import</span> <span class="n">SOM</span><span class="p">,</span> <span class="n">LinearLearningStrategy</span><span class="p">,</span> <span class="n">ConstantRadiusStrategy</span><span class="p">,</span> <span class="n">euclidianMetric</span>
 <span class="kn">import</span> <span class="nn">numpy</span>       <span class="k">as</span> <span class="nn">np</span>
 
 <span class="c1"># Extract data</span>
-<span class="n">table</span>        <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'examples/iris_dataset/iris_dataset.csv'</span><span class="p">)</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">frac</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">swidth</span>       <span class="o">=</span> <span class="n">table</span><span class="p">[</span><span class="s1">'sepal width (cm)'</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
-<span class="n">data</span>         <span class="o">=</span> <span class="n">table</span><span class="p">[[</span><span class="s1">'petal length (cm)'</span><span class="p">,</span> <span class="s1">'petal width (cm)'</span><span class="p">,</span> <span class="s1">'sepal length (cm)'</span><span class="p">]]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+<span class="n">table</span>        <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;examples/iris_dataset/iris_dataset.csv&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">frac</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">swidth</span>       <span class="o">=</span> <span class="n">table</span><span class="p">[</span><span class="s1">&#39;sepal width (cm)&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+<span class="n">data</span>         <span class="o">=</span> <span class="n">table</span><span class="p">[[</span><span class="s1">&#39;petal length (cm)&#39;</span><span class="p">,</span> <span class="s1">&#39;petal width (cm)&#39;</span><span class="p">,</span> <span class="s1">&#39;sepal length (cm)&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
 
 <span class="n">data_train</span>   <span class="o">=</span> <span class="n">data</span><span class="p">[:</span><span class="o">-</span><span class="mi">10</span><span class="p">]</span>
 <span class="n">data_test</span>    <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">:]</span>
@@ -300,22 +667,24 @@ None
 <span class="n">swidth_test</span>  <span class="o">=</span> <span class="n">swidth</span><span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">:]</span>
 
 <span class="c1"># Fit SOM</span>
-<span class="n">m</span>   <span class="o">=</span> <span class="mi">5</span>
-<span class="n">n</span>   <span class="o">=</span> <span class="mi">5</span>
-<span class="n">nf</span>  <span class="o">=</span> <span class="n">data_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># Number of features</span>
-<span class="n">som</span> <span class="o">=</span> <span class="n">SOM</span><span class="p">(</span><span class="n">m</span><span class="o">=</span><span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="n">nf</span><span class="p">,</span> <span class="n">lr</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mf">1e4</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
-<span class="n">som</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data_train</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">m</span>      <span class="o">=</span> <span class="mi">5</span>
+<span class="n">n</span>      <span class="o">=</span> <span class="mi">5</span>
+<span class="n">lr</span>     <span class="o">=</span> <span class="n">LinearLearningStrategy</span><span class="p">(</span><span class="n">lr</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>      <span class="c1"># Learning rate strategy</span>
+<span class="n">sigma</span>  <span class="o">=</span> <span class="n">ConstantRadiusStrategy</span><span class="p">(</span><span class="n">sigma</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span> <span class="c1"># Neighbourhood radius strategy</span>
+<span class="n">metric</span> <span class="o">=</span> <span class="n">euclidianMetric</span>                   <span class="c1"># Metric used to compute BMUs</span>
+<span class="n">nf</span>     <span class="o">=</span> <span class="n">data_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>               <span class="c1"># Number of features</span>
+
+<span class="n">som</span>    <span class="o">=</span> <span class="n">SOM</span><span class="p">(</span><span class="n">m</span><span class="o">=</span><span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="n">nf</span><span class="p">,</span> <span class="n">lr</span><span class="o">=</span><span class="n">lr</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="n">metric</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mf">1e4</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">som</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data_train</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="n">pred_train</span> <span class="o">=</span> <span class="n">som</span><span class="o">.</span><span class="n">train_bmus_</span>
 <span class="n">pred_test</span>  <span class="o">=</span> <span class="n">som</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">data_test</span><span class="p">)</span>
-</code></pre></div></div>
-<p>Here we used a 5*5 SOM to fit the data. A larger SOM might give more precise results but some neurons might never map to any data point though.</p>
+</pre></div>
+</div>
+<p>Here we used a <span class="math notranslate nohighlight">\(5 \times 5\)</span> SOM to fit the data. A larger SOM might give more precise results but some neurons might never map to any data point though.</p>
 <p>We also extract the sepal width column of the train and test datasets. The sepal width for the test dataset will be used to compare with the predicition from the SOM. That of the train dataset will be used to assign a sepal width for each neuron in the SOM.</p>
 <p>To compute a sepal width estimate for each neuron, we can loop through them and find all data points whose best-matching unit is that neuron. The sepal width of the neuron can then be computed as the median value of the sepal width of all these data points</p>
-<div class="code-wrapper" data-controller="code">
-<div class="code-header">
-<span class="code-lang">python</span></div>
-<div class="highlight"><pre><code><span class="c1"># Compute median sepal width and uncertainty for all neurons</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute median sepal width and uncertainty for all neurons</span>
 <span class="n">swidth_med</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">swidth_std</span> <span class="o">=</span> <span class="p">[]</span>
 
@@ -324,105 +693,372 @@ None
 
     <span class="n">swidth_med</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nanmedian</span><span class="p">(</span><span class="n">tmp</span><span class="p">))</span>
     <span class="n">swidth_std</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nanstd</span><span class="p">(</span><span class="n">tmp</span><span class="p">))</span>
-</code></pre></div></div>
+</pre></div>
+</div>
 <p>In the code above, we also computed an estimate of the uncertainty on the sepal width as the standard deviation. Lets us predict the sepal width of the test set using the SOM</p>
-<div class="code-wrapper" data-controller="code">
-<div class="code-header">
-<span class="code-lang">python</span></div>
-<div class="highlight"><pre><code><span class="c1"># Predict sepal width for test set</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Predict sepal width for test set</span>
 <span class="n">swidth_test_pred</span>     <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">swidth_med</span><span class="p">)[</span><span class="n">pred_test</span><span class="p">]</span>
 <span class="n">swidth_test_pred_std</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">swidth_std</span><span class="p">)[</span><span class="n">pred_test</span><span class="p">]</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">'Predicted     Real'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Predicted     Real&#39;</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">pred</span><span class="p">,</span> <span class="n">err</span><span class="p">,</span> <span class="n">true</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">swidth_test_pred</span><span class="p">,</span> <span class="n">swidth_test_pred_std</span><span class="p">,</span> <span class="n">swidth_test</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">pred</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1"> +- </span><span class="si">{</span><span class="n">err</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">    </span><span class="si">{</span><span class="n">true</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
-</code></pre></div></div>
-<p class="caption">Results</p>
-<div class="code-wrapper" data-controller="code">
-<div class="code-header">
-<span class="code-lang">none</span></div>
-<div class="highlight"><pre><code>Predicted     Real
-2.7 +- 0.2    2.5
-3.2 +- 0.2    3.3
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">pred</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1"> +- </span><span class="si">{</span><span class="n">err</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">    </span><span class="si">{</span><span class="n">true</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><span class="caption-text">Results</span></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Predicted     Real
+3.0 +- 0.3    3.0
+3.0 +- 0.3    2.7
+3.0 +- 0.3    3.8
+2.9 +- 0.3    3.1
+3.0 +- 0.3    3.1
+3.0 +- 0.3    2.6
+2.9 +- 0.2    2.3
 2.9 +- 0.3    2.8
-3.0 +- 0.4    2.8
-3.0 +- 0.4    3.0
-2.2 +- 0.0    2.8
-3.1 +- 0.1    2.8
-3.9 +- 0.3    3.4
-2.7 +- 0.2    3.0
-3.2 +- 0.3    3.1
-</code></pre></div></div>
+3.5 +- 0.3    3.1
+3.0 +- 0.3    3.0
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <p>Depending on the parameters of the SOM and the initialisation of the weights, it is not possible to predict a sepal width for all the data points in the test dataset.</p>
+</div>
+</section>
+<section id="of-the-importance-of-normalisation">
+<h2>Of the importance of normalisation<a class="headerlink" href="#of-the-importance-of-normalisation" title="Permalink to this headline">#</a></h2>
+<p>This SOM implementation will initialise by default the weight vectors or the neurons to random values using a Gaussian distribution with zero mean and unity standard deviation. This means that the weight vectors will have values mostly between -1 and 1.</p>
+<p>If the train and test data have values which are not normalised, that is with zero mean and a standard deviation of one, there is a chance that the fitting procedure will, in the best case, yield unsatisfactory resulst, and in the worst case, completely fail.</p>
+<p>To solve this issue, it can be beneficial to normalise the data beforehand.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The normalisation of the data will will affect the fitting procedure in various ways. Weight vectors initialised far from the data will:</p>
+<ul class="simple">
+<li><p>not train in a similar fashion as if they were intialised close to the data</p></li>
+<li><p>require more steps to converge</p></li>
+<li><p>potentially not converge enough since the convergence of the neurons is reduced as the training phase proceeds</p></li>
+</ul>
+</div>
+<p>We will illustrate the importance of normalisation in an example. To do so, we will generate clusters of data with random <span class="math notranslate nohighlight">\((x, y)\)</span> coordinates using a normal distribution:</p>
+<p><span class="caption-text">Code </span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span>        <span class="k">as</span>     <span class="nn">np</span>
+<span class="kn">from</span>   <span class="nn">numpy.random</span> <span class="kn">import</span> <span class="n">default_rng</span>
+<span class="n">rng</span> <span class="o">=</span> <span class="n">default_rng</span><span class="p">()</span>
+
+<span class="c1"># Random x coordinates</span>
+<span class="n">x</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)))</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)))</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=-</span><span class="mi">3</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)))</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)))</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=-</span><span class="mi">6</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)))</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=-</span><span class="mi">10</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)))</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)))</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=-</span><span class="mi">6</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)))</span>
+
+<span class="c1"># Random y coordinates</span>
+<span class="n">y</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">y</span><span class="p">,</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)))</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">y</span><span class="p">,</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=-</span><span class="mi">10</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)))</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">y</span><span class="p">,</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=-</span><span class="mi">10</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)))</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">y</span><span class="p">,</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)))</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">y</span><span class="p">,</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=-</span><span class="mi">10</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)))</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">y</span><span class="p">,</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)))</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">y</span><span class="p">,</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=-</span><span class="mi">16</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)))</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">y</span><span class="p">,</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=-</span><span class="mi">8</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)))</span>
+
+<span class="c1"># Combine coordinates to have an array of the correct shape for the SOM to train onto</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><span class="caption-text">Results</span></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(800, 2)
+</pre></div>
+</div>
+<p>To begin with, we will not normalise the data. For illustration purposes, we will set the seed of the SOM weight initialisation so that we know the initial values of the SOM. However, we will not disable shuffling because of the way we built our dataset. Indeed, we built the clusters one after the other. This means that when training the SOM without shuffling, the neuron closest to the first cluster will be trained until the cluster has been exhausted, then the neuron closest to the second cluster will be trained and so on. In the end, the training will be biased by the fact that neurons are not trained at the same frequency.</p>
+<p>Let us train the SOM onto this dataset:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">SOMptimised</span> <span class="kn">import</span> <span class="n">SOM</span><span class="p">,</span> <span class="n">LinearLearningStrategy</span><span class="p">,</span> <span class="n">ConstantRadiusStrategy</span><span class="p">,</span> <span class="n">euclidianMetric</span>
+
+<span class="n">lr</span>     <span class="o">=</span> <span class="n">LinearLearningStrategy</span><span class="p">(</span><span class="n">lr</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>      <span class="c1"># Learning rate strategy</span>
+<span class="n">sigma</span>  <span class="o">=</span> <span class="n">ConstantRadiusStrategy</span><span class="p">(</span><span class="n">sigma</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span> <span class="c1"># Neighbourhood radius strategy</span>
+<span class="n">metric</span> <span class="o">=</span> <span class="n">euclidianMetric</span>                   <span class="c1"># Metric used to compute BMUs</span>
+<span class="n">nf</span>     <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>                     <span class="c1"># Number of features</span>
+<span class="n">som</span>    <span class="o">=</span> <span class="n">SOM</span><span class="p">(</span><span class="n">m</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="n">nf</span><span class="p">,</span> <span class="n">lr</span><span class="o">=</span><span class="n">lr</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="n">metric</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mf">1e4</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">som</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Prediction for the train dataset</span>
+<span class="n">pred</span>   <span class="o">=</span> <span class="n">som</span><span class="o">.</span><span class="n">train_bmus_</span>
+</pre></div>
+</div>
+<p>Let us see how the SOM performed. We will plot on the left figure the data with black points and the initial random weights values as coloured stars. On the right figure, we will plot the trained SOM weight values as coloured stars and the data as coloured points which matches that of their BMU:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span>   <span class="k">as</span>     <span class="nn">plt</span>
+<span class="kn">from</span>   <span class="nn">matplotlib</span>          <span class="kn">import</span> <span class="n">rc</span>
+<span class="kn">from</span>   <span class="nn">matplotlib.gridspec</span> <span class="kn">import</span> <span class="n">GridSpec</span>
+
+<span class="n">rc</span><span class="p">(</span><span class="s1">&#39;font&#39;</span><span class="p">,</span> <span class="o">**</span><span class="p">{</span><span class="s1">&#39;family&#39;</span><span class="p">:</span> <span class="s1">&#39;serif&#39;</span><span class="p">,</span> <span class="s1">&#39;serif&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Times&#39;</span><span class="p">]})</span>
+<span class="n">rc</span><span class="p">(</span><span class="s1">&#39;text&#39;</span><span class="p">,</span> <span class="n">usetex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">f</span>  <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">))</span>
+<span class="n">gs</span> <span class="o">=</span> <span class="n">GridSpec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">hspace</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1">#####################</span>
+<span class="c1">#     Left plot     #</span>
+<span class="c1">#####################</span>
+
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="n">ax1</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_ticks_position</span><span class="p">(</span><span class="s1">&#39;both&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_ticks_position</span><span class="p">(</span><span class="s1">&#39;both&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="s1">&#39;in&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="s1">&#39;in&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Initial weight vectors&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+
+<span class="c1"># We recompute the initial weight values (this is possible because we set the seed of the random generator)</span>
+<span class="n">rng</span>     <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">weights</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="mi">4</span><span class="p">,</span> <span class="n">nf</span><span class="p">))</span>
+
+<span class="n">colors</span>  <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;yellow&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="s1">&#39;magenta&#39;</span><span class="p">,</span> <span class="s1">&#39;brown&#39;</span><span class="p">,</span> <span class="s1">&#39;pink&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">]</span>
+
+<span class="c1"># Plot neurons</span>
+<span class="k">for</span> <span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">weights</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">weights</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">colors</span><span class="p">):</span>
+   <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Plot train data</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;k.&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+
+<span class="c1">######################</span>
+<span class="c1">#     Right plot     #</span>
+<span class="c1">######################</span>
+
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="n">ax2</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_ticks_position</span><span class="p">(</span><span class="s1">&#39;both&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_ticks_position</span><span class="p">(</span><span class="s1">&#39;both&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="s1">&#39;in&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="s1">&#39;in&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Weight vectors after training&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">([])</span>
+
+<span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">som</span><span class="o">.</span><span class="n">weights</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">som</span><span class="o">.</span><span class="n">weights</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">som</span><span class="o">.</span><span class="n">weights</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">colors</span><span class="p">):</span>
+
+   <span class="c1"># Find data which have this neuron as BMU</span>
+   <span class="n">data_idx</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">pred</span> <span class="o">==</span> <span class="n">idx</span><span class="p">]</span>
+
+   <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data_idx</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">data_idx</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+   <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">mec</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>(<a class="reference external" href="../tutorial/index-2.py">Source code</a>, <a class="reference external" href="../tutorial/index-2.png">png</a>, <a class="reference external" href="../tutorial/index-2.hires.png">hires.png</a>, <a class="reference external" href="../tutorial/index-2.pdf">pdf</a>)</p>
+<figure class="align-default">
+<img alt="../_images/index-2.png" class="plot-directive" src="../_images/index-2.png" />
+</figure>
+<p>We see that the result if far from being optimal. Even if some clusters are recovered by the SOM, some neurons are far from where they should ideally converge. Besides, even those which are near clusters are somewhat offset from their ideal position. The reason for this effect is that the data have not been normalised. A neuron which is initialised at a privileged position with respect to some cluster will have more chance to being trained and pulled onto that cluster, making other neurons less likely to be trained efficiently.</p>
+<p>To circumvent this problem we can normalise the data by removing the mean value and dividing by their standard deviation for each feature. This way, the majority of the data should be located in the range <span class="math notranslate nohighlight">\([-1, 1]\)</span>, near the random initial positions of the SOM wieght vectors:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print mean and std before normalisation</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Mean along x and y axes before normalisation: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Standard deviation along x and y axes before normalisation: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">nanstd</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># Normalise each feature</span>
+<span class="n">new_data</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">nanstd</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Print mean and std after normalisation</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Mean along x and y axes after normalisation: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Standard deviation along x and y axes after normalisation: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">nanstd</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><span class="caption-text">Results</span></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Mean before normalisation: [ 1.69870101 -3.41273105]
+Standard deviation before normalisation: [ 9.33136988 11.12411972]
+Mean after normalisation: [-1.42108547e-16  7.10542736e-17]
+Standard deviation after normalisation: [1. 1.]
+</pre></div>
+</div>
+<p>Now, we can train again the SOM and see whether the normalisation changed anything</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">som</span>    <span class="o">=</span> <span class="n">SOM</span><span class="p">(</span><span class="n">m</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="n">nf</span><span class="p">,</span> <span class="n">lr</span><span class="o">=</span><span class="n">lr</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="n">metric</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mf">1e4</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">som</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data_norm</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Prediction for the train dataset</span>
+<span class="n">pred</span>   <span class="o">=</span> <span class="n">som</span><span class="o">.</span><span class="n">train_bmus_</span>
+
+<span class="c1"># Plotting</span>
+<span class="n">rc</span><span class="p">(</span><span class="s1">&#39;font&#39;</span><span class="p">,</span> <span class="o">**</span><span class="p">{</span><span class="s1">&#39;family&#39;</span><span class="p">:</span> <span class="s1">&#39;serif&#39;</span><span class="p">,</span> <span class="s1">&#39;serif&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Times&#39;</span><span class="p">]})</span>
+<span class="n">rc</span><span class="p">(</span><span class="s1">&#39;text&#39;</span><span class="p">,</span> <span class="n">usetex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">f</span>  <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">))</span>
+<span class="n">gs</span> <span class="o">=</span> <span class="n">GridSpec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">hspace</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1">#####################</span>
+<span class="c1">#     Left plot     #</span>
+<span class="c1">#####################</span>
+
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="n">ax1</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_ticks_position</span><span class="p">(</span><span class="s1">&#39;both&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_ticks_position</span><span class="p">(</span><span class="s1">&#39;both&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="s1">&#39;in&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="s1">&#39;in&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Initial weight vectors&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+
+<span class="c1"># We recompute the initial weight values (this is possible because we set the seed of the random generator)</span>
+<span class="n">rng</span>     <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">weights</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="mi">4</span><span class="p">,</span> <span class="n">nf</span><span class="p">))</span>
+
+<span class="n">colors</span>  <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;yellow&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="s1">&#39;magenta&#39;</span><span class="p">,</span> <span class="s1">&#39;brown&#39;</span><span class="p">,</span> <span class="s1">&#39;pink&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">]</span>
+
+<span class="c1"># Plot neurons</span>
+<span class="k">for</span> <span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">weights</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">weights</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">colors</span><span class="p">):</span>
+   <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Plot train data</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data_norm</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">data_norm</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;k.&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+
+<span class="c1">######################</span>
+<span class="c1">#     Right plot     #</span>
+<span class="c1">######################</span>
+
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="n">ax2</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_ticks_position</span><span class="p">(</span><span class="s1">&#39;both&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_ticks_position</span><span class="p">(</span><span class="s1">&#39;both&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="s1">&#39;in&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="s1">&#39;in&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Weight vectors after training&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">([])</span>
+
+<span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">som</span><span class="o">.</span><span class="n">weights</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">som</span><span class="o">.</span><span class="n">weights</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">som</span><span class="o">.</span><span class="n">weights</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">colors</span><span class="p">):</span>
+
+   <span class="c1"># Find data which have this neuron as BMU</span>
+   <span class="n">data_idx</span> <span class="o">=</span> <span class="n">data_norm</span><span class="p">[</span><span class="n">pred</span> <span class="o">==</span> <span class="n">idx</span><span class="p">]</span>
+
+   <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data_idx</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">data_idx</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+   <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">mec</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>(<a class="reference external" href="../tutorial/index-3.py">Source code</a>, <a class="reference external" href="../tutorial/index-3.png">png</a>, <a class="reference external" href="../tutorial/index-3.hires.png">hires.png</a>, <a class="reference external" href="../tutorial/index-3.pdf">pdf</a>)</p>
+<figure class="align-default">
+<img alt="../_images/index-3.png" class="plot-directive" src="../_images/index-3.png" />
+</figure>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Normalisation is not always the best option. It all comes down to the metric used.</p>
+<p>For instance, with the <a class="reference internal" href="../API/metric.html#SOMptimised.metric.chi2CigaleMetric" title="SOMptimised.metric.chi2CigaleMetric"><code class="xref py py-func docutils literal notranslate"><span class="pre">chi2CigaleMetric()</span></code></a> metric, data should not be normalised. Instead, to have an optimal SOM, one should denormalise the SOM weight vectors using <code class="code highlight python docutils literal notranslate"><span class="n"><span class="pre">unnormalise_weights</span></span><span class="o"><span class="pre">=</span></span><span class="kc"><span class="pre">True</span></span></code> when calling the <a class="reference internal" href="../API/som.html#SOMptimised.som.SOM.fit" title="SOMptimised.som.SOM.fit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fit()</span></code></a> method.</p>
+<p>See the documentation for the metric you use for more information.</p>
+</div>
 </section>
 <section id="set-and-get-extra-parameters">
-<h2>Set and get extra parameters<a aria-label="Click to copy this link" class="headerlink tooltipped tooltipped-ne" data-action="click-&gt;clipboard#copyHeaderLink" data-controller="clipboard" href="#set-and-get-extra-parameters">¶</a></h2>
-<p>In the previous section we computed an additional parameter for each neuron in the SOM: the petal width. Rather than keeping such parameters in separate variables, we can integrate them into the SOM to easily access them</p>
-<div class="code-wrapper" data-controller="code">
-<div class="code-header">
-<span class="code-lang">python</span></div>
-<div class="highlight"><pre><code><span class="n">som</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s1">'petal width'</span><span class="p">,</span> <span class="n">swidth_med</span><span class="p">)</span>
-<span class="n">som</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s1">'petal width uncertainty'</span><span class="p">,</span> <span class="n">swidth_std</span><span class="p">)</span>
-</code></pre></div></div>
-<p>To retrieve later on an extra parameter (e.g. petal width), then one can do</p>
-<div class="code-wrapper" data-controller="code">
-<div class="code-header">
-<span class="code-lang">python</span></div>
-<div class="highlight"><pre><code><span class="n">pwidth</span> <span class="o">=</span> <span class="n">som</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'petal width'</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">pdwidth</span><span class="p">)</span>
-</code></pre></div></div>
-<p class="caption">Results</p>
-<div class="code-wrapper" data-controller="code">
-<div class="code-header">
-<span class="code-lang">none</span></div>
-<div class="highlight"><pre><code>[2.75, 2.9, 2.75, 2.35, nan, 2.8, 2.7, 3.2, 2.5, 2.8, 2.55, 2.9, 3.0, 3.0, 3.0, 3.4, nan, 2.9, nan, 2.3499999999999996, 3.2, 3.7, nan, nan, nan]
-</code></pre></div></div>
+<h2>Set and get extra parameters<a class="headerlink" href="#set-and-get-extra-parameters" title="Permalink to this headline">#</a></h2>
+<p>In the previous section we computed an additional parameter for each neuron in the SOM: the petal width. Rather than keeping such parameters in separate variables, we can integrate them into the SOM to easily access them later on.</p>
+<p>This is done with the <a class="reference internal" href="../API/som.html#SOMptimised.som.SOM.set" title="SOMptimised.som.SOM.set"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set()</span></code></a> method</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">som</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s1">&#39;petal width&#39;</span><span class="p">,</span> <span class="n">swidth_med</span><span class="p">)</span>
+<span class="n">som</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s1">&#39;petal width uncertainty&#39;</span><span class="p">,</span> <span class="n">swidth_std</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To retrieve later on an extra parameter (e.g. petal width), then one can use the <a class="reference internal" href="../API/som.html#SOMptimised.som.SOM.get" title="SOMptimised.som.SOM.get"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get()</span></code></a> method</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pwidth</span> <span class="o">=</span> <span class="n">som</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;petal width&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Petal width for the SOM neurons:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">swidth_med</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Petal width stored in the SOM:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pwidth</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><span class="caption-text">Results</span></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Petal width for the SOM neurons:
+[nan, nan, nan, nan, nan, nan, 3.1, 3.7, 3.4, nan, nan, 3.1, 3.9, 2.4000000000000004, 2.9, nan, nan, 2.5, 3.0, 2.8, nan, nan, 2.7, 2.9, 3.05]
+
+Petal width stored in the SOM:
+[nan, nan, nan, nan, nan, nan, 3.1, 3.7, 3.4, nan, nan, 3.1, 3.9, 2.4000000000000004, 2.9, nan, nan, 2.5, 3.0, 2.8, nan, nan, 2.7, 2.9, 3.05]
+</pre></div>
+</div>
 </section>
 <section id="save-and-load-som">
-<h2>Save and load SOM<a aria-label="Click to copy this link" class="headerlink tooltipped tooltipped-ne" data-action="click-&gt;clipboard#copyHeaderLink" data-controller="clipboard" href="#save-and-load-som">¶</a></h2>
-<p>A last feature of this SOM implementation is that the it can be saved at any moment and loaded back again. This is easily done using the <a class="reference internal" href="../API/som.html#SOMptimised.som.SOM.write" title="SOMptimised.som.SOM.write"><code class="xref py py-meth docutils literal notranslate">write()</code></a> method</p>
-<div class="code-wrapper" data-controller="code">
-<div class="code-header">
-<span class="code-lang">python</span></div>
-<div class="highlight"><pre><code><span class="n">som</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">'som_save'</span><span class="p">)</span>
-</code></pre></div></div>
-<p>The SOM can be loaded back at any time later on using the <a class="reference internal" href="../API/som.html#SOMptimised.som.SOM.read" title="SOMptimised.som.SOM.read"><code class="xref py py-meth docutils literal notranslate">read()</code></a> method</p>
-<div class="code-wrapper" data-controller="code">
-<div class="code-header">
-<span class="code-lang">python</span></div>
-<div class="highlight"><pre><code><span class="n">newsom</span> <span class="o">=</span> <span class="n">SOM</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">'som_save'</span><span class="p">)</span>
+<h2>Save and load SOM<a class="headerlink" href="#save-and-load-som" title="Permalink to this headline">#</a></h2>
+<p>A last feature of this SOM implementation is that the it can be saved at any moment and loaded back again. This is easily done using the <a class="reference internal" href="../API/som.html#SOMptimised.som.SOM.write" title="SOMptimised.som.SOM.write"><code class="xref py py-meth docutils literal notranslate"><span class="pre">write()</span></code></a> method</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">som</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;som_save&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The SOM can be loaded back at any time later on using the <a class="reference internal" href="../API/som.html#SOMptimised.som.SOM.read" title="SOMptimised.som.SOM.read"><code class="xref py py-meth docutils literal notranslate"><span class="pre">read()</span></code></a> method</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">newsom</span> <span class="o">=</span> <span class="n">SOM</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">&#39;som_save&#39;</span><span class="p">)</span>
 
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;BMUs for train data:&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">som</span><span class="o">.</span><span class="n">train_bmus_</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">BMUs for train data loaded from file:&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">newsom</span><span class="o">.</span><span class="n">train_bmus_</span><span class="p">)</span>
-</code></pre></div></div>
-<p class="caption">Results</p>
-<div class="code-wrapper" data-controller="code">
-<div class="code-header">
-<span class="code-lang">none</span></div>
-<div class="highlight"><pre><code>[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
- 0 0 0 0 0 0 0 0 0 0 0 0 0 2 2 2 1 2 2 2 1 2 1 1 1 1 2 1 2 2 1 2 1 2 1 2 2
- 2 2 2 2 2 1 1 1 1 2 2 2 2 2 1 1 1 2 1 1 1 1 1 2 1 1 2 2 2 2 2 2 1 2 2 2 2
- 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2]
+</pre></div>
+</div>
+<p><span class="caption-text">Results</span></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>BMUs for train data:
 [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
- 0 0 0 0 0 0 0 0 0 0 0 0 0 2 2 2 1 2 2 2 1 2 1 1 1 1 2 1 2 2 1 2 1 2 1 2 2
- 2 2 2 2 2 1 1 1 1 2 2 2 2 2 1 1 1 2 1 1 1 1 1 2 1 1 2 2 2 2 2 2 1 2 2 2 2
- 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2]
-</code></pre></div></div>
+ 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 0 1 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0
+ 0 0 1 1 0 0 0 0 0 1 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 2 1 2 1 2 2 0 2 2 2 1
+ 1 2 0 1 1 1 2 2 1 2 0 2 1 2 2 1 1 1 2 2 2 1 1 1 2 1 1 0 2]
+
+BMUs for train data loaded from file:
+[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 0 1 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0
+ 0 0 1 1 0 0 0 0 0 1 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 2 1 2 1 2 2 0 2 2 2 1
+ 1 2 0 1 1 1 2 2 1 2 0 2 1 2 2 1 1 1 2 2 2 1 1 1 2 1 1 0 2]
+</pre></div>
+</div>
 </section>
 </section>
-</article>
-<footer>
-<div class="mt-20 mb-4 text-sm text-gray-700">© 2022, Wilfried Mercier Made with <a href="https://www.sphinx-doc.org">Sphinx 4.4.0</a></div>
-</footer></main>
-<button class="fixed bottom-0 right-0 z-20 opacity-0 p-4 m-4 tracking-wide bg-gray-900 text-gray-100 transition transform transform-gpu duration-500 translate-y-full" data-action="search#hideSnackbar" data-search-target="snackbar">
-  Clear highlights
-</button><div class="fixed hidden inset-0 bg-black bg-opacity-50" data-action="click-&gt;sidebar#close" data-sidebar-target="screen">
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="../index.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">SOMptimised</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="clustering_iris.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Train the SOM to predict the iris class</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Wilfried Mercier<br/>
+  
+      &copy; Copyright 2022, Wilfried Mercier.<br/>
+</p>
+        </footer>
+    </div>
+    
 </div>
-<script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-<script src="../_static/jquery.js"></script>
-<script src="../_static/underscore.js"></script>
-<script src="../_static/doctools.js"></script>
-<script src="../_static/theme.3666d2347a4c66e5d7a8.js"></script>
-</body>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
 </html>

@@ -1,0 +1,344 @@
+
+  
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+      <title>Metric submodule | SOMptimised 1.1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" />
+      <link rel="stylesheet" href="../../_static/theme.33684ae9923d01874503.css" />
+      <link rel="stylesheet" href="../../_static/plot_directive.css" />
+        <link rel="search" title="Search" href="../../search.html" />
+        <link rel="index" title="Index" href="../../genindex.html" />
+        <link rel="next" title="Neighbourhood strategy submodule" href="../neighbourhood.html" />
+        <link rel="prev" title="Learning strategy submodule" href="../lr.html" />
+  </head>
+
+  <body class="antialiased text-gray scroll-smooth">
+    <div
+      id="page"
+      data-controller="sidebar search"
+      data-action="keydown@window->search#focus"
+      class="h-screen xl:grid xl:grid-layout"
+    >
+      <a class="block text-xl bg-white py-4 z-20 absolute top-0 h-14 inset-x-0 text-center transform -translate-y-full focus:translate-y-0 focus:outline-none transition-transform duration-75" href="#metric-submodule" title="Skip navigation links">Skip to content</a>
+
+      <header class="grid-area-header z-10 h-14">
+        <div class="bg-gray-dark shadow-md flex items-center h-full xl:px-2 relative"><div class="flex items-center">
+      <button
+    data-action="sidebar#open"
+    data-sidebar-target="hamburger"
+    class="xl:hidden h-14 w-14 leading-14 text-gray-100 hover:bg-gray-700 hover:text-brand focus:outline-none focus:bg-gray-700 focus:text-brand">
+  <span class="sr-only">Open navigation menu</span>
+  <svg aria-hidden="true" class="fill-current h-8 w-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+</button><a class="hover:bg-gray-700 focus:bg-gray-700 focus:outline-none tooltipped tooltipped-sw"
+   href="../../index.html"
+   aria-label="Back to homepage"><img class="h-14 w-14 p-3 inline-block" src="../../_static/logo.png" alt="Logo" /><span class="hidden lg:inline-block shrink-0 font-medium text-gray-100 mx-5 leading-14 tracking-wider">SOMptimised 1.1 documentation</span>
+</a></div><div class="flex justify-end items-center flex-1"><form
+  id="searchbox"
+  action="../../search.html"
+  data-action="click->search#focusSearchInput"
+  method="get"
+  class="flex print:hidden justify-between items-center leading-14 md:ml-4 bg-gray-dark text-gray-300 focus-within:bg-gray-50 focus-within:text-gray-800 focus-within:absolute focus-within:inset-x-0 focus-within:top-0 md:focus-within:w-full md:focus-within:static">
+
+  <button
+    class="text-inherit h-14 w-14"
+    aria-label="Get search results"
+    tabindex="-1"
+  >
+    <svg aria-hidden="true" class="fill-current stroke-current h-8 w-8" stroke-width="0.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+  </button>
+
+  <input
+    name="q"
+    id="search-input"
+    data-search-target="searchInput"
+    type="search"
+    aria-label="Search the docs"
+    placeholder="Search the docs"
+    class="pr-2 bg-transparent text-inherit focus:outline-none w-0 md:w-auto focus:w-full transition-all duration-100"
+  />
+</form><div class="shrink-0">
+    <a href="/SOMptimised//API/index.html" class="h-14 inline-block leading-14 text-gray-100 bg-transparent tracking-wide font-medium hover:text-brand focus:bg-gray-700 focus:outline-none hover:no-underline focus:text-brand px-2 sm:px-4">API</a>
+  
+  
+    <a href="/SOMptimised/tutorial/index.html" class="h-14 inline-block leading-14 text-gray-100 bg-transparent tracking-wide font-medium hover:text-brand focus:bg-gray-700 focus:outline-none hover:no-underline focus:text-brand px-2 sm:px-4">Tutorial</a>
+  
+  </div></div>
+</div>
+      </header>
+
+      
+  <aside data-sidebar-target="sidebar" class="grid-area-sidebar h-full fixed xl:relative inset-y-0 left-0 z-20 xl:z-0 print:hidden overflow-y-auto transition-all transform transform-gpu -translate-x-full opacity-0 duration-300 xl:translate-x-0 xl:opacity-100">
+    <nav
+  role="navigation"
+  class="h-full overflow-y-auto bg-white text-gray-600 pt-8 flex flex-col"
+>
+  <div class="nav-toc flex-1 pl-6"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Tutorial/Example</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/index.html#preparing-the-data">Preparing the data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/index.html#train-the-som-to-predict-the-iris-class">Train the SOM to predict the iris class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/index.html#predict-sepal-width">Predict sepal width</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/index.html#of-the-importance-of-normalisation">Of the importance of normalisation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/index.html#set-and-get-extra-parameters">Set and get extra parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/index.html#save-and-load-som">Save and load SOM</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">―――――――――――――――</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../lr.html">Learning strategy submodule</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lr.html#how-to-include-a-custom-learning-strategy">How to include a custom learning strategy ?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lr.html#api">API</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Metric submodule</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-include-a-custom-metric">How to include a custom metric ?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#a-note-on-normalisation">A note on normalisation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#api">API</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../neighbourhood.html">Neighbourhood strategy submodule</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../neighbourhood.html#how-to-implement-a-custom-neighbourhood-class">How to implement a custom neighbourhood class ?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../neighbourhood.html#api">API</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../som.html">API for the main som module</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+  <button
+      data-action=""
+      title="Close navigation menu"
+      class="text-4xl text-gray-800 p-4 bottom-0 hover:text-brand xl:hidden focus:text-brand self-center">
+    <span class="sr-only">Close navigation menu</span>
+    <svg aria-hidden="true" class="fill-current stroke-current h-6 w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+  </button>
+</nav>
+  </aside>
+
+  <main
+    data-controller="scroll"
+    data-action="scroll->scroll#showButton"
+    class="px-4 xl:ml-fluid grid-area-main overflow-y-auto flex flex-col h-full mx-0 md:mx-auto xl:mr-0"
+  ><nav role="navigation"
+     aria-label="breadcrumbs"
+     class="print:hidden mt-12 text-sm text-gray-light">
+  <a class="text-gray-light text-sm hover:text-gray-dark font-medium focus:text-gray-dark" href="../../index.html">SOMptimised 1.1 documentation</a>
+  <span class="mr-1">/</span><a class="text-gray-light text-sm hover:text-gray-dark" href="../index.html">API</a>
+    <span class="mr-1">/</span><span aria-current="page">Metric submodule</span>
+</nav>
+    <article role="main" class="flex-1">
+      
+  <section id="module-SOMptimised.metric">
+<span id="metric-submodule"></span><h1>Metric submodule<a class="headerlink" href="#module-SOMptimised.metric" title="Permalink to this headline">¶</a></h1>
+<p><em>Code author: Wilfried Mercier - IRAP &lt;<a class="reference external" href="mailto:wilfried&#46;mercier&#37;&#52;&#48;irap&#46;omp&#46;eu">wilfried<span>&#46;</span>mercier<span>&#64;</span>irap<span>&#46;</span>omp<span>&#46;</span>eu</a>&gt;</em></p>
+<p>Functions defining the metric used to find the BMU.</p>
+<section id="how-to-include-a-custom-metric">
+<h2>How to include a custom metric ?<a class="headerlink" href="#how-to-include-a-custom-metric" title="Permalink to this headline">¶</a></h2>
+<p>To write a <strong>custom metric</strong>, the following signature must be used:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><code><span class="k">def</span> <span class="nf">custom_metric</span><span class="p">(</span><span class="n">coord1</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">coord2</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">squared</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">axis</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+</code></pre></div></div>
+<p>Note that in the above signature, <strong>*args</strong> should always correspond to iterable arguments with the same dimension as <strong>coord1</strong> (e.g. uncertainties). On the other hand, <strong>**kwargs</strong> correspond to additional arguments which do not have to have the same shape as <strong>coord1</strong>.</p>
+<p>Additionally, the function must be able to return either the distance (if <code class="code highlight python docutils literal notranslate"><span class="n"><span class="pre">squared</span></span> <span class="o"><span class="pre">=</span></span> <span class="kc"><span class="pre">False</span></span></code>) or its squared value (if <code class="code highlight python docutils literal notranslate"><span class="n"><span class="pre">squared</span></span> <span class="o"><span class="pre">=</span></span> <span class="kc"><span class="pre">True</span></span></code>).</p>
+<p>For instance, assume we want to define a new metric which takes into account errors which can be scaled by a given factor. Such a metric could be written as</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><code><span class="k">def</span> <span class="nf">new_metric</span><span class="p">(</span><span class="n">coord1</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">coord2</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">errors</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">squared</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">axis</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">factor</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
+    <span class="n">diff</span> <span class="o">=</span> <span class="p">(</span><span class="n">coord1</span> <span class="o">-</span> <span class="n">coord2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">error</span><span class="o">*</span><span class="n">factor</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">squared</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">diff</span><span class="o">*</span><span class="n">diff</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">diff</span><span class="o">*</span><span class="n">diff</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">))</span>
+</code></pre></div></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Even if not used, it is better to keep the <strong>*args</strong> and <strong>**kwargs</strong> parameters in the metric declaration.</p>
+</div>
+</section>
+<section id="a-note-on-normalisation">
+<h2>A note on normalisation<a class="headerlink" href="#a-note-on-normalisation" title="Permalink to this headline">¶</a></h2>
+<p>Depending on the metric used, the data may need to be normalised beforehand, and the SOM weight vectors may need to be un-normalised.</p>
+<p>The following metrics need normalised train and test data to give an optimal result:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference internal" href="#SOMptimised.metric.euclidianMetric" title="SOMptimised.metric.euclidianMetric"><code class="xref py py-func docutils literal notranslate"><span class="pre">euclidianMetric()</span></code></a></p></li>
+<li><p><a class="reference internal" href="#SOMptimised.metric.chi2Metric" title="SOMptimised.metric.chi2Metric"><code class="xref py py-func docutils literal notranslate"><span class="pre">chi2Metric()</span></code></a></p></li>
+</ul>
+</div></blockquote>
+<p>The following metrics need normalised train and test data <strong>and un-normalised SOM initial weight vectors</strong>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference internal" href="#SOMptimised.metric.chi2CigaleMetric" title="SOMptimised.metric.chi2CigaleMetric"><code class="xref py py-func docutils literal notranslate"><span class="pre">chi2CigaleMetric()</span></code></a></p></li>
+</ul>
+</div></blockquote>
+<p>To un-normalise the initial values of the SOM weight vectors, the <code class="code highlight python docutils literal notranslate"><span class="n"><span class="pre">unormalise_weights</span></span><span class="o"><span class="pre">=</span></span><span class="kc"><span class="pre">True</span></span></code> argument can be passed to the <a class="reference internal" href="../som.html#SOMptimised.som.SOM.fit" title="SOMptimised.som.SOM.fit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fit()</span></code></a> method of the SOM, for instance doing:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><code><span class="n">som</span> <span class="o">=</span> <span class="n">SOM</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">dim</span><span class="p">,</span> <span class="n">lr</span><span class="o">=</span><span class="n">lr</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="n">chi2CigaleMetric</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="n">max_iter</span><span class="p">)</span>
+<span class="n">som</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">error</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">unnormalise_weights</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></div></div>
+</section>
+<section id="api">
+<h2>API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="SOMptimised.metric.chi2CigaleMetric">
+<span class="sig-prename descclassname"><span class="pre">SOMptimised.metric.</span></span><span class="sig-name descname"><span class="pre">chi2CigaleMetric</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coord1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coord2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">squared</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_error</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="../../_modules/SOMptimised/metric.html#chi2CigaleMetric"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SOMptimised.metric.chi2CigaleMetric" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>Code author: Wilfried Mercier - IRAP &lt;<a class="reference external" href="mailto:wilfried&#46;mercier&#37;&#52;&#48;irap&#46;omp&#46;eu">wilfried<span>&#46;</span>mercier<span>&#64;</span>irap<span>&#46;</span>omp<span>&#46;</span>eu</a>&gt;</em></p>
+<p>Provide a <span class="math notranslate nohighlight">\(\chi^2\)</span> distance defined in <a class="reference external" href="https://cigale.lam.fr/">Cigale</a> estimated between <strong>coord1</strong> and <strong>coord2</strong> using an uncertainty given by <strong>error</strong>. The <span class="math notranslate nohighlight">\(\chi^2\)</span> distance <span class="math notranslate nohighlight">\(d\)</span> between coordinates <span class="math notranslate nohighlight">\(a = (a_i)\)</span> and <span class="math notranslate nohighlight">\(b = (b_i)\)</span> with error <span class="math notranslate nohighlight">\(e = (e_i)\)</span> is given by</p>
+<div class="math notranslate nohighlight">
+\[d = \sqrt{\sum_i \left ( \frac{a_i - \alpha b_i}{e_i} \right )^2}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\alpha\)</span> is a scale factor which is computed by the function as</p>
+<div class="math notranslate nohighlight">
+\[\alpha = \frac{\sum_i a_i b_i / e_i^2}{\sum_i b_i^2 / e_i^2}\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If one of the coordinates in <strong>error</strong> is 0, the <span class="math notranslate nohighlight">\(\chi^2\)</span> distance will diverge.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>coord1</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.array.html">ndarray</a>) – first array of coordinates</p></li>
+<li><p><strong>coord2</strong> (<code class="code highlight python docutils literal notranslate"><span class="nb"><span class="pre">int</span></span></code>, <code class="code highlight python docutils literal notranslate"><span class="nb"><span class="pre">float</span></span></code> or <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.array.html">ndarray</a> [<code class="code highlight python docutils literal notranslate"><span class="nb"><span class="pre">float</span></span></code>]) – second array of coordinates</p></li>
+<li><p><strong>error</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.array.html">ndarray</a> [<code class="code highlight python docutils literal notranslate"><span class="nb"><span class="pre">float</span></span></code>]) – array of uncertainties. Must have the same shape as <strong>coord1</strong>. To provide no error, set <strong>no_error</strong> to <code class="code highlight python docutils literal notranslate"><span class="kc"><span class="pre">True</span></span></code>.</p></li>
+<li><p><strong>squared</strong> (<code class="code highlight python docutils literal notranslate"><span class="nb"><span class="pre">bool</span></span></code>) – (<strong>Optional</strong>) whether to return the square of the metric or not</p></li>
+<li><p><strong>axis</strong> (<code class="code highlight python docutils literal notranslate"><span class="nb"><span class="pre">int</span></span></code>) – (<strong>Optional</strong>) axis onto which to compute the sum</p></li>
+<li><p><strong>no_error</strong> (<code class="code highlight python docutils literal notranslate"><span class="nb"><span class="pre">bool</span></span></code>) – (<strong>Optional</strong>) whether to use no error in the computation (i.e. Euclidian distance or not)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>euclidian distance estimated between the two sets of coordinates</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="code highlight python docutils literal notranslate"><span class="nb"><span class="pre">float</span></span></code></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>TypeError</strong> – if</p>
+</dd>
+</dl>
+<ul class="simple">
+<li><p><code class="code highlight python docutils literal notranslate"><span class="ow"><span class="pre">not</span></span> <span class="nb"><span class="pre">isinstance</span></span><span class="p"><span class="pre">(</span></span><span class="n"><span class="pre">no_error</span></span><span class="p"><span class="pre">,</span></span> <span class="nb"><span class="pre">bool</span></span><span class="p"><span class="pre">)</span></span></code></p></li>
+<li><p><code class="code highlight python docutils literal notranslate"><span class="ow"><span class="pre">not</span></span> <span class="nb"><span class="pre">isinstance</span></span><span class="p"><span class="pre">(</span></span><span class="n"><span class="pre">coord1</span></span><span class="p"><span class="pre">,</span></span> <span class="n"><span class="pre">np</span></span><span class="o"><span class="pre">.</span></span><span class="n"><span class="pre">ndarray</span></span><span class="p"><span class="pre">)</span></span></code></p></li>
+<li><p><code class="code highlight python docutils literal notranslate"><span class="ow"><span class="pre">not</span></span> <span class="nb"><span class="pre">isinstance</span></span><span class="p"><span class="pre">(</span></span><span class="n"><span class="pre">coord2</span></span><span class="p"><span class="pre">,</span></span> <span class="n"><span class="pre">np</span></span><span class="o"><span class="pre">.</span></span><span class="n"><span class="pre">ndarray</span></span><span class="p"><span class="pre">)</span></span></code></p></li>
+<li><p><code class="code highlight python docutils literal notranslate"><span class="ow"><span class="pre">not</span></span> <span class="nb"><span class="pre">isinstance</span></span><span class="p"><span class="pre">(</span></span><span class="n"><span class="pre">error</span></span><span class="p"><span class="pre">,</span></span> <span class="p"><span class="pre">(</span></span><span class="n"><span class="pre">np</span></span><span class="o"><span class="pre">.</span></span><span class="n"><span class="pre">ndarray</span></span><span class="p"><span class="pre">,</span></span> <span class="nb"><span class="pre">int</span></span><span class="p"><span class="pre">,</span></span> <span class="nb"><span class="pre">float</span></span><span class="p"><span class="pre">))</span></span></code></p></li>
+<li><p><code class="code highlight python docutils literal notranslate"><span class="ow"><span class="pre">not</span></span> <span class="nb"><span class="pre">isinstance</span></span><span class="p"><span class="pre">(</span></span><span class="n"><span class="pre">squared</span></span><span class="p"><span class="pre">,</span></span> <span class="nb"><span class="pre">bool</span></span><span class="p"><span class="pre">)</span></span></code></p></li>
+<li><p><code class="code highlight python docutils literal notranslate"><span class="ow"><span class="pre">not</span></span> <span class="nb"><span class="pre">isinstance</span></span><span class="p"><span class="pre">(</span></span><span class="n"><span class="pre">axis</span></span><span class="p"><span class="pre">,</span></span> <span class="nb"><span class="pre">int</span></span><span class="p"><span class="pre">)</span></span></code></p></li>
+</ul>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="SOMptimised.metric.chi2Metric">
+<span class="sig-prename descclassname"><span class="pre">SOMptimised.metric.</span></span><span class="sig-name descname"><span class="pre">chi2Metric</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coord1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coord2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">squared</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_error</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="../../_modules/SOMptimised/metric.html#chi2Metric"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SOMptimised.metric.chi2Metric" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>Code author: Wilfried Mercier - IRAP &lt;<a class="reference external" href="mailto:wilfried&#46;mercier&#37;&#52;&#48;irap&#46;omp&#46;eu">wilfried<span>&#46;</span>mercier<span>&#64;</span>irap<span>&#46;</span>omp<span>&#46;</span>eu</a>&gt;</em></p>
+<p>Provide a <span class="math notranslate nohighlight">\(\chi^2\)</span> distance estimated between <strong>coord1</strong> and <strong>coord2</strong> using an uncertainty given by <strong>error</strong>. The <span class="math notranslate nohighlight">\(\chi^2\)</span> distance <span class="math notranslate nohighlight">\(d\)</span> between coordinates <span class="math notranslate nohighlight">\(a = (a_i)\)</span> and <span class="math notranslate nohighlight">\(b = (b_i)\)</span> with error <span class="math notranslate nohighlight">\(e = (e_i)\)</span> is given by</p>
+<div class="math notranslate nohighlight">
+\[d = \sqrt{\sum_i \left ( \frac{a_i - b_i}{e_i} \right )^2}\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If one of the coordinates in <strong>error</strong> is 0, the <span class="math notranslate nohighlight">\(\chi^2\)</span> distance will diverge.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>coord1</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.array.html">ndarray</a>) – first array of coordinates</p></li>
+<li><p><strong>coord2</strong> (<code class="code highlight python docutils literal notranslate"><span class="nb"><span class="pre">int</span></span></code>, <code class="code highlight python docutils literal notranslate"><span class="nb"><span class="pre">float</span></span></code> or <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.array.html">ndarray</a> [<code class="code highlight python docutils literal notranslate"><span class="nb"><span class="pre">float</span></span></code>]) – second array of coordinates</p></li>
+<li><p><strong>error</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.array.html">ndarray</a> [<code class="code highlight python docutils literal notranslate"><span class="nb"><span class="pre">float</span></span></code>]) – array of uncertainties. Must have the same shape as <strong>coord1</strong>. To provide no error, set <strong>no_error</strong> to <code class="code highlight python docutils literal notranslate"><span class="kc"><span class="pre">True</span></span></code>.</p></li>
+<li><p><strong>squared</strong> (<code class="code highlight python docutils literal notranslate"><span class="nb"><span class="pre">bool</span></span></code>) – (<strong>Optional</strong>) whether to return the square of the metric or not</p></li>
+<li><p><strong>axis</strong> (<code class="code highlight python docutils literal notranslate"><span class="nb"><span class="pre">int</span></span></code>) – (<strong>Optional</strong>) axis onto which to compute the sum</p></li>
+<li><p><strong>no_error</strong> (<code class="code highlight python docutils literal notranslate"><span class="nb"><span class="pre">bool</span></span></code>) – (<strong>Optional</strong>) whether to use no error in the computation (i.e. Euclidian distance or not)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>euclidian distance estimated between the two sets of coordinates</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="code highlight python docutils literal notranslate"><span class="nb"><span class="pre">float</span></span></code></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>TypeError</strong> – if</p>
+</dd>
+</dl>
+<ul class="simple">
+<li><p><code class="code highlight python docutils literal notranslate"><span class="ow"><span class="pre">not</span></span> <span class="nb"><span class="pre">isinstance</span></span><span class="p"><span class="pre">(</span></span><span class="n"><span class="pre">no_error</span></span><span class="p"><span class="pre">,</span></span> <span class="nb"><span class="pre">bool</span></span><span class="p"><span class="pre">)</span></span></code></p></li>
+<li><p><code class="code highlight python docutils literal notranslate"><span class="ow"><span class="pre">not</span></span> <span class="nb"><span class="pre">isinstance</span></span><span class="p"><span class="pre">(</span></span><span class="n"><span class="pre">coord1</span></span><span class="p"><span class="pre">,</span></span> <span class="n"><span class="pre">np</span></span><span class="o"><span class="pre">.</span></span><span class="n"><span class="pre">ndarray</span></span><span class="p"><span class="pre">)</span></span></code></p></li>
+<li><p><code class="code highlight python docutils literal notranslate"><span class="ow"><span class="pre">not</span></span> <span class="nb"><span class="pre">isinstance</span></span><span class="p"><span class="pre">(</span></span><span class="n"><span class="pre">coord2</span></span><span class="p"><span class="pre">,</span></span> <span class="n"><span class="pre">np</span></span><span class="o"><span class="pre">.</span></span><span class="n"><span class="pre">ndarray</span></span><span class="p"><span class="pre">)</span></span></code></p></li>
+<li><p><code class="code highlight python docutils literal notranslate"><span class="ow"><span class="pre">not</span></span> <span class="nb"><span class="pre">isinstance</span></span><span class="p"><span class="pre">(</span></span><span class="n"><span class="pre">error</span></span><span class="p"><span class="pre">,</span></span> <span class="p"><span class="pre">(</span></span><span class="n"><span class="pre">np</span></span><span class="o"><span class="pre">.</span></span><span class="n"><span class="pre">ndarray</span></span><span class="p"><span class="pre">,</span></span> <span class="nb"><span class="pre">int</span></span><span class="p"><span class="pre">,</span></span> <span class="nb"><span class="pre">float</span></span><span class="p"><span class="pre">))</span></span></code></p></li>
+<li><p><code class="code highlight python docutils literal notranslate"><span class="ow"><span class="pre">not</span></span> <span class="nb"><span class="pre">isinstance</span></span><span class="p"><span class="pre">(</span></span><span class="n"><span class="pre">squared</span></span><span class="p"><span class="pre">,</span></span> <span class="nb"><span class="pre">bool</span></span><span class="p"><span class="pre">)</span></span></code></p></li>
+<li><p><code class="code highlight python docutils literal notranslate"><span class="ow"><span class="pre">not</span></span> <span class="nb"><span class="pre">isinstance</span></span><span class="p"><span class="pre">(</span></span><span class="n"><span class="pre">axis</span></span><span class="p"><span class="pre">,</span></span> <span class="nb"><span class="pre">int</span></span><span class="p"><span class="pre">)</span></span></code></p></li>
+</ul>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="SOMptimised.metric.euclidianMetric">
+<span class="sig-prename descclassname"><span class="pre">SOMptimised.metric.</span></span><span class="sig-name descname"><span class="pre">euclidianMetric</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coord1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coord2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">squared</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="../../_modules/SOMptimised/metric.html#euclidianMetric"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SOMptimised.metric.euclidianMetric" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>Code author: Wilfried Mercier - IRAP &lt;<a class="reference external" href="mailto:wilfried&#46;mercier&#37;&#52;&#48;irap&#46;omp&#46;eu">wilfried<span>&#46;</span>mercier<span>&#64;</span>irap<span>&#46;</span>omp<span>&#46;</span>eu</a>&gt;</em></p>
+<p>Provide the euclidian distance estimated between <strong>coord1</strong> and <strong>coord2</strong>. The euclidian distance <span class="math notranslate nohighlight">\(d\)</span> between coordinates <span class="math notranslate nohighlight">\(a = (a_i)\)</span> and <span class="math notranslate nohighlight">\(b = (b_i)\)</span> is given by</p>
+<div class="math notranslate nohighlight">
+\[d = \sqrt{\sum_i (a_i - b_i)^2}\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>coord1</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.array.html">ndarray</a>) – first array of coordinates</p></li>
+<li><p><strong>coord2</strong> (<code class="code highlight python docutils literal notranslate"><span class="nb"><span class="pre">int</span></span></code>, <code class="code highlight python docutils literal notranslate"><span class="nb"><span class="pre">float</span></span></code> or <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.array.html">ndarray</a> [<code class="code highlight python docutils literal notranslate"><span class="nb"><span class="pre">float</span></span></code>]) – second array of coordinates</p></li>
+<li><p><strong>axis</strong> (<code class="code highlight python docutils literal notranslate"><span class="nb"><span class="pre">int</span></span></code>) – (<strong>Optional</strong>) axis onto which to compute the sum</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>euclidian distance estimated between the two sets of coordinates</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="code highlight python docutils literal notranslate"><span class="nb"><span class="pre">float</span></span></code></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>TypeError</strong> – if</p>
+</dd>
+</dl>
+<ul class="simple">
+<li><p><code class="code highlight python docutils literal notranslate"><span class="ow"><span class="pre">not</span></span> <span class="nb"><span class="pre">isinstance</span></span><span class="p"><span class="pre">(</span></span><span class="n"><span class="pre">coord1</span></span><span class="p"><span class="pre">,</span></span> <span class="n"><span class="pre">np</span></span><span class="o"><span class="pre">.</span></span><span class="n"><span class="pre">ndarray</span></span><span class="p"><span class="pre">)</span></span></code></p></li>
+<li><p><code class="code highlight python docutils literal notranslate"><span class="ow"><span class="pre">not</span></span> <span class="nb"><span class="pre">isinstance</span></span><span class="p"><span class="pre">(</span></span><span class="n"><span class="pre">coord2</span></span><span class="p"><span class="pre">,</span></span> <span class="n"><span class="pre">np</span></span><span class="o"><span class="pre">.</span></span><span class="n"><span class="pre">ndarray</span></span><span class="p"><span class="pre">)</span></span></code></p></li>
+<li><p><code class="code highlight python docutils literal notranslate"><span class="ow"><span class="pre">not</span></span> <span class="nb"><span class="pre">isinstance</span></span><span class="p"><span class="pre">(</span></span><span class="n"><span class="pre">squared</span></span><span class="p"><span class="pre">,</span></span> <span class="nb"><span class="pre">bool</span></span><span class="p"><span class="pre">)</span></span></code></p></li>
+<li><p><code class="code highlight python docutils literal notranslate"><span class="ow"><span class="pre">not</span></span> <span class="nb"><span class="pre">isinstance</span></span><span class="p"><span class="pre">(</span></span><span class="n"><span class="pre">axis</span></span><span class="p"><span class="pre">,</span></span> <span class="nb"><span class="pre">int</span></span><span class="p"><span class="pre">)</span></span></code></p></li>
+</ul>
+</dd></dl>
+
+</section>
+</section>
+
+
+    </article>
+
+    <footer>
+      
+        <div class="mt-20 mb-4 text-sm text-gray-700">&copy; 2022, Wilfried Mercier&nbsp;Made with <a href="https://www.sphinx-doc.org">Sphinx 4.4.0</a></div>
+      
+    </footer></main>
+
+
+      <button
+  data-search-target="snackbar"
+  data-action="search#hideSnackbar"
+  class="fixed bottom-0 right-0 z-20 opacity-0 p-4 m-4 tracking-wide bg-gray-900 text-gray-100 transition transform transform-gpu duration-500 translate-y-full"
+>
+  Clear highlights
+</button><div
+  data-sidebar-target="screen"
+  data-action="click->sidebar#close"
+  class="fixed hidden inset-0 bg-black bg-opacity-50">
+</div>
+    </div>
+    
+      
+  <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+  <script src="../../_static/jquery.js"></script>
+  <script src="../../_static/underscore.js"></script>
+  <script src="../../_static/doctools.js"></script>
+  <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script src="../../_static/theme.1ba02c30758e6036ba31.js"></script>
+    
+  </body>
+</html>

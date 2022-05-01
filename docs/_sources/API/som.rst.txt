@@ -1,5 +1,5 @@
-API for the som module
-======================
+API for the main som module
+===========================
 
 .. automodule:: SOMptimised.som
     :members:

@@ -8,7 +8,7 @@ Let us predict the sepal width of the test dataset using our SOM. To do so we wi
 .. code::
 
     import pandas
-    from   SOMptimised import SOM
+    from   SOMptimised import SOM, LinearLearningStrategy, ConstantRadiusStrategy, euclidianMetric
     import numpy       as np
     
     # Extract data
@@ -22,16 +22,20 @@ Let us predict the sepal width of the test dataset using our SOM. To do so we wi
     swidth_test  = swidth[-10:]
     
     # Fit SOM
-    m   = 5
-    n   = 5
-    nf  = data_train.shape[1] # Number of features
-    som = SOM(m=m, n=n, dim=nf, lr=1, sigma=1, max_iter=1e4, random_state=None)
-    som.fit(data_train, epochs=1, shuffle=True)
+    m      = 5
+    n      = 5
+    lr     = LinearLearningStrategy(lr=1)      # Learning rate strategy 
+    sigma  = ConstantRadiusStrategy(sigma=0.8) # Neighbourhood radius strategy
+    metric = euclidianMetric                   # Metric used to compute BMUs
+    nf     = data_train.shape[1]               # Number of features
+    
+    som    = SOM(m=m, n=n, dim=nf, lr=lr, sigma=sigma, metric=metric, max_iter=1e4, random_state=None)
+    som.fit(data_train, epochs=1, shuffle=True, n_jobs=1)
     
     pred_train = som.train_bmus_
     pred_test  = som.predict(data_test)
     
-Here we used a 5*5 SOM to fit the data. A larger SOM might give more precise results but some neurons might never map to any data point though. 
+Here we used a :math:`5 \times 5` SOM to fit the data. A larger SOM might give more precise results but some neurons might never map to any data point though. 
 
 We also extract the sepal width column of the train and test datasets. The sepal width for the test dataset will be used to compare with the predicition from the SOM. That of the train dataset will be used to assign a sepal width for each neuron in the SOM.
 
@@ -66,7 +70,7 @@ In the code above, we also computed an estimate of the uncertainty on the sepal 
     
     import warnings
     import pandas
-    from   SOMptimised import SOM
+    from   SOMptimised import SOM, LinearLearningStrategy, ConstantRadiusStrategy, euclidianMetric
     import numpy       as np
 
     # Extract data
@@ -80,11 +84,15 @@ In the code above, we also computed an estimate of the uncertainty on the sepal 
     swidth_test  = swidth[-10:]
 
     # Fit SOM
-    m   = 5
-    n   = 5
-    nf  = data_train.shape[1] # Number of features
-    som = SOM(m=m, n=n, dim=nf, lr=1, sigma=1, max_iter=1e4, random_state=None)
-    som.fit(data_train, epochs=1, shuffle=True)
+    m      = 5
+    n      = 5
+    lr     = LinearLearningStrategy(lr=1)      # Learning rate strategy 
+    sigma  = ConstantRadiusStrategy(sigma=0.8) # Neighbourhood radius strategy
+    metric = euclidianMetric                   # Metric used to compute BMUs
+    nf     = data_train.shape[1]               # Number of features
+    
+    som    = SOM(m=m, n=n, dim=nf, lr=lr, sigma=sigma, metric=metric, max_iter=1e4, random_state=0)
+    som.fit(data_train, epochs=1, shuffle=False, n_jobs=1)
 
     pred_train = som.train_bmus_
     pred_test  = som.predict(data_test)
@@ -105,9 +113,11 @@ In the code above, we also computed an estimate of the uncertainty on the sepal 
     swidth_test_pred     = np.array(swidth_med)[pred_test]
     swidth_test_pred_std = np.array(swidth_std)[pred_test]
 
-
     print('Predicted     Real')
     for pred, err, true in zip(swidth_test_pred, swidth_test_pred_std, swidth_test):
         print(f'{pred:.1f} +- {err:.1f}    {true:.1f}')
-        
-Depending on the parameters of the SOM and the initialisation of the weights, it is not possible to predict a sepal width for all the data points in the test dataset.
+    
+    
+.. note::
+    
+   Depending on the parameters of the SOM and the initialisation of the weights, it is not possible to predict a sepal width for all the data points in the test dataset.

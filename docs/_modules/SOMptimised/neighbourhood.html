@@ -1,0 +1,438 @@
+
+  
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    
+      <title>SOMptimised.neighbourhood | SOMptimised 1.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" />
+      <link rel="stylesheet" href="../../_static/theme.33684ae9923d01874503.css" />
+      <link rel="stylesheet" href="../../_static/plot_directive.css" />
+        <link rel="search" title="Search" href="../../search.html" />
+        <link rel="index" title="Index" href="../../genindex.html" />
+  </head>
+
+  <body class="antialiased text-gray scroll-smooth">
+    <div
+      id="page"
+      data-controller="sidebar search"
+      data-action="keydown@window->search#focus"
+      class="h-screen xl:grid xl:grid-layout"
+    >
+      <a class="block text-xl bg-white py-4 z-20 absolute top-0 h-14 inset-x-0 text-center transform -translate-y-full focus:translate-y-0 focus:outline-none transition-transform duration-75" href="#somptimised-neighbourhood" title="Skip navigation links">Skip to content</a>
+
+      <header class="grid-area-header z-10 h-14">
+        <div class="bg-gray-dark shadow-md flex items-center h-full xl:px-2 relative"><div class="flex items-center">
+      <button
+    data-action="sidebar#open"
+    data-sidebar-target="hamburger"
+    class="xl:hidden h-14 w-14 leading-14 text-gray-100 hover:bg-gray-700 hover:text-brand focus:outline-none focus:bg-gray-700 focus:text-brand">
+  <span class="sr-only">Open navigation menu</span>
+  <svg aria-hidden="true" class="fill-current h-8 w-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+</button><a class="hover:bg-gray-700 focus:bg-gray-700 focus:outline-none tooltipped tooltipped-sw"
+   href="../../index.html"
+   aria-label="Back to homepage"><img class="h-14 w-14 p-3 inline-block" src="../../_static/logo.png" alt="Logo" /><span class="hidden lg:inline-block shrink-0 font-medium text-gray-100 mx-5 leading-14 tracking-wider">SOMptimised 1.0 documentation</span>
+</a></div><div class="flex justify-end items-center flex-1"><form
+  id="searchbox"
+  action="../../search.html"
+  data-action="click->search#focusSearchInput"
+  method="get"
+  class="flex print:hidden justify-between items-center leading-14 md:ml-4 bg-gray-dark text-gray-300 focus-within:bg-gray-50 focus-within:text-gray-800 focus-within:absolute focus-within:inset-x-0 focus-within:top-0 md:focus-within:w-full md:focus-within:static">
+
+  <button
+    class="text-inherit h-14 w-14"
+    aria-label="Get search results"
+    tabindex="-1"
+  >
+    <svg aria-hidden="true" class="fill-current stroke-current h-8 w-8" stroke-width="0.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+  </button>
+
+  <input
+    name="q"
+    id="search-input"
+    data-search-target="searchInput"
+    type="search"
+    aria-label="Search the docs"
+    placeholder="Search the docs"
+    class="pr-2 bg-transparent text-inherit focus:outline-none w-0 md:w-auto focus:w-full transition-all duration-100"
+  />
+</form><div class="shrink-0">
+    <a href="/SOMptimised//API/index.html" class="h-14 inline-block leading-14 text-gray-100 bg-transparent tracking-wide font-medium hover:text-brand focus:bg-gray-700 focus:outline-none hover:no-underline focus:text-brand px-2 sm:px-4">API</a>
+  
+  
+    <a href="/SOMptimised/tutorial/index.html" class="h-14 inline-block leading-14 text-gray-100 bg-transparent tracking-wide font-medium hover:text-brand focus:bg-gray-700 focus:outline-none hover:no-underline focus:text-brand px-2 sm:px-4">Tutorial</a>
+  
+  </div></div>
+</div>
+      </header>
+
+      
+  <aside data-sidebar-target="sidebar" class="grid-area-sidebar h-full fixed xl:relative inset-y-0 left-0 z-20 xl:z-0 print:hidden overflow-y-auto transition-all transform transform-gpu -translate-x-full opacity-0 duration-300 xl:translate-x-0 xl:opacity-100">
+    <nav
+  role="navigation"
+  class="h-full overflow-y-auto bg-white text-gray-600 pt-8 flex flex-col"
+>
+  <div class="nav-toc flex-1 pl-6"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Tutorial/Example</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/index.html#preparing-the-data">Preparing the data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/index.html#train-the-som-to-predict-the-iris-class">Train the SOM to predict the iris class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/index.html#predict-sepal-width">Predict sepal width</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/index.html#set-and-get-extra-parameters">Set and get extra parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/index.html#save-and-load-som">Save and load SOM</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">―――――――――――――――</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../API/index.html">API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../API/lr.html">Learning strategy submodule</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../API/lr.html#how-to-include-a-custom-learning-strategy">How to include a custom learning strategy ?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../API/lr.html#api">API</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../API/metric.html">Metric submodule</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../API/metric.html#how-to-include-a-custom-metric">How to include a custom metric ?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../API/metric.html#api">API</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../API/neighbourhood.html">Neighbourhood strategy submodule</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../API/neighbourhood.html#how-to-implement-a-custom-neighbourhood-class">How to implement a custom neighbourhood class ?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../API/neighbourhood.html#api">API</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../API/som.html">API for the main som module</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+  <button
+      data-action=""
+      title="Close navigation menu"
+      class="text-4xl text-gray-800 p-4 bottom-0 hover:text-brand xl:hidden focus:text-brand self-center">
+    <span class="sr-only">Close navigation menu</span>
+    <svg aria-hidden="true" class="fill-current stroke-current h-6 w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+  </button>
+</nav>
+  </aside>
+
+  <main
+    data-controller="scroll"
+    data-action="scroll->scroll#showButton"
+    class="px-4 xl:ml-fluid grid-area-main overflow-y-auto flex flex-col h-full mx-0 md:mx-auto xl:mr-0"
+  ><nav role="navigation"
+     aria-label="breadcrumbs"
+     class="print:hidden mt-12 text-sm text-gray-light">
+  <a class="text-gray-light text-sm hover:text-gray-dark font-medium focus:text-gray-dark" href="../../index.html">SOMptimised 1.0 documentation</a>
+  <span class="mr-1">/</span><a class="text-gray-light text-sm hover:text-gray-dark" href="../index.html">Module code</a>
+    <span class="mr-1">/</span><span aria-current="page">SOMptimised.neighbourhood</span>
+</nav>
+    <article role="main" class="flex-1">
+      
+  <h1>Source code for SOMptimised.neighbourhood</h1><div class="highlight"><pre>
+<code><span class="ch">#!/usr/bin/env python3</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">.. codeauthor:: Wilfried Mercier - IRAP &lt;wilfried.mercier@irap.omp.eu&gt;</span>
+
+<span class="sd">Classes defining the behaviour of the BMU neighbourhood.</span>
+
+<span class="sd">How to implement a custom neighbourhood class ?</span>
+<span class="sd">-----------------------------------------------</span>
+
+<span class="sd">To implement a custom neighbourhood strategy, please inherit from :py:class:`~.NeighbourhoodStrategy` and implement your own :python:`NeighbourhoodStrategy.__init__` and :python:`NeighbourhoodStrategy.__call__` methods as follows</span>
+
+<span class="sd">.. code::</span>
+<span class="sd">    </span>
+<span class="sd">    class NewNeighbourhoodStrategy(NeighbourhoodStrategy):</span>
+<span class="sd">        </span>
+<span class="sd">        def __init__(self, sigma: Union[int, float] = 1, **kwargs) -&gt; None:</span>
+<span class="sd">            </span>
+<span class="sd">            super().__init__(sigma=sigma)</span>
+<span class="sd">            </span>
+<span class="sd">            ...</span>
+<span class="sd">        </span>
+<span class="sd">        def __call__(step, *args, **kwargs) -&gt; float:</span>
+<span class="sd">            </span>
+<span class="sd">            ...</span>
+<span class="sd">            </span>
+<span class="sd">            return sigma</span>
+<span class="sd">        </span>
+<span class="sd">The :python:`NeighbourhoodStrategy.__call__` method must always have **step** as its first argument.</span>
+
+<span class="sd">.. note::</span>
+
+<span class="sd">    Additional arguments with ***args** and **\**kwargs** in :python:`NeighbourhoodStrategy.__call__` method can be present but should not be used.</span>
+
+<span class="sd">API</span>
+<span class="sd">---</span>
+
+<span class="sd">.. The MIT License (MIT)</span>
+
+<span class="sd">    Copyright © 2022 &lt;Wilfried Mercier&gt;</span>
+
+<span class="sd">    Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</span>
+
+<span class="sd">    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</span>
+
+<span class="sd">    THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span>   <span class="nn">abc</span>    <span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
+<span class="kn">from</span>   <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Any</span>
+<span class="kn">import</span> <span class="nn">numpy</span>  <span class="k">as</span>     <span class="nn">np</span>
+
+<div class="viewcode-block" id="NeighbourhoodStrategy"><a class="viewcode-back" href="../../API/neighbourhood.html#SOMptimised.neighbourhood.NeighbourhoodStrategy">[docs]</a><span class="k">class</span> <span class="nc">NeighbourhoodStrategy</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+   <span class="sa">r</span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">   .. codeauthor:: Wilfried Mercier - IRAP &lt;wilfried.mercier@irap.omp.eu&gt;</span>
+<span class="sd">   </span>
+<span class="sd">   Abstract class for strategies implementing neighbourhood radii strategies.</span>
+<span class="sd">   </span>
+<span class="sd">   :param sigma: (**Optional**) neighbourhood radius</span>
+<span class="sd">   :type sigma: :python:`int` or :python:`float`</span>
+<span class="sd">   &#39;&#39;&#39;</span>
+   
+   <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sigma</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+      <span class="sa">r</span><span class="sd">&#39;&#39;&#39;Init method.&#39;&#39;&#39;</span>
+       
+      <span class="bp">self</span><span class="o">.</span><span class="n">_check_sigma</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;sigma&#39;</span><span class="p">)</span>
+      
+      <span class="c1"># Initial sigma value</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">_sigma</span> <span class="o">=</span> <span class="n">sigma</span>
+   
+<div class="viewcode-block" id="NeighbourhoodStrategy.__call__"><a class="viewcode-back" href="../../API/neighbourhood.html#SOMptimised.neighbourhood.NeighbourhoodStrategy.__call__">[docs]</a>   <span class="nd">@abstractmethod</span>
+   <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+      <span class="sa">r</span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">      .. codeauthor:: Wilfried Mercier - IRAP &lt;wilfried.mercier@irap.omp.eu&gt;</span>
+<span class="sd">      </span>
+<span class="sd">      Provide the neighbourhood radius at the given step.</span>
+<span class="sd">      </span>
+<span class="sd">      :param step: time step during the learning process</span>
+<span class="sd">      :type step: :python:`int`</span>
+<span class="sd">      </span>
+<span class="sd">      :returns: neighbourhood radius at the given time step</span>
+<span class="sd">      :rtype: :python:`float`</span>
+<span class="sd">      &#39;&#39;&#39;</span>
+      
+      <span class="k">return</span></div>
+
+   <span class="c1">#########################################</span>
+   <span class="c1">#          Setters and getters          #</span>
+   <span class="c1">#########################################</span>
+      
+   <span class="nd">@property</span>
+   <span class="k">def</span> <span class="nf">sigma</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+      <span class="sa">r</span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">      .. codeauthor:: Wilfried Mercier - IRAP &lt;wilfried.mercier@irap.omp.eu&gt;</span>
+<span class="sd">      </span>
+<span class="sd">      Provide the value of sigma.</span>
+<span class="sd">      &#39;&#39;&#39;</span>
+      
+      <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sigma</span>
+   
+   <span class="nd">@sigma</span><span class="o">.</span><span class="n">setter</span>
+   <span class="k">def</span> <span class="nf">sigma</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+      <span class="sa">r</span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">      .. codeauthor:: Wilfried Mercier - IRAP &lt;wilfried.mercier@irap.omp.eu&gt;</span>
+<span class="sd">      </span>
+<span class="sd">      Set the value of sigma.</span>
+<span class="sd">         </span>
+<span class="sd">      :param sigma: initial neighbourhood radius</span>
+<span class="sd">      :type sigma: :python:`int` or :python:`float`</span>
+<span class="sd">      &#39;&#39;&#39;</span>
+      
+      <span class="bp">self</span><span class="o">.</span><span class="n">_check_sigma</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;sigma&#39;</span><span class="p">)</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">_sigma</span> <span class="o">=</span> <span class="n">value</span>
+      <span class="k">return</span>
+   
+   <span class="c1">#############################</span>
+   <span class="c1">#       Check methods       #</span>
+   <span class="c1">#############################</span>
+  
+<div class="viewcode-block" id="NeighbourhoodStrategy._check_int_float"><a class="viewcode-back" href="../../API/neighbourhood.html#SOMptimised.neighbourhood.NeighbourhoodStrategy._check_int_float">[docs]</a>   <span class="nd">@staticmethod</span>
+   <span class="k">def</span> <span class="nf">_check_int_float</span><span class="p">(</span><span class="n">param</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+      <span class="sa">r</span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">      .. codeauthor:: Wilfried Mercier - IRAP &lt;wilfried.mercier@irap.omp.eu&gt;</span>
+<span class="sd">      </span>
+<span class="sd">      Check if a parameter is int or float.</span>
+<span class="sd">      </span>
+<span class="sd">      :param param: value to check</span>
+<span class="sd">      :param name: name of the parameter</span>
+<span class="sd">      :type: :python:`str`</span>
+<span class="sd">      </span>
+<span class="sd">      :raises TypeError: if :python:`not isinstance(param, (int, float))`</span>
+<span class="sd">      &#39;&#39;&#39;</span>
+      
+      <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">param</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">)):</span>
+         <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1"> has type </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">param</span><span class="p">)</span><span class="si">}</span><span class="s1"> but it must be an int or a float.&#39;</span><span class="p">)</span>
+   
+      <span class="k">return</span></div>
+   
+<div class="viewcode-block" id="NeighbourhoodStrategy._check_negative"><a class="viewcode-back" href="../../API/neighbourhood.html#SOMptimised.neighbourhood.NeighbourhoodStrategy._check_negative">[docs]</a>   <span class="nd">@staticmethod</span>
+   <span class="k">def</span> <span class="nf">_check_negative</span><span class="p">(</span><span class="n">param</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+      <span class="sa">r</span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">      .. codeauthor:: Wilfried Mercier - IRAP &lt;wilfried.mercier@irap.omp.eu&gt;</span>
+<span class="sd">      </span>
+<span class="sd">      Check if a parameter is negative.</span>
+<span class="sd">      </span>
+<span class="sd">      :param param: value to check</span>
+<span class="sd">      :param name: name of the parameter</span>
+<span class="sd">      :type: :python:`str`</span>
+<span class="sd">      </span>
+<span class="sd">      :raises ValueError: if :python:`lr &lt; 0`</span>
+<span class="sd">      &#39;&#39;&#39;</span>
+      
+      <span class="k">if</span> <span class="n">param</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{name}</span><span class="s1"> must be positive.&#39;</span><span class="p">)</span>
+         
+      <span class="k">return</span></div>
+   
+<div class="viewcode-block" id="NeighbourhoodStrategy._check_sigma"><a class="viewcode-back" href="../../API/neighbourhood.html#SOMptimised.neighbourhood.NeighbourhoodStrategy._check_sigma">[docs]</a>   <span class="k">def</span> <span class="nf">_check_sigma</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;sigma&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+      <span class="sa">r</span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">      .. codeauthor:: Wilfried Mercier - IRAP &lt;wilfried.mercier@irap.omp.eu&gt;</span>
+<span class="sd">      </span>
+<span class="sd">      Check if a value is acceptable for the neighbourhood radius.</span>
+<span class="sd">      </span>
+<span class="sd">      :param value: value to check</span>
+<span class="sd">      </span>
+<span class="sd">      :raises TypeError: if :python:`not isinstance(value, (int, float))`</span>
+<span class="sd">      :raises ValueError: if :python:`value &lt; 0`</span>
+<span class="sd">      &#39;&#39;&#39;</span>
+      
+      <span class="bp">self</span><span class="o">.</span><span class="n">_check_int_float</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">_check_negative</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+      <span class="k">return</span></div></div>
+      
+<div class="viewcode-block" id="ConstantRadiusStrategy"><a class="viewcode-back" href="../../API/neighbourhood.html#SOMptimised.neighbourhood.ConstantRadiusStrategy">[docs]</a><span class="k">class</span> <span class="nc">ConstantRadiusStrategy</span><span class="p">(</span><span class="n">NeighbourhoodStrategy</span><span class="p">):</span>
+   <span class="sa">r</span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">   .. codeauthor:: Wilfried Mercier - IRAP &lt;wilfried.mercier@irap.omp.eu&gt;</span>
+<span class="sd">   </span>
+<span class="sd">   Class implementing a constant neighbourhood radius strategy.</span>
+<span class="sd">   </span>
+<span class="sd">   :param sigma: (**Optional**) neighbourhood radius</span>
+<span class="sd">   :type sigma: :python:`int` or :python:`float`</span>
+<span class="sd">   &#39;&#39;&#39;</span>
+   
+   <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sigma</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+      <span class="sa">r</span><span class="sd">&#39;&#39;&#39;Init method.&#39;&#39;&#39;</span>
+      
+      <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">)</span>
+      
+<div class="viewcode-block" id="ConstantRadiusStrategy.__call__"><a class="viewcode-back" href="../../API/neighbourhood.html#SOMptimised.neighbourhood.ConstantRadiusStrategy.__call__">[docs]</a>   <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+      <span class="sa">r</span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">      .. codeauthor:: Wilfried Mercier - IRAP &lt;wilfried.mercier@irap.omp.eu&gt;</span>
+<span class="sd">      </span>
+<span class="sd">      Provide the neighbourhood radius at the given time step.</span>
+<span class="sd">      </span>
+<span class="sd">      :param step: time step during the learning process</span>
+<span class="sd">      :type step: :python:`int`</span>
+<span class="sd">      </span>
+<span class="sd">      :returns: neighbourhood radius</span>
+<span class="sd">      :rtype: :python:`float`</span>
+<span class="sd">      &#39;&#39;&#39;</span>
+      
+      <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span></div></div>
+   
+   
+<div class="viewcode-block" id="ExponentialRadiusStrategy"><a class="viewcode-back" href="../../API/neighbourhood.html#SOMptimised.neighbourhood.ExponentialRadiusStrategy">[docs]</a><span class="k">class</span> <span class="nc">ExponentialRadiusStrategy</span><span class="p">(</span><span class="n">NeighbourhoodStrategy</span><span class="p">):</span>
+   <span class="sa">r</span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">   .. codeauthor:: Wilfried Mercier - IRAP &lt;wilfried.mercier@irap.omp.eu&gt;</span>
+<span class="sd">   </span>
+<span class="sd">   Class implementing an exponential neighbourhood radius strategy.</span>
+<span class="sd">   </span>
+<span class="sd">   :param sigma: (**Optional**) neighbourhood radius</span>
+<span class="sd">   :type sigma: :python:`int` or :python:`float`</span>
+<span class="sd">   :param tau: (**Optional**) decay time scale</span>
+<span class="sd">   :type tau: :python:`int` or :python:`float`</span>
+<span class="sd">   &#39;&#39;&#39;</span>
+   
+   <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sigma</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">tau</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+      <span class="sa">r</span><span class="sd">&#39;&#39;&#39;Init method.&#39;&#39;&#39;</span>
+
+      <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">)</span>
+      
+      <span class="bp">self</span><span class="o">.</span><span class="n">tau</span> <span class="o">=</span> <span class="n">tau</span>
+      
+<div class="viewcode-block" id="ExponentialRadiusStrategy.__call__"><a class="viewcode-back" href="../../API/neighbourhood.html#SOMptimised.neighbourhood.ExponentialRadiusStrategy.__call__">[docs]</a>   <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+      <span class="sa">r</span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">      .. codeauthor:: Wilfried Mercier - IRAP &lt;wilfried.mercier@irap.omp.eu&gt;</span>
+<span class="sd">      </span>
+<span class="sd">      Provide the neighbourhood radius at the given time step.</span>
+<span class="sd">      </span>
+<span class="sd">      :param step: time step during the learning process</span>
+<span class="sd">      :type step: :python:`int`</span>
+<span class="sd">      </span>
+<span class="sd">      :returns: neighbourhood radius</span>
+<span class="sd">      :rtype: :python:`float`</span>
+<span class="sd">      &#39;&#39;&#39;</span>
+      
+      <span class="k">if</span> <span class="n">step</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;step must be larger than 0.&#39;</span><span class="p">)</span>
+      
+      <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">step</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">_tau</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sigma</span></div>
+   
+   <span class="c1">#########################################</span>
+   <span class="c1">#          Setters and getters          #</span>
+   <span class="c1">#########################################</span>
+      
+   <span class="nd">@property</span>
+   <span class="k">def</span> <span class="nf">tau</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+      <span class="sa">r</span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">      .. codeauthor:: Wilfried Mercier - IRAP &lt;wilfried.mercier@irap.omp.eu&gt;</span>
+<span class="sd">      </span>
+<span class="sd">      Provide the value of tau.</span>
+<span class="sd">      &#39;&#39;&#39;</span>
+      
+      <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tau</span>
+   
+   <span class="nd">@tau</span><span class="o">.</span><span class="n">setter</span>
+   <span class="k">def</span> <span class="nf">tau</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+      <span class="sa">r</span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">      .. codeauthor:: Wilfried Mercier - IRAP &lt;wilfried.mercier@irap.omp.eu&gt;</span>
+<span class="sd">      </span>
+<span class="sd">      Set the value of tau.</span>
+<span class="sd">         </span>
+<span class="sd">      :param sigma: decay time scale</span>
+<span class="sd">      :type sigma: :python:`int` or :python:`float`</span>
+<span class="sd">      &#39;&#39;&#39;</span>
+      
+      <span class="bp">self</span><span class="o">.</span><span class="n">_check_sigma</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;tau&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">_tau</span> <span class="o">=</span> <span class="n">value</span>
+      <span class="k">return</span></div>
+      
+</code></pre></div>
+
+    </article>
+
+    <footer>
+      
+        <div class="mt-20 mb-4 text-sm text-gray-700">&copy; 2022, Wilfried Mercier&nbsp;Made with <a href="https://www.sphinx-doc.org">Sphinx 4.4.0</a></div>
+      
+    </footer></main>
+
+
+      <button
+  data-search-target="snackbar"
+  data-action="search#hideSnackbar"
+  class="fixed bottom-0 right-0 z-20 opacity-0 p-4 m-4 tracking-wide bg-gray-900 text-gray-100 transition transform transform-gpu duration-500 translate-y-full"
+>
+  Clear highlights
+</button><div
+  data-sidebar-target="screen"
+  data-action="click->sidebar#close"
+  class="fixed hidden inset-0 bg-black bg-opacity-50">
+</div>
+    </div>
+    
+      
+  <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+  <script src="../../_static/jquery.js"></script>
+  <script src="../../_static/underscore.js"></script>
+  <script src="../../_static/doctools.js"></script>
+<script src="../../_static/theme.1ba02c30758e6036ba31.js"></script>
+    
+  </body>
+</html>
