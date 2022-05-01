@@ -193,8 +193,7 @@ class SOM():
         lr               = self.lr(counter)
         
         # Compute neighbourhood radius squared
-        sigma2           = self.sigma(counter)
-        sigma2           = sigma2*sigma2
+        sigma2           = self.sigma(counter, squared=True)
         
         # Compute update on neighborhood
         neighbourhood    = np.exp(-bmu_distance / sigma2)

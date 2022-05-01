@@ -34,6 +34,27 @@ For instance, assume we want to define a new metric which takes into account err
 .. note::
     
     Even if not used, it is better to keep the ***args** and **\**kwargs** parameters in the metric declaration.
+    
+A note on normalisation
+-----------------------
+
+Depending on the metric used, the data may need to be normalised beforehand, and the SOM weight vectors may need to be un-normalised. 
+
+The following metrics need normalised train and test data to give an optimal result:
+
+- :py:func:`~.euclidianMetric`
+- :py:func:`~.chi2Metric`
+
+The following metrics need normalised train and test data **and un-normalised SOM initial weight vectors**:
+   
+- :py:func:`~.chi2CigaleMetric`
+   
+To un-normalise the initial values of the SOM weight vectors, the :python:`unormalise_weights=True` argument can be passed to the :py:meth:`~.SOM.fit` method of the SOM, for instance doing:
+   
+.. code:: python
+
+   som = SOM(m, n, dim, lr=lr, sigma=sigma, metric=chi2CigaleMetric, max_iter=max_iter)
+   som.fit(X, error, epochs=1, shuffle=True, n_jobs=1, unnormalise_weights=False)
 
 API
 ---
@@ -70,8 +91,6 @@ def euclidianMetric(coord1: np.ndarray, coord2: Union[int, float, np.ndarray], *
     :param coord2: second array of coordinates
     :type coord2: :python:`int`, :python:`float` or `ndarray`_ [:python:`float`]
     
-    :param squared: (**Optional**) whether to return the square of the metric or not
-    :type squared: :python:`bool`
     :param axis: (**Optional**) axis onto which to compute the sum
     :type axis: :python:`int`
     
@@ -237,6 +256,6 @@ def chi2CigaleMetric(coord1: np.ndarray, coord2: Union[int, float, np.ndarray], 
         raise ValueError(f'coord1 parameter has shape {coord1.shape} and error parameter has shape {error.shape} when they should be similar.')
         
     error2   = error*error
-    alpha    = np.array([np.sum(coord1*coord2/(error2), axis=1) / np.sum(coord2*coord2/error2, axis=1)]*error.shape[-1]).T
-        
+    alpha    = np.array([np.sum(coord1*coord2/(error2), axis=1) / np.sum(coord2*coord2/error2, axis=1)]*error.shape[-1]).T  
+    
     return chi2Metric(coord1, coord2*alpha, error, *args, squared=squared, axis=axis, no_error=no_error, **kwargs)
