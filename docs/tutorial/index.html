@@ -541,7 +541,6 @@ None
 </section>
 <section id="train-the-som-to-predict-the-iris-class">
 <h2>Train the SOM to predict the iris class<a class="headerlink" href="#train-the-som-to-predict-the-iris-class" title="Permalink to this headline">#</a></h2>
-<p>A</p>
 <p>We will use the SOM to predict the iris class of the test set. We can see by eye than there must be something like three different classes in the iris dataset so we will use a small SOM of dimensions (1, 3) so that each neuron will predict a given class.</p>
 <p>First let us create a SOM object with the right properties</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">SOMptimised</span> <span class="kn">import</span> <span class="n">SOM</span><span class="p">,</span> <span class="n">LinearLearningStrategy</span><span class="p">,</span> <span class="n">ConstantRadiusStrategy</span><span class="p">,</span> <span class="n">euclidianMetric</span>
@@ -578,7 +577,7 @@ None
 </pre></div>
 </div>
 <p><span class="caption-text">Results</span></p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[0 0 0 0 0]
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[2 2 2 2 2]
 </pre></div>
 </div>
 <p>Similarly we can extract the predictions the SOM made on the training dataset</p>
@@ -587,10 +586,10 @@ None
 </pre></div>
 </div>
 <p><span class="caption-text">Results</span></p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
- 2 2 2 2 2 2 2 2 2 2 2 2 2 0 0 0 1 0 1 0 1 0 1 1 1 1 0 1 0 1 1 0 1 0 1 0 0
- 1 0 0 0 1 1 1 1 1 0 1 1 0 1 1 1 1 0 1 1 1 1 1 1 1 1 0 0 0 0 0 0 1 0 0 0 0
- 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ 0 0 0 0 0 0 0 0 0 0 0 0 0 2 1 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 1
+ 1 1 2 2 1 1 1 1 1 2 1 1 2 1 1 1 1 1 1 1 1 1 1 1 0 1 2 2 2 2 2 2 1 2 2 2 2
+ 2 2 2 2 2 2 2 2 2 2 1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 1 2 2 2 2 2 2]
 </pre></div>
 </div>
 <p>The SOM does not directly give us the predicted class but rather the closest neuron in the SOM for each data point. Because there are only three neurons, we can neverthelss associate them to a class.</p>
@@ -708,16 +707,16 @@ None
 </div>
 <p><span class="caption-text">Results</span></p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Predicted     Real
-2.9 +- 0.4    2.8
-3.5 +- 0.3    3.5
-3.0 +- 0.3    3.0
-3.5 +- 0.3    4.0
-3.5 +- 0.3    3.4
-3.0 +- 0.3    2.6
-3.5 +- 0.3    3.4
-3.0 +- 0.2    2.7
-2.9 +- 0.2    2.2
-3.0 +- 0.3    2.7
+3.1 +- 0.1    3.0
+2.9 +- 0.3    3.3
+3.0 +- 0.3    3.1
+2.9 +- 0.3    2.9
+2.8 +- 0.3    2.5
+3.0 +- 0.3    3.3
+2.7 +- 0.3    2.5
+3.1 +- 0.1    3.0
+3.8 +- 0.3    3.5
+3.1 +- 0.1    3.2
 </pre></div>
 </div>
 <div class="admonition note">
@@ -874,9 +873,9 @@ None
 </pre></div>
 </div>
 <p><span class="caption-text">Results</span></p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Mean before normalisation: [ 1.77251905 -3.36277058]
-Standard deviation before normalisation: [ 9.23754896 11.11948117]
-Mean after normalisation: [-7.10542736e-17  3.55271368e-17]
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Mean before normalisation: [ 1.71774857 -3.40636461]
+Standard deviation before normalisation: [ 9.21731185 11.10118897]
+Mean after normalisation: [1.0658141e-16 0.0000000e+00]
 Standard deviation after normalisation: [1. 1.]
 </pre></div>
 </div>
@@ -976,10 +975,10 @@ Standard deviation after normalisation: [1. 1.]
 </div>
 <p><span class="caption-text">Results</span></p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Petal width for the SOM neurons:
-[nan, nan, nan, nan, nan, nan, nan, nan, 3.1, 3.2, nan, 2.4, 2.5, nan, 3.7, 3.0, 2.8, 2.9, 2.8, 2.5, 2.8, 3.1, 3.05, 3.0, nan]
+[nan, nan, nan, nan, nan, nan, 3.0, 3.6, 3.5999999999999996, nan, nan, 3.1, 3.5999999999999996, 2.7, 2.9, nan, nan, 2.5, 2.8, 3.1, nan, nan, 2.9, 3.0, 3.05]
 
 Petal width stored in the SOM:
-[nan, nan, nan, nan, nan, nan, nan, nan, 3.1, 3.2, nan, 2.4, 2.5, nan, 3.7, 3.0, 2.8, 2.9, 2.8, 2.5, 2.8, 3.1, 3.05, 3.0, nan]
+[nan, nan, nan, nan, nan, nan, 3.0, 3.6, 3.5999999999999996, nan, nan, 3.1, 3.5999999999999996, 2.7, 2.9, nan, nan, 2.5, 2.8, 3.1, nan, nan, 2.9, 3.0, 3.05]
 </pre></div>
 </div>
 </section>

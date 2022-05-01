@@ -1,8 +1,6 @@
 Train the SOM to predict the iris class
 #######################################
 
-A
-
 We will use the SOM to predict the iris class of the test set. We can see by eye than there must be something like three different classes in the iris dataset so we will use a small SOM of dimensions (1, 3) so that each neuron will predict a given class.
     
 First let us create a SOM object with the right properties
