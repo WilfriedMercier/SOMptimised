@@ -25,7 +25,7 @@ For instance, one can do
 
 .. toctree::
 
-    lr
-    metric
-    neighbourhood
-    som
+    lr.rst
+    metric.rst
+    neighbourhood.rst
+    som.rst

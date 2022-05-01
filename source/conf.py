@@ -29,6 +29,7 @@ extensions         = ['sphinx.ext.autodoc',
                       'matplotlib.sphinxext.plot_directive',
                       'sphinx_execute_code',
                       'sphinx.ext.intersphinx',
+                      'sphinx_copybutton',
                      ]
 
 # The full version, including alpha/beta/rc tags
@@ -42,16 +43,27 @@ exclude_patterns   = []
 #               Options for HTML output               #
 #######################################################
 
-html_theme         = "sphinxawesome_theme"
+#html_theme         = "sphinxawesome_theme"
+html_theme         = "sphinx_book_theme"
 html_logo          = "../logo/logo.png"
+html_title         = 'SOMptimised 1.1'
 
-html_theme_options = {'extra_header_links' : {
-                      "API": "/SOMptimised//API/index",
-                      "Tutorial": "/SOMptimised/tutorial/index"
-                     },
+html_theme_options = {#'extra_header_links' : {
+                      #"API": "/SOMptimised//API/index",
+                      #"Tutorial": "/SOMptimised/tutorial/index"
+                     #},
+                     #"show_prev_next": True,
+                     #"show_scrolltop": True,
+                     "repository_url":'https://github.com/WilfriedMercier/SOMptimised',
+                     "use_repository_button": True,
+                     'use_issues_button':True,
+                     'home_page_in_toc':True,
+                     'show_navbar_depth':1
     }
 
-html_collapsible_definitions = True
+#html_awesome_code_headers = True
+#html_collapsible_definitions = True
+
 
 rst_prolog = """
 .. role:: python(code)

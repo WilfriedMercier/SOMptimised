@@ -3,6 +3,15 @@ Tutorial/Example
 
 .. _iris dataset: https://en.wikipedia.org/wiki/Iris_flower_data_set
 
+.. toctree::
+   :hidden:
+
+   clustering_iris.rst
+   predict_sepal_width.rst
+   normalisation.rst
+   set_and_get.rst
+   save_and_load.rst
+
 .. important::
 
     This example requires pandas_ to be installed. This can be done the following way with pip
