@@ -16,7 +16,7 @@ def skip(app, what, name, obj, would_skip, options):
 ###################################################
 
 project            = 'SOMptimised'
-copyright          = '2022, Wilfried Mercier'
+copyright          = '2023, Wilfried Mercier'
 author             = 'Wilfried Mercier'
 show_authors       = True
 
