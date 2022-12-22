@@ -10,7 +10,7 @@ Most of the code comes from **Riley Smith** implementation found in `sklearn-som
 
 .. The MIT License (MIT)
 
-    Copyright © 2022 <Wilfried Mercier>
+    Copyright © 2023 <Wilfried Mercier>
 
     Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
@@ -181,6 +181,11 @@ class SOM():
 
         # Get index of best matching unit (we set metric to None to use the one provided in init)
         bmu_index        = self._find_bmu(x, *args, metric=None, **kwargs)
+        
+        '''
+        self.bmu_index   = bmu_index
+        print('bmu index', self.bmu_index)
+        '''
 
         # Find location of best matching unit
         bmu_location     = self._locations[bmu_index, :]
@@ -308,11 +313,16 @@ class SOM():
             else:
                indices               = np.arange(n_samples)
 
+            # XXX
+            '''
+            self.write('som_init')
+            '''
+            
             ##########################
             #        Training        #
             ##########################
             
-            for idx in indices:
+            for pos, idx in enumerate(indices):
                 
                 # Break if past max number of iterations
                 if global_iter_counter > self.max_iter:
@@ -326,6 +336,11 @@ class SOM():
                 
                 self.step(inp, global_iter_counter, *step_args, **kwargs)
                   
+                # XXX
+                '''
+                self.write(f'som_{pos}_{idx}')
+                '''
+                
                 # Update learning rate
                 global_iter_counter += 1
 
