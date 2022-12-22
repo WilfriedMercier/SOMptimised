@@ -61,7 +61,7 @@ API
 
 .. The MIT License (MIT)
 
-    Copyright © 2022 <Wilfried Mercier>
+    Copyright © 2023 <Wilfried Mercier>
 
     Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
@@ -71,6 +71,7 @@ API
 '''
 
 from   typing import Union
+from   copy   import deepcopy
 import numpy  as     np
   
 def euclidianMetric(coord1: np.ndarray, coord2: Union[int, float, np.ndarray], *args,
@@ -185,11 +186,88 @@ def chi2Metric(coord1: np.ndarray, coord2: Union[int, float, np.ndarray], error:
     
     return np.sum(chi2_all*chi2_all, axis=axis) if squared else np.sqrt(np.sum(chi2_all*chi2_all, axis=axis))
 
+def chi2MetricPenalised(coord1: np.ndarray, coord2: Union[int, float, np.ndarray], error: np.ndarray, *args,
+                        multFac: Union[int, float] = 1,
+                        squared: bool              = False, 
+                        axis: int                  = 1,
+                        no_error: bool             = False,
+                        **kwargs) -> float:
+    r'''
+    .. codeauthor:: Wilfried Mercier - IRAP <wilfried.mercier@irap.omp.eu>
+    
+    Provide a :math:`\chi^2` distance estimated between **coord1** and **coord2** using an uncertainty given by **error**. The :math:`\chi^2` distance :math:`d` between coordinates :math:`a = (a_i)` and :math:`b = (b_i)` with error :math:`e = (e_i)` is given by
+    
+    .. math::
+    
+       d = \sqrt{\sum_{i > 0} \left ( \frac{a_i - b_i}{e_i} \right )^2 \times \exp \lbrace | m (a_0 - b_0) / e_0 | \rbrace}
+       
+    .. important::
+
+       This metric includes a penalty function (taken as exponential ) for the first coordinate (e.g. for a redshift). For no penalty, use instead :py:func:`~.chi2Metric`.
+       
+    .. note::
+       
+       If one of the coordinates in **error** is 0, the :math:`\chi^2` distance will diverge.
+    
+    :param coord1: first array of coordinates with the first column penalised
+    :type coord1: `ndarray`_
+    :param coord2: second array of coordinates with the first column penalised
+    :type coord2: :python:`int`, :python:`float` or `ndarray`_ [:python:`float`]
+    :param error: array of uncertainties (first column used in the penalty function). Must have the same shape as **coord1**. To provide no error, set **no_error** to :python:`True`.
+    :type error: `ndarray`_ [:python:`float`]
+    
+    :param multFac: (**Optional**) multiplicative factor in the penalty function (see definition above)
+    :type multFac: :python:`int` or :python:`float`
+    :param squared: (**Optional**) whether to return the square of the metric or not
+    :type squared: :python:`bool`
+    :param axis: (**Optional**) axis onto which to compute the sum
+    :type axis: :python:`int`
+    :param no_error: (**Optional**) whether to use no error in the computation (i.e. Euclidian distance or not)
+    :type no_error: :python:`bool`
+    
+    :returns: euclidian distance estimated between the two sets of coordinates
+    :rtype: :python:`float`
+    
+    :raises TypeError: if
+    
+    * :python:`not isinstance(no_error, bool)`
+    * :python:`not isinstance(coord1, np.ndarray)`
+    * :python:`not isinstance(coord2, np.ndarray)`
+    * :python:`not isinstance(multFac, (int, float))`
+    * :python:`not isinstance(error, (np.ndarray, int, float))`
+    * :python:`not isinstance(squared, bool)`
+    * :python:`not isinstance(axis, int)`
+    '''
+    
+    if not isinstance(no_error, bool):
+       raise TypeError(f'no_error parameter has type {type(no_error)} but it must be a bool.')
+    
+    # If no error is provided, we set it to 1.0 (similar to computing the Euclidian distance)
+    if no_error:
+        error = np.full(coord1.shape, 1.0)
+    
+    # Check type for all parameters including the additional arguments
+    for param, name, typ in zip([coord1, coord2, error, squared, axis], 
+                                ['coord1', 'coord2', 'error', 'squared', 'axis'], 
+                                [np.ndarray, (int, float, np.ndarray), (np.ndarray, float, int, ), bool, int]
+                               ):
+       
+        if not isinstance(param, typ):
+            raise TypeError(f'{name} has type {type(param)} but it must be {typ}.')
+        
+    if coord1.shape != error.shape:
+        raise ValueError(f'coord1 parameter has shape {coord1.shape} and error parameter has shape {error.shape} when they should be similar.')
+          
+    chi2_all = (coord1[:, 1:] - coord2[:, 1:])/error[:, 1:]
+    penalty  = np.exp(np.abs(multFac * (coord1[:, 0] - coord2[:, 0]) / error[:, 0]))
+    
+    return np.sum(chi2_all*chi2_all, axis=axis) * penalty if squared else np.sqrt(np.sum(chi2_all*chi2_all, axis=axis) * penalty)
+
 def chi2CigaleMetric(coord1: np.ndarray, coord2: Union[int, float, np.ndarray], error: np.ndarray, *args,
-               squared: bool  = False, 
-               axis: int      = 1,
-               no_error: bool = False,
-               **kwargs) -> float:
+                     squared: bool  = False, 
+                     axis: int      = 1,
+                     no_error: bool = False,
+                     **kwargs) -> float:
     r'''
     .. codeauthor:: Wilfried Mercier - IRAP <wilfried.mercier@irap.omp.eu>
     
@@ -256,6 +334,104 @@ def chi2CigaleMetric(coord1: np.ndarray, coord2: Union[int, float, np.ndarray], 
         raise ValueError(f'coord1 parameter has shape {coord1.shape} and error parameter has shape {error.shape} when they should be similar.')
         
     error2   = error*error
-    alpha    = np.array([np.sum(coord1*coord2/(error2), axis=1) / np.sum(coord2*coord2/error2, axis=1)]*error.shape[-1]).T  
+    alpha    = np.array([np.sum(coord1*coord2/error2, axis=1) / np.sum(coord2*coord2/error2, axis=1)] * error.shape[-1]).T  
     
-    return chi2Metric(coord1, coord2*alpha, error, *args, squared=squared, axis=axis, no_error=no_error, **kwargs)
+    return chi2Metric(coord1, coord2*alpha, error, *args, 
+                      squared  = squared,
+                      axis     = axis,
+                      no_error = no_error,
+                      **kwargs)
+
+
+
+def chi2CigaleMetricPenalised(coord1: np.ndarray, coord2: Union[int, float, np.ndarray], error: np.ndarray, *args,
+                              multFac: Union[int, float] = 1,
+                              squared: bool              = False, 
+                              axis: int                  = 1,
+                              no_error: bool             = False,
+                              **kwargs) -> float:
+    r'''
+    .. codeauthor:: Wilfried Mercier - IRAP <wilfried.mercier@irap.omp.eu>
+    
+    Provide a penalised :math:`\chi^2` distance as defined in `Cigale`_ estimated between **coord1** and **coord2** using an uncertainty given by **error**. The penalised :math:`\chi^2` distance :math:`d` between coordinates :math:`a = (a_i)` and :math:`b = (b_i)` with error :math:`e = (e_i)` is given by
+    
+    .. math::
+    
+       d = \sqrt{\sum_{i > 0} \left ( \frac{a_i - \alpha b_i}{e_i} \right )^2 \times \exp \lbrace | m (a_0 - b_0) / e_0 | \rbrace}
+       
+    where :math:`m` is the multiplicative factor hyperparameter given by **multFac** and :math:`\alpha` is a scale factor which is computed by the function as
+    
+    .. math::
+        
+        \alpha = \frac{\sum_i a_i b_i / e_i^2}{\sum_i b_i^2 / e_i^2}.
+
+    .. important::
+
+        This metric therefore includes a penalty function (taken as exponential ) for the first coordinate (e.g. for a redshift). For no penalty, use instead :py:func:`~.chi2CigaleMetric`.
+       
+    .. note::
+       
+       If one of the coordinates in **error** is 0, the :math:`\chi^2` distance will diverge.
+    
+    :param coord1: first array of coordinates where the first column is penalised
+    :type coord1: `ndarray`_
+    :param coord2: second array of coordinates where the first column is penalised
+    :type coord2: :python:`int`, :python:`float` or `ndarray`_ [:python:`float`]
+    :param error: array of uncertainties (first column used in the penalty function). Must have the same shape as **coord1**. To provide no error, set **no_error** to :python:`True`.
+    :type error: `ndarray`_ [:python:`float`]
+    
+    :param multFac: (**Optional**) multiplicative factor in the penalty function (see definition above)
+    :type multFac: :python:`int` or :python:`float`
+    :param squared: (**Optional**) whether to return the square of the metric or not
+    :type squared: :python:`bool`
+    :param axis: (**Optional**) axis onto which to compute the sum
+    :type axis: :python:`int`
+    :param no_error: (**Optional**) whether to use no error in the computation (i.e. Euclidian distance or not)
+    :type no_error: :python:`bool`
+    
+    :returns: euclidian distance estimated between the two sets of coordinates
+    :rtype: :python:`float`
+    
+    :raises TypeError: if
+    
+    * :python:`not isinstance(no_error, bool)`
+    * :python:`not isinstance(coord1, np.ndarray)`
+    * :python:`not isinstance(coord2, np.ndarray)`
+    * :python:`not isinstance(multFac, (int, float))`
+    * :python:`not isinstance(error, (np.ndarray, int, float))`
+    * :python:`not isinstance(squared, bool)`
+    * :python:`not isinstance(axis, int)`
+    '''
+    
+    if not isinstance(no_error, bool):
+       raise TypeError(f'no_error parameter has type {type(no_error)} but it must be a bool.')
+    
+    # If no error is provided, we set it to 1.0 (similar to computing the Euclidian distance)
+    if no_error:
+        error = np.full(coord1.shape, 1.0)
+    
+    # Check type for all parameters including the additional arguments
+    for param, name, typ in zip([coord1, coord2, error, multFac, squared, axis], 
+                                ['coord1', 'coord2', 'error', 'multFac', 'squared', 'axis'], 
+                                [np.ndarray, (int, float, np.ndarray), (np.ndarray, float, int, ), (int, float), bool, int]
+                               ):
+       
+        if not isinstance(param, typ):
+            raise TypeError(f'{name} has type {type(param)} but it must be {typ}.')
+        
+    if coord1.shape != error.shape:
+        raise ValueError(f'coord1 parameter has shape {coord1.shape} and error parameter has shape {error.shape} when they should be similar.')
+        
+    # We remove the first column from all the computations since it is used for the penalty function instead
+    error2                = error[:, 1:]*error[:, 1:]
+    alpha                 = np.array([np.sum(coord1[:, 1:]*coord2[:, 1:]/error2, axis=1) / np.sum(coord2[:, 1:]*coord2[:, 1:]/error2, axis=1)] * error[:, 1:].shape[-1]).T
+    
+    coord2_scaled         = deepcopy(coord2)
+    coord2_scaled[:, 1:] *= alpha
+    
+    return chi2MetricPenalised(coord1, coord2, error, *args, 
+                               multFac  = multFac,
+                               squared  = squared, 
+                               axis     = axis,
+                               no_error = no_error,
+                               **kwargs)
