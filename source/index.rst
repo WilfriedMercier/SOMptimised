@@ -1,5 +1,5 @@
 SOMptimised
-============
+===========
 
 An **optimised** Self Organising Map module based on `sklearn-som <https://pypi.org/project/sklearn-som/>`_ with additional features.
 

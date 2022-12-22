@@ -36,8 +36,8 @@ extensions         = ['sphinx.ext.autodoc',
 release            = '1.1'
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path     = ['_templates']
-exclude_patterns   = []
+html_static_path   = ["_static"]
+html_css_files     = ["custom.css"]
 
 #######################################################
 #               Options for HTML output               #
