@@ -20,7 +20,7 @@ For more details, please visite the [documentation](https://wilfriedmercier.gith
 
 MIT License
 
-Copyright (c) 2022 Wilfried Mercier
+Copyright (c) 2023 Wilfried Mercier
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
