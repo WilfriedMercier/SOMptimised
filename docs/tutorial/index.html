@@ -578,7 +578,7 @@ None
 </pre></div>
 </div>
 <p><span class="caption-text">Results</span></p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[2 2 2 2 2]
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[0 0 0 0 0]
 </pre></div>
 </div>
 <p>Similarly we can extract the predictions the SOM made on the training dataset</p>
@@ -587,10 +587,10 @@ None
 </pre></div>
 </div>
 <p><span class="caption-text">Results</span></p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
- 0 0 0 0 0 0 0 0 0 0 0 0 0 2 1 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 1
- 1 1 2 2 1 1 1 1 1 2 1 1 2 1 1 1 1 1 1 1 1 1 1 1 0 1 2 2 2 2 2 2 1 2 2 2 2
- 2 2 2 2 2 2 2 2 2 2 1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 1 2 2 2 2 2 2]
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+ 2 2 2 2 2 2 2 2 2 2 2 2 2 0 0 0 1 0 1 0 1 0 1 1 1 1 0 1 0 1 1 1 1 0 1 0 1
+ 1 0 0 0 1 1 1 1 1 0 1 1 0 1 1 1 1 1 1 1 1 1 1 1 2 1 0 0 0 0 0 0 1 0 0 0 0
+ 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]
 </pre></div>
 </div>
 <p>The SOM does not directly give us the predicted class but rather the closest neuron in the SOM for each data point. Because there are only three neurons, we can neverthelss associate them to a class.</p>
@@ -708,16 +708,16 @@ None
 </div>
 <p><span class="caption-text">Results</span></p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Predicted     Real
-3.1 +- 0.1    3.0
-2.9 +- 0.3    3.3
-3.0 +- 0.3    3.1
-2.9 +- 0.3    2.9
-2.8 +- 0.3    2.5
+3.0 +- 0.3    2.8
+2.7 +- 0.2    2.9
 3.0 +- 0.3    3.3
-2.7 +- 0.3    2.5
 3.1 +- 0.1    3.0
-3.8 +- 0.3    3.5
-3.1 +- 0.1    3.2
+3.0 +- 0.3    2.7
+2.9 +- 0.3    3.3
+3.0 +- 0.3    3.0
+3.5 +- 0.2    3.3
+3.0 +- 0.3    3.2
+3.5 +- 0.2    3.8
 </pre></div>
 </div>
 <div class="admonition note">
@@ -874,9 +874,9 @@ None
 </pre></div>
 </div>
 <p><span class="caption-text">Results</span></p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Mean before normalisation: [ 1.71774857 -3.40636461]
-Standard deviation before normalisation: [ 9.21731185 11.10118897]
-Mean after normalisation: [1.0658141e-16 0.0000000e+00]
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Mean before normalisation: [ 1.70401726 -3.38087602]
+Standard deviation before normalisation: [ 9.24220196 11.07705347]
+Mean after normalisation: [-7.10542736e-17  0.00000000e+00]
 Standard deviation after normalisation: [1. 1.]
 </pre></div>
 </div>
@@ -976,10 +976,10 @@ Standard deviation after normalisation: [1. 1.]
 </div>
 <p><span class="caption-text">Results</span></p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Petal width for the SOM neurons:
-[nan, nan, nan, nan, nan, nan, 3.0, 3.6, 3.5999999999999996, nan, nan, 3.1, 3.5999999999999996, 2.7, 2.9, nan, nan, 2.5, 2.8, 3.1, nan, nan, 2.9, 3.0, 3.05]
+[nan, nan, nan, nan, nan, nan, 3.0, 3.5, nan, 2.4, nan, 3.1, 3.8, 2.3499999999999996, 2.8, nan, nan, 2.6, 2.9, 2.75, nan, nan, 2.6500000000000004, 2.95, 3.0]
 
 Petal width stored in the SOM:
-[nan, nan, nan, nan, nan, nan, 3.0, 3.6, 3.5999999999999996, nan, nan, 3.1, 3.5999999999999996, 2.7, 2.9, nan, nan, 2.5, 2.8, 3.1, nan, nan, 2.9, 3.0, 3.05]
+[nan, nan, nan, nan, nan, nan, 3.0, 3.5, nan, 2.4, nan, 3.1, 3.8, 2.3499999999999996, 2.8, nan, nan, 2.6, 2.9, 2.75, nan, nan, 2.6500000000000004, 2.95, 3.0]
 </pre></div>
 </div>
 </section>
